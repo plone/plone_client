@@ -8,10 +8,10 @@
           <div class="plone-collapse plone-navbar-collapse" id="portal-globalnav-collapse">
             <ul class="plone-nav plone-navbar-nav" id="portal-globalnav">
               <li id="portaltab-index_html" class="selected">
-                <a [routerLink]=" ['./Home'] ">Home</a>
+                <a href="/home">Home</a>
               </li>
               <li id="portaltab-news">
-                <a [routerLink]=" ['./About'] ">About</a>
+                <a href="/about">About</a>
               </li>
             </ul>
           </div>
@@ -26,7 +26,7 @@
           <span id="breadcrumbs-you-are-here" class="hiddenStructure">You are here:</span>
           <ol aria-labelledby="breadcrumbs-you-are-here">
             <li id="breadcrumbs-home">
-              <a [routerLink]=" ['./Home'] ">Home</a>
+              <a href="/home">Home</a>
             </li>
           </ol>
         </div>
@@ -41,9 +41,7 @@
       <div id="column1-container">
       </div>
       <div id="content-container">
-        <title-tile [title]="data.content && data.content.title"></title-tile>
-        <p class="description">{{ data.content && data.content.description }}</p>
-        <p class="body" [innerHTML]="data.content && data.content.body"></p>
+        <router-outlet></router-outlet>
       </div>
       <div id="column2-container">
       </div>
