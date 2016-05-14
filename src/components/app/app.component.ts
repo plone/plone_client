@@ -1,5 +1,5 @@
 import {Component, Directive, ElementRef, Renderer} from '@angular/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {Routes, Router, Route, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
 import {Http} from '@angular/http';
 import {Header} from '../header/header.component';
 import {Footer} from '../footer/footer.component';
@@ -14,20 +14,26 @@ import TitleTile from '../title-tile/title-tile.component';
 @Component({
   selector: 'app',
   directives: [
-    ...ROUTER_DIRECTIVES,
+    ROUTER_DIRECTIVES,
     Header,
     TitleTile,
     Footer,
     Navigation
   ],
+  providers: [ROUTER_PROVIDERS],
   styles: [
     require('./app.component.css')
   ],
   template: require('./app.component.html')
 })
-@RouteConfig([
-  { regex: '(.*)/edit', serializer: () => '', component: Edit, name: 'Edit' },
-  { regex: '(.*)', serializer: () => '', component: View, name: 'View' },
+@Routes([
+  { path: '/**/edit', component: Edit },
+  { path: '/*', component: View },
+  { path: '*', component: View }
 ])
 export class App {
+
+  constructor(
+    private router: Router) {
+  }
 }
