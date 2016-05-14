@@ -23,8 +23,8 @@ import TitleTile from '../title-tile/title-tile.component';
   template: require('./app.component.html')
 })
 @RouteConfig([
-  { regex: '.*/edit', serializer: () => '', component: Edit, name: 'Edit' },
-  { regex: '.*', serializer: () => '', component: View, name: 'View' },
+  { regex: '(.*)/edit', serializer: () => '', component: Edit, name: 'Edit' },
+  { regex: '(.*)', serializer: () => '', component: View, name: 'View' },
 ])
 export class App {
 }
