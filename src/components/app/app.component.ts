@@ -3,6 +3,7 @@ import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {Http} from '@angular/http';
 import {Header} from '../header/header.component';
 import {Footer} from '../footer/footer.component';
+import {Navigation} from '../navigation/navigation.component';
 import {View} from '../view/view.component';
 import {Edit} from '../edit/edit.component';
 import TitleTile from '../title-tile/title-tile.component';
@@ -15,7 +16,9 @@ import TitleTile from '../title-tile/title-tile.component';
   directives: [
     ...ROUTER_DIRECTIVES,
     Header,
-    Footer
+    TitleTile,
+    Footer,
+    Navigation
   ],
   styles: [
     require('./app.component.css')
