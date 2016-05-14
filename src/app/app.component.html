@@ -1,0 +1,172 @@
+<div class="outer-wrapper">
+  <header class="content-header">
+  </header>
+  <div id="mainnavigation-wrapper">
+    <div id="mainnavigation">
+      <nav class="plone-navbar" id="portal-globalnav-wrapper" role="navigation">
+        <div class="container">
+          <div class="plone-collapse plone-navbar-collapse" id="portal-globalnav-collapse">
+            <ul class="plone-nav plone-navbar-nav" id="portal-globalnav">
+              <li id="portaltab-index_html" class="selected">
+                <a [routerLink]=" ['./Home'] ">Home</a>
+              </li>
+              <li id="portaltab-news">
+                <a [routerLink]=" ['./About'] ">About</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div id="hero" class="principal">
+    <div class="container">
+      <div class="gigantic">
+        <h1>Welcome!</h1>
+        <p>PloneNG!</p>
+      </div>
+    </div>
+  </div>
+  <div id="above-content-wrapper">
+    <section id="viewlet-above-content">
+      <nav id="portal-breadcrumbs" class="plone-breadcrumb" role="navigation">
+        <div class="container">
+          <span id="breadcrumbs-you-are-here" class="hiddenStructure">You are here:</span>
+          <ol aria-labelledby="breadcrumbs-you-are-here">
+            <li id="breadcrumbs-home">
+              <a [routerLink]=" ['./Home'] ">Home</a>
+            </li>
+          </ol>
+        </div>
+      </nav>
+    </section>
+  </div>
+  <div class="container">
+    <div class="row">
+      <aside id="global_statusmessage"></aside>
+    </div>
+    <main id="main-container" class="row row-offcanvas row-offcanvas-right">
+      <div id="column1-container">
+      </div>
+      <div id="content-container">
+        <h1 class="documentFirstHeading">Welcome to Plone</h1>
+        <div>
+          <span x-large>Universal JavaScript {{ title }}!</span>
+        </div>
+
+        Two-way binding: <input type="text" [value]="title" (input)="title = $event.target.value" autofocus>
+        <br><br>
+
+        <strong>Async data call return value:</strong>
+        <pre>{{ data | json }}</pre>
+
+        <strong>Router-outlet:</strong>
+        <main>
+          <router-outlet></router-outlet>
+        </main>
+
+        <blockquote>{{ server }}</blockquote>
+      </div>
+      <div id="column2-container">
+      </div>
+    </main><!--/row-->
+  </div><!--/container-->
+</div> <!--/outer-wrapper -->
+<footer id="portal-footer-wrapper" role="contentinfo">
+      <div class="container" id="portal-footer">
+      <div class="row">
+	<div class="col-xs-12">
+
+<div class="portletWrapper" id="portletwrapper-706c6f6e652e666f6f746572706f72746c6574730a636f6e746578740a2f506c6f6e6531340a666f6f746572" data-portlethash="706c6f6e652e666f6f746572706f72746c6574730a636f6e746578740a2f506c6f6e6531340a666f6f746572">
+
+
+
+
+
+
+  <section class="portlet portletClassic" id="portal-footer-signature">
+    <div class="portletContent">
+      The
+           <a href="http://plone.com">Plone<sup>®</sup> Open Source CMS/WCM</a>
+       is <abbr title="Copyright">©</abbr> 2000-2016 by the
+           <a href="http://plone.org/foundation">Plone Foundation</a> and friends.
+
+      Distributed under the
+                <a href="http://creativecommons.org/licenses/GPL/2.0/">GNU GPL license</a>.
+    </div>
+  </section>
+
+
+
+
+</div>
+
+<div class="portletWrapper" id="portletwrapper-706c6f6e652e666f6f746572706f72746c6574730a636f6e746578740a2f506c6f6e6531340a616374696f6e73" data-portlethash="706c6f6e652e666f6f746572706f72746c6574730a636f6e746578740a2f506c6f6e6531340a616374696f6e73">
+
+<section class="portlet portletActions" role="menu">
+
+
+  <section class="portletContent">
+    <ul>
+
+        <li class="portletItem">
+          <a href="http://localhost:8080/Plone14/sitemap">
+
+            <span>Site Map</span>
+
+
+
+          </a>
+        </li>
+
+        <li class="portletItem">
+          <a href="http://localhost:8080/Plone14/accessibility-info">
+
+            <span>Accessibility</span>
+
+
+
+          </a>
+        </li>
+
+        <li class="portletItem">
+          <a href="http://localhost:8080/Plone14/contact-info" class="pat-plone-modal" data-pat-plone-modal="{}">
+
+            <span>Contact</span>
+
+
+
+          </a>
+        </li>
+
+    </ul>
+  </section>
+</section>
+
+</div>
+
+<div class="portletWrapper" id="portletwrapper-706c6f6e652e666f6f746572706f72746c6574730a636f6e746578740a2f506c6f6e6531340a636f6c6f70686f6e" data-portlethash="706c6f6e652e666f6f746572706f72746c6574730a636f6e746578740a2f506c6f6e6531340a636f6c6f70686f6e">
+
+
+
+
+
+
+  <section class="portlet portletClassic" id="portal-colophon">
+    <div class="portletContent">
+      <a href="http://plone.com" target="_blank" title="This site was built using the Plone Open Source CMS/WCM.">Powered by Plone &amp; Python</a>
+    </div>
+  </section>
+
+
+
+
+</div>
+
+
+	</div>
+</div>
+
+
+    </div>
+    </footer>

@@ -62,6 +62,7 @@ function indexFile(req, res) {
 // Serve static files
 app.use(express.static(ROOT, {index: false}));
 
+
 // Our API for demos only
 app.get('/data.json', (req, res) => {
   res.json({

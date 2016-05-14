@@ -3,12 +3,14 @@ var path = require('path');
 
 var commonConfig = {
   resolve: {
-    extensions: ['', '.ts', '.js']
+    extensions: ['', '.ts', '.js'],
   },
   module: {
     loaders: [
       // TypeScript
-      { test: /\.ts$/, loader: 'ts-loader' }
+      { test: /\.ts$/, loader: 'ts-loader' },
+      { test: /\.css$/, loader: 'raw-loader' },
+      { test: /\.html$/, loader: 'raw-loader', exclude: './app/index.html' }
     ]
   },
   plugins: [
