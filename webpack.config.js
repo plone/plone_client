@@ -8,7 +8,7 @@ var commonConfig = {
   module: {
     preLoaders: [{
       test: /\.(html|css)$/,
-      loader: "plonetheme-preloader"
+      loader: "plonetheme-preloader?themepath=src/customtheme"
     }],
     loaders: [
       // TypeScript
