@@ -19,14 +19,6 @@
       </nav>
     </div>
   </div>
-  <div id="hero" class="principal">
-    <div class="container">
-      <div class="gigantic">
-        <h1>Welcome!</h1>
-        <p>PloneNG!</p>
-      </div>
-    </div>
-  </div>
   <div id="above-content-wrapper">
     <section id="viewlet-above-content">
       <nav id="portal-breadcrumbs" class="plone-breadcrumb" role="navigation">
@@ -49,23 +41,9 @@
       <div id="column1-container">
       </div>
       <div id="content-container">
-        <h1 class="documentFirstHeading">Welcome to Plone</h1>
-        <div>
-          <span x-large>Universal JavaScript {{ title }}!</span>
-        </div>
-
-        Two-way binding: <input type="text" [value]="title" (input)="title = $event.target.value" autofocus>
-        <br><br>
-
-        <strong>Async data call return value:</strong>
-        <pre>{{ data | json }}</pre>
-
-        <strong>Router-outlet:</strong>
-        <main>
-          <router-outlet></router-outlet>
-        </main>
-
-        <blockquote>{{ server }}</blockquote>
+        <title-tile [title]="data.content && data.content.title"></title-tile>
+        <p class="description">{{ data.content && data.content.description }}</p>
+        <p class="body" [innerHTML]="data.content && data.content.body"></p>
       </div>
       <div id="column2-container">
       </div>

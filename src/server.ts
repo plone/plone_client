@@ -70,6 +70,26 @@ app.get('/data.json', (req, res) => {
   });
 });
 
+app.get('/api/home', (req, res) => {
+  res.json({
+    content: {
+      title: 'Welcome to Plone',
+      description: 'This is the description',
+      body: '<p>Some body text with <b>markup</b></p>',
+    }
+  });
+});
+
+app.get('/api/about', (req, res) => {
+  res.json({
+    content: {
+      title: 'About page',
+      description: 'This is the about description',
+      body: '<p>About body text with <b>markup</b></p>',
+    }
+  });
+});
+
 // Routes with html5pushstate
 app.use('/', ngApp);
 app.use('/about', ngApp);

@@ -2,6 +2,7 @@ import {Component, Directive, ElementRef, Renderer} from '@angular/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {Http} from '@angular/http';
 import {Header} from '../header/header.component';
+import TitleTile from '../title-tile/title-tile.component';
 
 /////////////////////////
 // ** Example Directive
@@ -44,7 +45,8 @@ export class About { }
   directives: [
     ...ROUTER_DIRECTIVES,
     XLarge,
-    Header
+    Header,
+    TitleTile,
   ],
   styles: [
     require('./app.component.css')
@@ -69,7 +71,7 @@ export class App {
       this.server = 'This was rendered from the server!';
     }, 10);
 
-    this.http.get('/data.json')
+    this.http.get('/api/home')
       .subscribe(res => {
         this.data = res.json();
       });
