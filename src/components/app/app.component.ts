@@ -1,7 +1,7 @@
 import {Component, Directive, ElementRef, Renderer} from '@angular/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {Http} from '@angular/http';
-import {Header} from '../directives/header.component';
+import {Header} from '../header/header.component';
 
 /////////////////////////
 // ** Example Directive

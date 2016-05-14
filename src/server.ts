@@ -18,7 +18,7 @@ import {
 } from 'angular2-universal';
 
 // Application
-import {App} from './app/app.component';
+import {App} from './components/app/app.component';
 
 const app = express();
 const ROOT = path.join(path.resolve(__dirname, '..'));
