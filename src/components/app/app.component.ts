@@ -2,10 +2,9 @@ import {Component, Directive, ElementRef, Renderer} from '@angular/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {Http} from '@angular/http';
 import {Header} from '../header/header.component';
+import {Footer} from '../footer/footer.component';
 import {View} from '../view/view.component';
 import TitleTile from '../title-tile/title-tile.component';
-import {Header} from '../directives/header.component';
-import {Footer} from '../directives/footer.component';
 /////////////////////////
 // ** Example Directive
 // Notice we don't touch the Element directly
