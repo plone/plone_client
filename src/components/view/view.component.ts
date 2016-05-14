@@ -1,25 +1,21 @@
 import {Component, Renderer} from '@angular/core';
 import {Http} from '@angular/http';
 import TitleTile from '../title-tile/title-tile.component';
-import {Router} from '@angular/router';
-import {ROUTER_DIRECTIVES, OnActivate, RouteSegment, RouteTree} from '@angular/router';
+import {RouteParams} from '@angular/router-deprecated';
 
 @Component({
   selector: 'view',
   directives: [
-    TitleTile
+    TitleTile,
   ],
   template: require('./view.component.html')
 })
-export class View implements OnActivate {
+export class View {
   data = {};
   path = '';
 
-  constructor(public http: Http,
-              private router: Router) {
-  }
-
-  routerOnActivate(curr: RouteSegment, prev?: RouteSegment, currTree?: RouteTree, prevTree?: RouteTree): void {
+  constructor(public http: Http, _params: RouteParams) {
+    this.path = _params.get('1');
   }
 
   ngOnInit() {

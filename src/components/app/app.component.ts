@@ -1,5 +1,5 @@
 import {Component, Directive, ElementRef, Renderer} from '@angular/core';
-import {Routes, Router, Route, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
+import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {Http} from '@angular/http';
 import {Header} from '../header/header.component';
 import {Breadcrumbs} from '../breadcrumbs/breadcrumbs.component';
@@ -15,27 +15,21 @@ import TitleTile from '../title-tile/title-tile.component';
 @Component({
   selector: 'plone-app', // <app></app>
   directives: [
-    ROUTER_DIRECTIVES,
+    ...ROUTER_DIRECTIVES,
     Header,
     TitleTile,
     Footer,
     Navigation,
     Breadcrumbs
   ],
-  providers: [ROUTER_PROVIDERS],
   styles: [
     require('./app.component.css')
   ],
   template: require('./app.component.html')
 })
-@Routes([
-  { path: '/**/edit', component: Edit },
-  { path: '/*', component: View },
-  { path: '*', component: View }
+@RouteConfig([
+  { regex: '(.*)/edit', serializer: () => '', component: Edit, name: 'Edit' },
+  { regex: '(.*)', serializer: () => '', component: View, name: 'View' },
 ])
 export class App {
-
-  constructor(
-    private router: Router) {
-  }
 }
