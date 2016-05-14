@@ -2,6 +2,7 @@ import {Component, Directive, ElementRef, Renderer} from '@angular/core';
 import {Routes, Router, Route, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
 import {Http} from '@angular/http';
 import {Header} from '../header/header.component';
+import {Breadcrumbs} from '../breadcrumbs/breadcrumbs.component';
 import {Footer} from '../footer/footer.component';
 import {Navigation} from '../navigation/navigation.component';
 import {View} from '../view/view.component';
@@ -12,13 +13,14 @@ import TitleTile from '../title-tile/title-tile.component';
 /////////////////////////
 // ** MAIN APP COMPONENT **
 @Component({
-  selector: 'app',
+  selector: 'plone-app', // <app></app>
   directives: [
     ROUTER_DIRECTIVES,
     Header,
     TitleTile,
     Footer,
-    Navigation
+    Navigation,
+    Breadcrumbs
   ],
   providers: [ROUTER_PROVIDERS],
   styles: [
