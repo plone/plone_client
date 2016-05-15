@@ -2,7 +2,7 @@ import {Component, Renderer} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import TitleTile from '../title-tile/title-tile.component';
 import {RouteParams, Router} from '@angular/router-deprecated';
-import {Document} from '../../models/document';
+import {Model} from '../../models/document';
 import {ObjectService} from '../../services/object.service';
 
 
@@ -15,7 +15,7 @@ import {ObjectService} from '../../services/object.service';
   template: require('./edit.component.html')
 })
 export class Edit {
-  model: Document = {
+  model: Model = {
     title: '',
     description: '',
     text: {
@@ -33,7 +33,6 @@ export class Edit {
 
   ngOnInit() {
     this.objectService.get(this.path).subscribe(res => {
-      console.log(res);
       this.model = res.json();
     });
   }

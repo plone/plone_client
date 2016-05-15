@@ -23,7 +23,8 @@
                 [(ngModel)]="model.description"></textarea>
     </div>
 
-    <div class="field" data-fieldname="form.widgets.IDublinCore.body" id="formfield-form-widgets-IDublinCore-body">
+    <div class="field" data-fieldname="form.widgets.IDublinCore.body" id="formfield-form-widgets-IDublinCore-body"
+         *ngIf="model.text">
       <label for="form-widgets-IDublinCore-body" class="horizontal">
         Body
       </label>
