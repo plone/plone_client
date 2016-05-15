@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var WebpackNotifierPlugin = require('webpack-notifier');
 
 var webpackConfig = require('./config/webpack.common')
 
@@ -51,10 +52,13 @@ var defaultConfig = {
   output: {
     publicPath: path.resolve(__dirname),
     filename: 'bundle.js'
-  }
+  },
+  plugins: [
+    new WebpackNotifierPlugin({
+      title: 'Plone webpack'
+    })
+  ]
 }
-
-
 
 var webpackMerge = require('webpack-merge');
 module.exports = [
