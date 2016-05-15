@@ -5,6 +5,7 @@ import {Http} from '@angular/http';
 import {Header} from '../header/header.component';
 import {Breadcrumbs} from '../breadcrumbs/breadcrumbs.component';
 import {Toolbar} from '../toolbar/toolbar.component';
+import {RightColumn} from '../columns/rightcolumn.component';
 import {Footer} from '../footer/footer.component';
 import {Navigation} from '../navigation/navigation.component';
 import {View} from '../view/view.component';
@@ -25,7 +26,8 @@ let regexSerializer = (params) => new GeneratedUrl('', {});
     Footer,
     Navigation,
     Toolbar,
-    Breadcrumbs
+    Breadcrumbs,
+    RightColumn
   ],
   styles: [
     require('./app.component.css')
