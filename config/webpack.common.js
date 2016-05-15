@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 
+const BACKEND_URL = "http://castanyera.iskra.cat:8070";
 
 module.exports = {
   resolve: {
@@ -9,8 +10,8 @@ module.exports = {
     preLoaders: [{
       test: /\.(html|css)$/,
       // loader: "plonetheme-preloader?themepath=src/customtheme" // LOAD FROM LOCAL
-      // loader: "plonetheme-preloader?backend=" + BACKEND_URL // LOAD FROM PLONE
-      loader: "plonetheme-preloader" // DOES NOTHING
+      loader: "plonetheme-preloader?backend=" + BACKEND_URL // LOAD FROM PLONE
+      // loader: "plonetheme-preloader" // DOES NOTHING
     }],
     loaders: [
       // TypeScript

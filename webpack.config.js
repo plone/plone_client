@@ -1,8 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
 
-const BACKEND_URL = "http://castanyera.iskra.cat:8070";
-
 var webpackConfig = require('./config/webpack.common')
 
 var clientConfig = {
