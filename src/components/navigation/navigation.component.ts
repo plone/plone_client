@@ -1,10 +1,11 @@
-import {Component, Directive, ElementRef, Renderer} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-  selector: 'plone-navigation',
+  selector: 'plone-navigation', // <app></app>
   directives: [],
   template: require('./navigation.component.html')
 })
 export class Navigation {
   constructor() { }
+
 }
