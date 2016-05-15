@@ -6,6 +6,10 @@ var commonConfig = {
     extensions: ['', '.ts', '.js'],
   },
   module: {
+    preLoaders: [{
+      test: /\.(html|css)$/,
+      loader: "plonetheme-preloader?themepath=src/customtheme"
+    }],
     loaders: [
       // TypeScript
       { test: /\.ts$/, loader: 'ts-loader' },
