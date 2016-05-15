@@ -3,6 +3,7 @@ import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {Http} from '@angular/http';
 import {Header} from '../header/header.component';
 import {Breadcrumbs} from '../breadcrumbs/breadcrumbs.component';
+import {Toolbar} from '../toolbar/toolbar.component';
 import {Footer} from '../footer/footer.component';
 import {Navigation} from '../navigation/navigation.component';
 import {View} from '../view/view.component';
@@ -20,6 +21,7 @@ import TitleTile from '../title-tile/title-tile.component';
     TitleTile,
     Footer,
     Navigation,
+    Toolbar,
     Breadcrumbs
   ],
   styles: [
