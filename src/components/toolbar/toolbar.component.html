@@ -2,8 +2,8 @@
     <div class="plone-toolbar-container">
       <nav>
         <ul class="plone-toolbar-main" >
-          <li *ngFor="let link of links" [id]="'contentview-' + link.name" class="">
-              <a [href]="link.url" class="">
+          <li *ngFor="let link of links" class="">
+              <a [routerLink]="['./' + link.label]" href="{{link.url}}">
                 <span class="icon-edit" aria-hidden="true">
                 </span>
                 <span>{{ link.label }}</span>
