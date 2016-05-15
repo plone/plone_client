@@ -30,4 +30,5 @@ export class View {
       this.data = res.json();
     });
   }
+
 }

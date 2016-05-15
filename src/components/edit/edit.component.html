@@ -2,20 +2,20 @@
   <label for="form-widgets-IDublinCore-title" class="horizontal">
     Title <span class="required horizontal" title="Required">&nbsp;</span>
   </label>
-    
-  <input id="form-widgets-IDublinCore-title" name="form.widgets.IDublinCore.title" class="text-widget required textline-field" value="{{ data.content && data.content.title }}" type="text">
+
+  <input id="form-widgets-IDublinCore-title" name="form.widgets.IDublinCore.title" class="text-widget required textline-field" value="{{ data.title || '' }}" type="text">
 </div>
 
 <div class="field" data-fieldname="form.widgets.IDublinCore.description" id="formfield-form-widgets-IDublinCore-description">
   <label for="form-widgets-IDublinCore-description" class="horizontal">
     Summary <span class="formHelp">Used in item listings and search results.</span>
   </label>
-  <textarea id="form-widgets-IDublinCore-description" name="form.widgets.IDublinCore.description" class="textarea-widget text-field">{{ data.content && data.content.description }}</textarea>
+  <textarea id="form-widgets-IDublinCore-description" name="form.widgets.IDublinCore.description" class="textarea-widget text-field">{{ data.description || '' }}</textarea>
 </div>
 
 <div class="field" data-fieldname="form.widgets.IDublinCore.body" id="formfield-form-widgets-IDublinCore-body">
   <label for="form-widgets-IDublinCore-body" class="horizontal">
     Body
   </label>
-  <textarea id="form-widgets-IDublinCore-body" name="form.widgets.IDublinCore.body" class="textarea-widget text-field">{{ data.content && data.content.body }}</textarea>
+  <textarea id="form-widgets-IDublinCore-body" name="form.widgets.IDublinCore.body" class="textarea-widget text-field">{{ data.text && data.text.data }}</textarea>
 </div>

@@ -1,5 +1,5 @@
 import {Component, Renderer} from '@angular/core';
-import {Http} from '@angular/http';
+import {Http, Headers} from '@angular/http';
 import TitleTile from '../title-tile/title-tile.component';
 import {RouteParams} from '@angular/router-deprecated';
 
@@ -19,9 +19,14 @@ export class Edit {
   }
 
   ngOnInit() {
-    this.http.get(`/api/${this.path}`)
-      .subscribe(res => {
-        this.data = res.json();
-      });
+    var url = 'http://castanyera.iskra.cat:8070/' + this.path;
+    var headers = new Headers();
+    headers.append('Accept', 'application/json');
+
+    this.http.get(url, {
+      headers: headers
+    }).subscribe(res => {
+      this.data = res.json();
+    });
   }
 }
