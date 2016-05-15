@@ -3,6 +3,7 @@ import {Http} from '@angular/http';
 import TitleTile from '../title-tile/title-tile.component';
 import {RouteParams} from '@angular/router-deprecated';
 import {Headers} from '@angular/http';
+import {Document} from '../../models/document';
 
 @Component({
   selector: 'view',
@@ -12,7 +13,15 @@ import {Headers} from '@angular/http';
   template: require('./view.component.html')
 })
 export class View {
-  data = {};
+  model: Document = {
+    title: '',
+    description: '',
+    text: {
+      data: '',
+      encoding: '',
+      'content-type': ''
+    }
+  };
   path = '';
 
   constructor(public http: Http, _params: RouteParams) {
@@ -27,7 +36,7 @@ export class View {
     this.http.get(url, {
       headers: headers
     }).subscribe(res => {
-      this.data = res.json();
+      this.model = res.json();
     });
   }
 

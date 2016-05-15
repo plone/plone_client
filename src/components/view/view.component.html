@@ -1,3 +1,5 @@
-<title-tile [title]="data.title || ''"></title-tile>
-<p class="description">{{ data.description || '' }}</p>
-<p class="body" [innerHTML]="data.text && data.text.data"></p>
+<div>
+  <title-tile [title]="model.title"></title-tile>
+  <p class="description">{{ model.description }}</p>
+  <p class="body" [innerHTML]="model.text.data"></p>
+</div>
