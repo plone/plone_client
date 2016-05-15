@@ -6,8 +6,8 @@ export interface TextValue {
 }
 
 
-export class Document {
+export interface Model {
   title: string;
   description: string;
-  text: TextValue;
+  text?: TextValue;
 }

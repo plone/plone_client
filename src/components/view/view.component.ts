@@ -3,7 +3,7 @@ import {Http} from '@angular/http';
 import TitleTile from '../title-tile/title-tile.component';
 import {RouteParams} from '@angular/router-deprecated';
 import {Headers} from '@angular/http';
-import {Document} from '../../models/document';
+import {Model} from '../../models/document';
 
 @Component({
   selector: 'view',
@@ -13,7 +13,7 @@ import {Document} from '../../models/document';
   template: require('./view.component.html')
 })
 export class View {
-  model: Document = {
+  model: Model = {
     title: '',
     description: '',
     text: {

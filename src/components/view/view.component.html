@@ -1,5 +1,5 @@
 <div>
   <title-tile [title]="model.title"></title-tile>
   <p class="description">{{ model.description }}</p>
-  <p class="body" [innerHTML]="model.text.data"></p>
+  <div *ngIf="model.text" class="body" [innerHTML]="model.text.data"></div>
 </div>
