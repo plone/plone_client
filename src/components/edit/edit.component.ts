@@ -4,6 +4,7 @@ import TitleTile from '../title-tile/title-tile.component';
 import {RouteParams, Router} from '@angular/router-deprecated';
 import {Document} from '../../models/document';
 
+
 @Component({
   selector: 'edit',
   directives: [
@@ -16,7 +17,9 @@ export class Edit {
     title: '',
     description: '',
     text: {
-      data: ''
+      data: '',
+      encoding: '',
+      'content-type': ''
     }
   };
   path = '';
