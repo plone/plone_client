@@ -1,7 +1,6 @@
 import {Component, Renderer} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import TitleTile from '../title-tile/title-tile.component';
-import {RouteParams, Router} from '@angular/router-deprecated';
 import {Model} from '../../models/document';
 import {ObjectService} from '../../services/object.service';
 
@@ -26,12 +25,13 @@ export class Edit {
   };
   path = '';
 
-  constructor(private objectService: ObjectService, _params: RouteParams,
-              private router: Router) {
-    this.path = _params.get('1') || 'front-page';
+  constructor(private objectService: ObjectService) {
+    debugger;
+    this.path = 'front-page';
   }
 
   ngOnInit() {
+    debugger;
     this.objectService.get(this.path).subscribe(res => {
       this.model = res.json();
     });
@@ -39,11 +39,11 @@ export class Edit {
 
   onSave() {
     this.objectService.put(this.path, this.model).subscribe(res => {
-      this.router.navigateByUrl('/' + this.path);
+      // this.router.navigateByUrl('/' + this.path);
     });
   }
 
   onCancel() {
-    this.router.navigateByUrl('/' + this.path);
+    // this.router.navigateByUrl('/' + this.path);
   }
 }

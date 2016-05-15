@@ -1,19 +1,20 @@
 import {Component} from '@angular/core';
-import {RouteParams, Router} from '@angular/router-deprecated';
-import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {ROUTER_DIRECTIVES, Router} from '@angular/router';
 
 @Component({
   selector: 'plone-toolbar',
   styleUrls: ['src/components/toolbar/toolbar.css'],
   template: require('./toolbar.component.html'),
   directives: [
-    ...ROUTER_DIRECTIVES,
+    ...ROUTER_DIRECTIVES
   ]
 })
 export class Toolbar {
-  links = [];
+  public links = [];
 
-  constructor(private router: Router) {
+  constructor(private router: Router) {}
+
+  ngOnInit() {
     this.links = [{
       label: 'Edit',
       url: './edit'

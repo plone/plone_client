@@ -2,11 +2,11 @@
     <div class="plone-toolbar-container">
       <nav>
         <ul class="plone-toolbar-main" >
-          <li *ngFor="let link of links" class="">
-              <a [routerLink]="['./' + link.label]" href="{{link.url}}">
+          <li>
+              <a [routerLink]="['/edit']">
                 <span class="icon-edit" aria-hidden="true">
                 </span>
-                <span>{{ link.label }}</span>
+                <span>Edit</span>
               </a>
           </li>
       </ul>

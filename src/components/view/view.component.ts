@@ -1,7 +1,6 @@
 import {Component, Renderer} from '@angular/core';
 import {Http} from '@angular/http';
 import TitleTile from '../title-tile/title-tile.component';
-import {RouteParams} from '@angular/router-deprecated';
 import {Headers} from '@angular/http';
 import {Model} from '../../models/document';
 
@@ -24,8 +23,8 @@ export class View {
   };
   path = '';
 
-  constructor(public http: Http, _params: RouteParams) {
-    this.path = _params.get('1') || 'front-page';
+  constructor(public http: Http) {
+    this.path = 'front-page';
   }
 
   ngOnInit() {

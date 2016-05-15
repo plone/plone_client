@@ -18,7 +18,8 @@ import {
 } from 'angular2-universal';
 
 // Application
-import {App} from './components/app/app.component';
+import {AppWrapper} from './components/app/appwrapper.component';
+import {ROUTER_PROVIDERS} from '@angular/router';
 
 const app = express();
 const ROOT = path.join(path.resolve(__dirname, '..'));
@@ -38,7 +39,7 @@ function ngApp(req, res) {
   let url = req.originalUrl || '/';
 
   let config: ExpressEngineConfig = {
-    directives: [ App ],
+    directives: [ AppWrapper ],
     platformProviders: [
       provide(ORIGIN_URL, {useValue: 'http://localhost:3000'}),
       provide(BASE_URL, {useValue: baseUrl}),
@@ -47,6 +48,7 @@ function ngApp(req, res) {
       provide(REQUEST_URL, {useValue: url}),
       NODE_ROUTER_PROVIDERS,
       NODE_HTTP_PROVIDERS,
+      ROUTER_PROVIDERS
     ],
     async: true,
     preboot: false // { appRoot: 'app' } // your top level app component selector
