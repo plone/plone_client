@@ -12,7 +12,7 @@ import {Edit} from '../edit/edit.component';
 import TitleTile from '../title-tile/title-tile.component';
 
 
-var regexSerializer = (params) => new GeneratedUrl('', {});
+let regexSerializer = (params) => new GeneratedUrl('', {});
 
 /////////////////////////
 // ** MAIN APP COMPONENT **
