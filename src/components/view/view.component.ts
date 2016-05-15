@@ -16,7 +16,7 @@ export class View {
   path = '';
 
   constructor(public http: Http, _params: RouteParams) {
-    this.path = _params.get('1');
+    this.path = _params.get('1') || 'front-page';
   }
 
   ngOnInit() {
