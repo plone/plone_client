@@ -37,4 +37,12 @@ var regexSerializer = (params) => new GeneratedUrl('', {});
   { regex: '(.*)', serializer: regexSerializer, component: View, name: 'View' },
 ])
 export class App {
+  constructor() {
+
+  }
+
+  ngOnInit() {
+    console.log('Initializing the component App. This is for karma test.');
+  }
+
 }

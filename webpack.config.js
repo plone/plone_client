@@ -1,27 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
-
-var commonConfig = {
-  resolve: {
-    extensions: ['', '.ts', '.js'],
-  },
-  module: {
-    preLoaders: [{
-      test: /\.(html|css)$/,
-      loader: "plonetheme-preloader?themepath=src/customtheme"
-    }],
-    loaders: [
-      // TypeScript
-      { test: /\.ts$/, loader: 'ts-loader' },
-      { test: /\.css$/, loader: 'raw-loader' },
-      { test: /\.html$/, loader: 'raw-loader', exclude: './app/index.html' }
-    ]
-  },
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(true)
-  ]
-};
-
+var webpackConfig = require('./config/webpack.common')
 
 var clientConfig = {
   target: 'web',
@@ -56,7 +35,6 @@ var serverConfig = {
 };
 
 
-
 // Default config
 var defaultConfig = {
   module: {
@@ -80,10 +58,10 @@ var defaultConfig = {
 var webpackMerge = require('webpack-merge');
 module.exports = [
   // Client
-  webpackMerge({}, defaultConfig, commonConfig, clientConfig),
+  webpackMerge({}, defaultConfig, webpackConfig, clientConfig),
 
   // Server
-  webpackMerge({}, defaultConfig, commonConfig, serverConfig)
+  webpackMerge({}, defaultConfig, webpackConfig, serverConfig)
 ]
 
 // Helpers
@@ -93,3 +71,6 @@ function checkNodeImport(context, request, cb) {
   }
   cb();
 }
+
+
+
