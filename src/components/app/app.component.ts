@@ -1,5 +1,6 @@
 import {Component, Directive, ElementRef, Renderer} from '@angular/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {GeneratedUrl} from '@angular/router-deprecated/src/rules/route_paths/route_path';
 import {Http} from '@angular/http';
 import {Header} from '../header/header.component';
 import {Breadcrumbs} from '../breadcrumbs/breadcrumbs.component';
@@ -10,6 +11,8 @@ import {View} from '../view/view.component';
 import {Edit} from '../edit/edit.component';
 import TitleTile from '../title-tile/title-tile.component';
 
+
+var regexSerializer = (params) => new GeneratedUrl('', {});
 
 /////////////////////////
 // ** MAIN APP COMPONENT **
@@ -30,8 +33,8 @@ import TitleTile from '../title-tile/title-tile.component';
   template: require('./app.component.html')
 })
 @RouteConfig([
-  { regex: '(.*)/edit', serializer: () => '', component: Edit, name: 'Edit' },
-  { regex: '(.*)', serializer: () => '', component: View, name: 'View' },
+  { regex: '(.*)/edit', serializer: regexSerializer, component: Edit, name: 'Edit' },
+  { regex: '(.*)', serializer: regexSerializer, component: View, name: 'View' },
 ])
 export class App {
 }
