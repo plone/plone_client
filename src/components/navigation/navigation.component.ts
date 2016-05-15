@@ -1,7 +1,7 @@
 import {Component, Directive, ElementRef, Renderer} from '@angular/core';
 
 @Component({
-  selector: '.plone-navigation',
+  selector: 'plone-navigation',
   directives: [],
   template: require('./navigation.component.html')
 })
