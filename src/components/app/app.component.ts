@@ -5,10 +5,8 @@ import {Breadcrumbs} from '../breadcrumbs/breadcrumbs.component';
 import {Toolbar} from '../toolbar/toolbar.component';
 import {Footer} from '../footer/footer.component';
 import {Navigation} from '../navigation/navigation.component';
-import {View} from '../view/view.component';
-import {Edit} from '../edit/edit.component';
 import TitleTile from '../title-tile/title-tile.component';
-import {ViewNegotiator} from './viewnegotiator.component';
+import {ViewChooser} from '../views/chooser.component';
 import {RightColumn} from '../columns/rightcolumn.component';
 
 
@@ -23,7 +21,7 @@ import {RightColumn} from '../columns/rightcolumn.component';
     Navigation,
     Toolbar,
     Breadcrumbs,
-    ViewNegotiator,
+    ViewChooser,
     RightColumn
   ],
   styles: [

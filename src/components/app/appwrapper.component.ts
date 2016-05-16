@@ -2,7 +2,6 @@ import {Component, Directive} from '@angular/core';
 import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {App} from './app.component';
-import {Edit} from '../edit/edit.component';
 
 /////////////////////////
 // ** MAIN APP COMPONENT **
