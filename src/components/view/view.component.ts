@@ -26,7 +26,6 @@ export class View {
 
   constructor(public http: Http, public location: Location) {
     this.path = 'front-page';
-    debugger;
   }
 
   ngOnInit() {

@@ -26,12 +26,10 @@ export class Edit {
   path = '';
 
   constructor(private objectService: ObjectService) {
-    debugger;
     this.path = 'front-page';
   }
 
   ngOnInit() {
-    debugger;
     this.objectService.get(this.path).subscribe(res => {
       this.model = res.json();
     });
