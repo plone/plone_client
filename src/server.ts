@@ -19,7 +19,6 @@ import {
 
 // Application
 import {AppWrapper} from './components/app/appwrapper.component';
-import {ROUTER_PROVIDERS} from '@angular/router';
 
 const app = express();
 const ROOT = path.join(path.resolve(__dirname, '..'));
@@ -47,8 +46,7 @@ function ngApp(req, res) {
     providers: [
       provide(REQUEST_URL, {useValue: url}),
       NODE_ROUTER_PROVIDERS,
-      NODE_HTTP_PROVIDERS,
-      ROUTER_PROVIDERS
+      NODE_HTTP_PROVIDERS
     ],
     async: true,
     preboot: false // { appRoot: 'app' } // your top level app component selector
