@@ -1,14 +1,8 @@
 import {Component, Renderer} from '@angular/core';
 import {Http, Headers} from '@angular/http';
-import TitleTile from '../title-tile/title-tile.component';
-import {Model} from '../../models/document';
-import {ObjectService} from '../../services/object.service';
-import {Header} from '../header/header.component';
-import {Breadcrumbs} from '../breadcrumbs/breadcrumbs.component';
-import {Toolbar} from '../toolbar/toolbar.component';
-import {RightColumn} from '../columns/rightcolumn.component';
-import {Footer} from '../footer/footer.component';
-import {Navigation} from '../navigation/navigation.component';
+import TitleTile from '../../title-tile/title-tile.component';
+import {Model} from '../../../models/model';
+import {ObjectService} from '../../../services/object.service';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 
@@ -16,14 +10,7 @@ import {Location} from '@angular/common';
 @Component({
   selector: 'edit',
   directives: [
-    TitleTile,
-    Header,
-    TitleTile,
-    Footer,
-    Navigation,
-    Toolbar,
-    Breadcrumbs,
-    RightColumn
+    TitleTile
   ],
   providers: [ObjectService],
   template: require('./add.component.html')

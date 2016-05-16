@@ -1,32 +1,18 @@
 import {Component, Renderer} from '@angular/core';
 import {Http} from '@angular/http';
-import TitleTile from '../title-tile/title-tile.component';
-import {Headers} from '@angular/http';
-import {Model} from '../../models/document';
-import {Header} from '../header/header.component';
-import {Breadcrumbs} from '../breadcrumbs/breadcrumbs.component';
-import {Toolbar} from '../toolbar/toolbar.component';
-import {RightColumn} from '../columns/rightcolumn.component';
-import {Footer} from '../footer/footer.component';
-import {Navigation} from '../navigation/navigation.component';
-import {ObjectService} from '../../services/object.service';
+import TitleTile from '../../title-tile/title-tile.component';
+import {ObjectService} from '../../../services/object.service';
 import {Location} from '@angular/common';
+import {Model} from '../../../models/model';
 
 
 @Component({
   selector: 'view',
   directives: [
-    TitleTile,
-    Header,
-    TitleTile,
-    Footer,
-    Navigation,
-    Toolbar,
-    Breadcrumbs,
-    RightColumn
+    TitleTile
   ],
   providers: [ObjectService],
-  template: require('./view.component.html')
+  template: require('./base.component.html')
 })
 export class View {
   model: Model = {
