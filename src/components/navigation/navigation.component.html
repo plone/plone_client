@@ -5,8 +5,8 @@
         <div class="plone-collapse plone-navbar-collapse" id="portal-globalnav-collapse">
           <ul class="plone-nav plone-navbar-nav" id="portal-globalnav">
             <li *ngFor="let item of items" id="portaltab-{{item.id}}">
-              <a href="{{item.getPath.replace('/Plone', '')}}" *ngIf="item.id != 'front-page'">{{item.title}}</a>
-              <a href="{{item.getPath.replace('/Plone', '')}}" *ngIf="item.id == 'front-page'">Home</a>
+              <a [routerLink]="[item.getPath.replace('/Plone', '')]" href="{{item.getPath.replace('/Plone', '')}}" *ngIf="item.id != 'front-page'">{{item.title}}</a>
+              <a [routerLink]="[item.getPath.replace('/Plone', '')]" href="{{item.getPath.replace('/Plone', '')}}" *ngIf="item.id == 'front-page'">Home</a>
             </li>
           </ul>
         </div>
