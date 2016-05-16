@@ -7,6 +7,7 @@ import {Navigation} from '../navigation/navigation.component';
 import {View} from '../views/base/base.component';
 import {Edit} from '../views/edit/edit.component';
 import {Add} from '../views/add/add.component';
+import {Login} from '../views/login/login.component';
 import TitleTile from '../title-tile/title-tile.component';
 import {DynamicComponentLoader, ViewContainerRef, Input} from '@angular/core';
 import {Location} from '@angular/common';
@@ -27,6 +28,7 @@ export namespace ViewRegistry {
 ViewRegistry.register('', View);
 ViewRegistry.register('edit', Edit);
 ViewRegistry.register('add', Add);
+ViewRegistry.register('login', Login);
 
 
 @Component({

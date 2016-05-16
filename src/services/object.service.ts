@@ -12,8 +12,9 @@ export class ObjectService {
   private getHeaders(): Headers {
     var headers = new Headers();
     headers.append('Accept', 'application/json');
-    if(btoa){
-      headers.append('Authorization', 'Basic ' + btoa('admin:admin'));
+    var auth = localStorage.getItem('auth');
+    if(auth){
+      headers.append('Authorization', auth);
     }
     return headers;
   }

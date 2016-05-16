@@ -63,8 +63,22 @@ function indexFile(req, res) {
 app.use(express.static(ROOT, {index: false}));
 
 
+// Our API for demos only
+app.post('/login', (req, res) => {
+  if(req.body.username == 'admin' && req.body.password == 'admin'){
+    res.json({
+      success: true
+    });
+  }else{
+    res.json({
+      success: false
+    });
+  }
+});
+
 // Routes with html5pushstate
 app.use('/', ngApp);
+app.use('/login', ngApp);
 
 // Server
 app.listen(3000, () => {
