@@ -1,25 +1,21 @@
 import {Component, Directive, ElementRef, Renderer} from '@angular/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-import {GeneratedUrl} from '@angular/router-deprecated/src/rules/route_paths/route_path';
+import {Routes, Router, ROUTER_DIRECTIVES, OnActivate, RouteSegment, RouteTree} from '@angular/router';
 import {Http} from '@angular/http';
 import {Header} from '../header/header.component';
 import {Breadcrumbs} from '../breadcrumbs/breadcrumbs.component';
 import {Toolbar} from '../toolbar/toolbar.component';
-import {RightColumn} from '../columns/rightcolumn.component';
 import {Footer} from '../footer/footer.component';
 import {Navigation} from '../navigation/navigation.component';
 import {View} from '../view/view.component';
 import {Edit} from '../edit/edit.component';
-import {Add} from '../add/add.component';
 import TitleTile from '../title-tile/title-tile.component';
+import {ViewNegotiator} from './viewnegotiator.component';
 
-
-let regexSerializer = (params) => new GeneratedUrl('', {});
 
 /////////////////////////
 // ** MAIN APP COMPONENT **
 @Component({
-  selector: 'plone-app', // <app></app>
+  selector: 'plone-app',
   directives: [
     ...ROUTER_DIRECTIVES,
     Header,
@@ -27,24 +23,20 @@ let regexSerializer = (params) => new GeneratedUrl('', {});
     Footer,
     Navigation,
     Toolbar,
-    Breadcrumbs,
-    RightColumn
+    Breadcrumbs
   ],
   styles: [
     require('./app.component.css')
   ],
   template: require('./app.component.html')
 })
-@RouteConfig([
-  { regex: '/add', serializer: regexSerializer, component: Add, name: 'Add' },
-  { regex: '(.*)/add', serializer: regexSerializer, component: Add, name: 'Add' },
-  { regex: '(.*)/edit', serializer: regexSerializer, component: Edit, name: 'Edit' },
-  { regex: '(.*)', serializer: regexSerializer, component: View, name: 'View' },
+@Routes([
+   { path: '', component: ViewNegotiator },
+   { path: '*', component: ViewNegotiator }
 ])
-export class App {
-  constructor() {
+export class App{
 
-  }
+  constructor(private router: Router) {}
 
   ngOnInit() {
     console.log('Initializing the component App. This is for karma test.');

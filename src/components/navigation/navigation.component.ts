@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {RouteParams} from '@angular/router-deprecated';
 import {ObjectService} from '../../services/object.service';
 
 @Component({

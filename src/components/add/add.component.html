@@ -1,62 +1,38 @@
-<div class="outer-wrapper">
-  <plone-header></plone-header>
-  <plone-navigation></plone-navigation>
-  <div id="above-content-wrapper">
-    <section id="viewlet-above-content">
-      <plone-breadcrumbs></plone-breadcrumbs>
-    </section>
-  </div>
-  <plone-toolbar></plone-toolbar>
-  <div class="container">
-    <div class="row">
-      <aside id="global_statusmessage"></aside>
+
+<div>
+  <div class="pat-autotoc autotabs">
+    <nav class="autotoc-nav">
+      <a id="autotoc-item-autotoc-0" href="#autotoc-item-autotoc-0"
+        class="autotoc-level-1 active">Default</a>
+    </nav>
+    <fieldset id="fieldset-default">
+      <div class="field" data-fieldname="form.widgets.IDublinCore.title" id="formfield-form-widgets-IDublinCore-title">
+        <label for="form-widgets-IDublinCore-title" class="horizontal">
+          Title <span class="required horizontal" title="Required">&nbsp;</span>
+        </label>
+
+        <input id="form-widgets-IDublinCore-title" name="form.widgets.IDublinCore.title"
+               class="text-widget required textline-field"
+               [(ngModel)]="model.title" type="text">
+      </div>
+
+      <div class="field" data-fieldname="form.widgets.IDublinCore.description" id="formfield-form-widgets-IDublinCore-description">
+        <label for="form-widgets-IDublinCore-description" class="horizontal">
+          Summary <span class="formHelp">Used in item listings and search results.</span>
+        </label>
+        <textarea id="form-widgets-IDublinCore-description" name="form.widgets.IDublinCore.description"
+                  class="textarea-widget text-field"
+                  [(ngModel)]="model.description"></textarea>
+      </div>
+    </fieldset>
+    <div class="formControls">
+      <button id="form-buttons-save" name="form.buttons.save"
+             class="submit-widget button-field context" type="submit"
+             (click)="onAdd()">Add</button>
+      <button id="form-buttons-cancel" name="form.buttons.cancel"
+             class="submit-widget button-field standalone" type="submit"
+             (click)="onCancel()">Cancel</button>
     </div>
-    <main id="main-container" class="row row-offcanvas row-offcanvas-right">
-      <div id="column1-container">
-      </div>
-      <div id="content-container" class="col-md-9">
-        <div>
-          <div class="pat-autotoc autotabs">
-            <nav class="autotoc-nav">
-              <a id="autotoc-item-autotoc-0" href="#autotoc-item-autotoc-0"
-                class="autotoc-level-1 active">Default</a>
-            </nav>
-            <fieldset id="fieldset-default">
-              <div class="field" data-fieldname="form.widgets.IDublinCore.title" id="formfield-form-widgets-IDublinCore-title">
-                <label for="form-widgets-IDublinCore-title" class="horizontal">
-                  Title <span class="required horizontal" title="Required">&nbsp;</span>
-                </label>
+  </div>
 
-                <input id="form-widgets-IDublinCore-title" name="form.widgets.IDublinCore.title"
-                       class="text-widget required textline-field"
-                       [(ngModel)]="model.title" type="text">
-              </div>
-
-              <div class="field" data-fieldname="form.widgets.IDublinCore.description" id="formfield-form-widgets-IDublinCore-description">
-                <label for="form-widgets-IDublinCore-description" class="horizontal">
-                  Summary <span class="formHelp">Used in item listings and search results.</span>
-                </label>
-                <textarea id="form-widgets-IDublinCore-description" name="form.widgets.IDublinCore.description"
-                          class="textarea-widget text-field"
-                          [(ngModel)]="model.description"></textarea>
-              </div>
-            </fieldset>
-            <div class="formControls">
-              <button id="form-buttons-save" name="form.buttons.save"
-                     class="submit-widget button-field context" type="submit"
-                     (click)="onAdd()">Add</button>
-              <button id="form-buttons-cancel" name="form.buttons.cancel"
-                     class="submit-widget button-field standalone" type="submit"
-                     (click)="onCancel()">Cancel</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <div id="column2-container" class="col-md-3">
-        <plone-right-column></plone-right-column>
-      </div>
-    </main><!--/row-->
-  </div><!--/container-->
-</div> <!--/outer-wrapper -->
-<footer class="plone-footer"></footer>
+</div>

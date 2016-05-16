@@ -1,1 +1,25 @@
-<router-outlet></router-outlet>
+<div class="outer-wrapper">
+  <plone-header></plone-header>
+  <plone-navigation></plone-navigation>
+  <div id="above-content-wrapper">
+    <section id="viewlet-above-content">
+      <plone-breadcrumbs></plone-breadcrumbs>
+    </section>
+  </div>
+  <plone-toolbar></plone-toolbar>
+  <div class="container">
+    <div class="row">
+      <aside id="global_statusmessage"></aside>
+    </div>
+    <main id="main-container" class="row row-offcanvas row-offcanvas-right">
+      <div id="column1-container">
+      </div>
+      <div id="content-container">
+        <router-outlet></router-outlet>
+      </div>
+      <div id="column2-container">
+      </div>
+    </main><!--/row-->
+  </div><!--/container-->
+</div> <!--/outer-wrapper -->
+<footer class="plone-footer"></footer>

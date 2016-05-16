@@ -1,7 +1,6 @@
 import {Component, Renderer} from '@angular/core';
 import {Http} from '@angular/http';
 import TitleTile from '../title-tile/title-tile.component';
-import {RouteParams} from '@angular/router-deprecated';
 import {Headers} from '@angular/http';
 import {Model} from '../../models/document';
 import {Header} from '../header/header.component';
@@ -39,14 +38,12 @@ export class View {
     }
   };
   items = [];
-  path = '';
+  path = 'front-page';
 
-  constructor(private objectService: ObjectService, _params: RouteParams) {
-    this.path = _params.get('1') || 'front-page';
+  constructor(private objectService: ObjectService) {
   }
 
   ngOnInit() {
-
     this.objectService.get(this.path).subscribe(res => {
       this.model = res.json();
       if(this.model['@type'] === 'Folder'){

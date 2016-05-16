@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {RouteParams, Router} from '@angular/router-deprecated';
+import {Router} from '@angular/router';
 import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 
 @Component({
@@ -16,8 +16,8 @@ export class Toolbar {
   object_path = '';
   folder_path = '';
 
-  constructor(_params: RouteParams) {
-    this.path = '/' + _params.get('1') || '';
+  constructor() {
+    this.path = '/front-page';
     this.object_path = this.path;
     this.folder_path = this.path;
     if(this.object_path === '/'){

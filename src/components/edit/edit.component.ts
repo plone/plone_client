@@ -1,7 +1,7 @@
 import {Component, Renderer} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import TitleTile from '../title-tile/title-tile.component';
-import {RouteParams, Router} from '@angular/router-deprecated';
+import {Router} from '@angular/router';
 import {Model} from '../../models/document';
 import {ObjectService} from '../../services/object.service';
 import {Header} from '../header/header.component';
@@ -39,9 +39,9 @@ export class Edit {
   };
   path = '';
 
-  constructor(private objectService: ObjectService, _params: RouteParams,
+  constructor(private objectService: ObjectService,
               private router: Router) {
-    this.path = _params.get('1') || 'front-page';
+    this.path = 'front-page';
   }
 
   ngOnInit() {

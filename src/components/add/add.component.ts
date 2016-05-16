@@ -1,7 +1,6 @@
 import {Component, Renderer} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import TitleTile from '../title-tile/title-tile.component';
-import {RouteParams, Router} from '@angular/router-deprecated';
 import {Model} from '../../models/document';
 import {ObjectService} from '../../services/object.service';
 import {Header} from '../header/header.component';
@@ -10,6 +9,7 @@ import {Toolbar} from '../toolbar/toolbar.component';
 import {RightColumn} from '../columns/rightcolumn.component';
 import {Footer} from '../footer/footer.component';
 import {Navigation} from '../navigation/navigation.component';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -34,7 +34,7 @@ export class Add {
   };
   path = '';
 
-  constructor(private objectService: ObjectService, _params: RouteParams,
+  constructor(private objectService: ObjectService,
               private router: Router) {
   }
 
