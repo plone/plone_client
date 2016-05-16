@@ -4,12 +4,28 @@ import TitleTile from '../title-tile/title-tile.component';
 import {RouteParams} from '@angular/router-deprecated';
 import {Headers} from '@angular/http';
 import {Model} from '../../models/document';
+import {Header} from '../header/header.component';
+import {Breadcrumbs} from '../breadcrumbs/breadcrumbs.component';
+import {Toolbar} from '../toolbar/toolbar.component';
+import {RightColumn} from '../columns/rightcolumn.component';
+import {Footer} from '../footer/footer.component';
+import {Navigation} from '../navigation/navigation.component';
+import {ObjectService} from '../../services/object.service';
+
 
 @Component({
   selector: 'view',
   directives: [
     TitleTile,
+    Header,
+    TitleTile,
+    Footer,
+    Navigation,
+    Toolbar,
+    Breadcrumbs,
+    RightColumn
   ],
+  providers: [ObjectService],
   template: require('./view.component.html')
 })
 export class View {
@@ -22,21 +38,23 @@ export class View {
       'content-type': ''
     }
   };
+  items = [];
   path = '';
 
-  constructor(public http: Http, _params: RouteParams) {
+  constructor(private objectService: ObjectService, _params: RouteParams) {
     this.path = _params.get('1') || 'front-page';
   }
 
   ngOnInit() {
-    var url = 'http://castanyera.iskra.cat:8070/' + this.path;
-    var headers = new Headers();
-    headers.append('Accept', 'application/json');
 
-    this.http.get(url, {
-      headers: headers
-    }).subscribe(res => {
+    this.objectService.get(this.path).subscribe(res => {
       this.model = res.json();
+      if(this.model['@type'] === 'Folder'){
+        // get listing
+        this.objectService.list(this.path).subscribe(res => {
+          this.items = res.json()['member'];
+        });
+      }
     });
   }
 

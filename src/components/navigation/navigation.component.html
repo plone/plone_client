@@ -4,14 +4,9 @@
       <div class="container">
         <div class="plone-collapse plone-navbar-collapse" id="portal-globalnav-collapse">
           <ul class="plone-nav plone-navbar-nav" id="portal-globalnav">
-            <li id="portaltab-index_html" class="selected">
-              <a href="/front-page">Home</a>
-            </li>
-            <li id="portaltab-news">
-              <a href="/news">News</a>
-            </li>
-            <li id="portaltab-events">
-              <a href="/events">Events</a>
+            <li *ngFor="let item of items" id="portaltab-{{item.id}}">
+              <a href="{{item.getPath.replace('/Plone', '')}}" *ngIf="item.id != 'front-page'">{{item.title}}</a>
+              <a href="{{item.getPath.replace('/Plone', '')}}" *ngIf="item.id == 'front-page'">Home</a>
             </li>
           </ul>
         </div>

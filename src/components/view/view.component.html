@@ -1,5 +1,45 @@
-<div>
-  <title-tile [title]="model.title"></title-tile>
-  <p class="description">{{ model.description }}</p>
-  <div *ngIf="model.text" class="body" [innerHTML]="model.text.data"></div>
-</div>
+<div class="outer-wrapper">
+  <plone-header></plone-header>
+  <plone-navigation></plone-navigation>
+  <div id="above-content-wrapper">
+    <section id="viewlet-above-content">
+      <plone-breadcrumbs></plone-breadcrumbs>
+    </section>
+  </div>
+  <plone-toolbar></plone-toolbar>
+  <div class="container">
+    <div class="row">
+      <aside id="global_statusmessage"></aside>
+    </div>
+    <main id="main-container" class="row row-offcanvas row-offcanvas-right">
+      <div id="column1-container">
+      </div>
+      <div id="content-container" class="col-md-9">
+        <div>
+          <title-tile [title]="model.title"></title-tile>
+          <p class="description">{{ model.description }}</p>
+          <div *ngIf="model.text" class="body" [innerHTML]="model.text.data"></div>
+
+          <div class="contents">
+            <article class="tileItem" *ngFor="let item of items">
+              <h2 class="tileHeadline">
+                <a class="summary url" href="{{item.getPath.replace('/Plone', '')}}" title="News Item">{{item.title}}</a>
+              </h2>
+              <div class="tileBody">
+                <span class="description">{{item.description}}</span>
+              </div>
+              <div class="tileFooter">
+                <a href="{{item.getPath.replace('/Plone', '')}}">Read More…</a>
+              </div>
+              <div class="visualClear"><!-- --></div>
+            </article>
+          </div>
+        </div>
+      </div>
+      <div id="column2-container" class="col-md-3">
+        <plone-right-column></plone-right-column>
+      </div>
+    </main><!--/row-->
+  </div><!--/container-->
+</div> <!--/outer-wrapper -->
+<footer class="plone-footer"></footer>

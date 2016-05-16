@@ -10,6 +10,7 @@ import {Footer} from '../footer/footer.component';
 import {Navigation} from '../navigation/navigation.component';
 import {View} from '../view/view.component';
 import {Edit} from '../edit/edit.component';
+import {Add} from '../add/add.component';
 import TitleTile from '../title-tile/title-tile.component';
 
 
@@ -35,6 +36,8 @@ let regexSerializer = (params) => new GeneratedUrl('', {});
   template: require('./app.component.html')
 })
 @RouteConfig([
+  { regex: '/add', serializer: regexSerializer, component: Add, name: 'Add' },
+  { regex: '(.*)/add', serializer: regexSerializer, component: Add, name: 'Add' },
   { regex: '(.*)/edit', serializer: regexSerializer, component: Edit, name: 'Edit' },
   { regex: '(.*)', serializer: regexSerializer, component: View, name: 'View' },
 ])
