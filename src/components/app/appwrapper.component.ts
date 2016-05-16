@@ -1,10 +1,8 @@
-import {Component, Directive, ElementRef, Renderer} from '@angular/core';
-import {Routes, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router, Route} from '@angular/router';
+import {Component, Directive} from '@angular/core';
+import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {App} from './app.component';
-import {DefaultRouterUrlSerializer, RouterUrlSerializer} from '@angular/router';
-import {UrlSegment, Tree, TreeNode, rootNode, UrlTree} from '@angular/router/src/segments';
-
+import {Edit} from '../edit/edit.component';
 
 /////////////////////////
 // ** MAIN APP COMPONENT **
@@ -17,10 +15,10 @@ import {UrlSegment, Tree, TreeNode, rootNode, UrlTree} from '@angular/router/src
 <router-outlet></router-outlet>`
 })
 @Routes([
-  new Route({ path: '', component: App }),
-  new Route({ path: '/', component: App }),
-  new Route({ path: '/*', component: App }),
-  new Route({ path: '*', component: App })
+  { path: '', component: App },
+  { path: '/', component: App },
+  { path: '/*', component: App },
+  { path: '*', component: App }
 ])
 export class AppWrapper {
 

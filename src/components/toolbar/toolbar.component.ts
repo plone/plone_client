@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {Router, ROUTER_DIRECTIVES} from '@angular/router';
 import {Location} from '@angular/common';
 
 @Component({
@@ -17,7 +16,7 @@ export class Toolbar {
   object_path = '';
   folder_path = '';
 
-  constructor(private location: Location) {
+  constructor(private router: Router, private location: Location) {
     this.path = this.location.path() || 'front-page';
     this.path = this.path.split('/@@')[0];
     this.object_path = this.path;

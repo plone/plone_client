@@ -1,6 +1,4 @@
-import {Component, Directive, ElementRef, Renderer} from '@angular/core';
-import {Routes, Router, ROUTER_DIRECTIVES, OnActivate, RouteSegment, RouteTree} from '@angular/router';
-import {Http} from '@angular/http';
+import {Component} from '@angular/core';
 import {Header} from '../header/header.component';
 import {Breadcrumbs} from '../breadcrumbs/breadcrumbs.component';
 import {Toolbar} from '../toolbar/toolbar.component';
@@ -15,10 +13,7 @@ import {Location} from '@angular/common';
 
 
 @Component({
-  selector: 'viewnegotiator', // <app></app>
-  directives: [
-    ...ROUTER_DIRECTIVES,
-  ],
+  selector: 'view-negotiator', // <app></app>
   template: `<div></div>`
 })
 export class ViewNegotiator {

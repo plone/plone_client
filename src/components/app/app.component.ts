@@ -1,5 +1,4 @@
 import {Component, Directive, ElementRef, Renderer} from '@angular/core';
-import {Routes, Router, ROUTER_DIRECTIVES, OnActivate, RouteSegment, RouteTree} from '@angular/router';
 import {Http} from '@angular/http';
 import {Header} from '../header/header.component';
 import {Breadcrumbs} from '../breadcrumbs/breadcrumbs.component';
@@ -18,13 +17,13 @@ import {RightColumn} from '../columns/rightcolumn.component';
 @Component({
   selector: 'plone-app',
   directives: [
-    ...ROUTER_DIRECTIVES,
     Header,
     TitleTile,
     Footer,
     Navigation,
     Toolbar,
     Breadcrumbs,
+    ViewNegotiator,
     RightColumn
   ],
   styles: [
@@ -32,13 +31,10 @@ import {RightColumn} from '../columns/rightcolumn.component';
   ],
   template: require('./app.component.html')
 })
-@Routes([
-   { path: '', component: ViewNegotiator },
-   { path: '*', component: ViewNegotiator }
-])
+
 export class App{
 
-  constructor(private router: Router) {}
+  constructor() {}
 
   ngOnInit() {
     console.log('Initializing the component App. This is for karma test.');

@@ -3,12 +3,7 @@
       <nav>
         <ul class="plone-toolbar-main" >
           <li *ngFor="let link of links" class="">
-              <!-- <a [routerLink]="['View']" href="{{link.url}}">
-                <span class="icon-edit" aria-hidden="true">
-                </span>
-                <span>{{ link.label }}</span>
-              </a> -->
-              <a href="{{link.url}}">
+              <a [routerLink]="[link.url]" href="{{link.url}}">
                <span class="icon-edit" aria-hidden="true">
                </span>
                <span>{{ link.label }}</span>
