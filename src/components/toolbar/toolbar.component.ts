@@ -12,14 +12,30 @@ import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 })
 export class Toolbar {
   links = [];
+  path = '';
+  object_path = '';
+  folder_path = '';
 
-  constructor(private router: Router) {
+  constructor(_params: RouteParams) {
+    this.path = '/' + _params.get('1') || '';
+    this.object_path = this.path;
+    this.folder_path = this.path;
+    if(this.object_path === '/'){
+      // default page is front page...
+      this.object_path = '/front-page';
+    }
     this.links = [{
       label: 'Edit',
-      url: './edit'
+      url: this.object_path + '/edit'
     }, {
       label: 'View',
-      url: ''
-    }]
+      url: this.object_path
+    }, {
+      label: 'Add page',
+      url: this.object_path + '/add?type=Document'
+    }, {
+      label: 'Add folder',
+      url: this.object_path + '/add?type=Folder'
+    }];
   }
 }
