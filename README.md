@@ -5,6 +5,7 @@ This is the plone project for Angular 2 for Universal JavaScript using TypeScrip
 ## Installation
 
 * `npm install`
+* `npm run patch`
 
 ## Serve
 

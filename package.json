@@ -27,7 +27,8 @@
     "webdriver-manager": "webdriver-manager",
     "webdriver:update": "npm run webdriver-manager update",
     "typings": "typings",
-    "postinstall": "npm run typings -- install"
+    "postinstall": "npm run typings -- install",
+    "patch": "patch -p0 < angular.patch"
   },
   "license": "MIT",
   "contributors": [
