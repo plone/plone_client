@@ -10,6 +10,7 @@ import {View} from '../view/view.component';
 import {Edit} from '../edit/edit.component';
 import TitleTile from '../title-tile/title-tile.component';
 import {ViewNegotiator} from './viewnegotiator.component';
+import {RightColumn} from '../columns/rightcolumn.component';
 
 
 /////////////////////////
@@ -23,7 +24,8 @@ import {ViewNegotiator} from './viewnegotiator.component';
     Footer,
     Navigation,
     Toolbar,
-    Breadcrumbs
+    Breadcrumbs,
+    RightColumn
   ],
   styles: [
     require('./app.component.css')

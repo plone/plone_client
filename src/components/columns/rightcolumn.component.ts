@@ -10,7 +10,7 @@ import {PloneComponent} from '../plonecomponent/plonecomponent.component';
 })
 export class RightColumn {
 
-    components = [];
+    components: { obj: any, klass: string }[] = [];
 
     constructor() { }
 

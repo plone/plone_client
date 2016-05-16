@@ -22,7 +22,7 @@ export class PloneComponent {
     container: ViewContainerRef;
     @Input('klass') klass: string;
 
-    constructor(dcl: DynamicComponentLoader, container: ViewContainerRef) {
+    constructor(dcl: DynamicComponentLoader = null, container: ViewContainerRef = null) {
         if (!this.dcl && dcl) {
             this.dcl = dcl;
             this.container = container;
@@ -31,7 +31,7 @@ export class PloneComponent {
 
     ngOnInit() {
         // TODO: find a way to use loadAsRoot instead of loadNextToLocation to
-        // avoid useless markup 
+        // avoid useless markup
         this.dcl.loadNextToLocation(PLONE_COMPONENTS[this.klass], this.container);
     }
 }
