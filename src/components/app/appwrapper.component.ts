@@ -14,7 +14,6 @@ import {DefaultRouterUrlSerializer, RouterUrlSerializer} from '@angular/router';
 import {UrlSegment, Tree, TreeNode, rootNode, UrlTree} from '@angular/router/src/segments';
 
 
-
 /////////////////////////
 // ** MAIN APP COMPONENT **
 @Component({
@@ -26,11 +25,10 @@ import {UrlSegment, Tree, TreeNode, rootNode, UrlTree} from '@angular/router/src
 <router-outlet></router-outlet>`
 })
 @Routes([
-  new Route({ path: '/', component: App }),
   new Route({ path: '', component: App }),
+  new Route({ path: '/', component: App }),
   new Route({ path: '/*', component: App }),
-  // new Route({ path: '/front-page', component: App }),
-  // new Route({ path: '/news/foobar', component: App })
+  new Route({ path: '*', component: App })
 ])
 export class AppWrapper {
 

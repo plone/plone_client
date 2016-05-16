@@ -9,6 +9,7 @@ import {Navigation} from '../navigation/navigation.component';
 import {View} from '../view/view.component';
 import {Edit} from '../edit/edit.component';
 import TitleTile from '../title-tile/title-tile.component';
+import {PloneRouterOutlet} from '../../router';
 
 
 /////////////////////////
@@ -22,7 +23,8 @@ import TitleTile from '../title-tile/title-tile.component';
     Footer,
     Navigation,
     Toolbar,
-    Breadcrumbs
+    Breadcrumbs,
+    PloneRouterOutlet
   ],
   styles: [
     require('./app.component.css')
@@ -33,6 +35,8 @@ import TitleTile from '../title-tile/title-tile.component';
    { path: '/@@view', component: View },
    { path: '/@@edit', component: Edit },
    { path: '', component: View },
+   { path: '*', component: View },
+   { path: '/*', component: View },
 ])
 export class App{
 
