@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'plone-toolbar',
@@ -16,8 +17,9 @@ export class Toolbar {
   object_path = '';
   folder_path = '';
 
-  constructor() {
-    this.path = '/front-page';
+  constructor(private location: Location) {
+    this.path = this.location.path() || 'front-page';
+    this.path = this.path.split('/@@')[0];
     this.object_path = this.path;
     this.folder_path = this.path;
     if(this.object_path === '/'){
@@ -26,16 +28,16 @@ export class Toolbar {
     }
     this.links = [{
       label: 'Edit',
-      url: this.object_path + '/edit'
+      url: this.object_path + '/@@edit'
     }, {
       label: 'View',
       url: this.object_path
     }, {
       label: 'Add page',
-      url: this.object_path + '/add?type=Document'
+      url: this.object_path + '/@@add?type=Document'
     }, {
       label: 'Add folder',
-      url: this.object_path + '/add?type=Folder'
+      url: this.object_path + '/@@add?type=Folder'
     }];
   }
 }

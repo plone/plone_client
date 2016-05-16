@@ -10,6 +10,7 @@ import {RightColumn} from '../columns/rightcolumn.component';
 import {Footer} from '../footer/footer.component';
 import {Navigation} from '../navigation/navigation.component';
 import {Router} from '@angular/router';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -35,16 +36,18 @@ export class Add {
   path = '';
 
   constructor(private objectService: ObjectService,
-              private router: Router) {
+              private router: Router,
+              private location: Location) {
+    this.path = this.location.path() || 'front-page';
+    this.path = this.path.split('/@@')[0];
   }
 
   onAdd() {
     this.model['@context'] = '/@@context.jsonld';
     // until we figure out routing...
-    let path = window.location.pathname.replace('/add', '');
     this.model['@type'] = window.location.search.replace('?type=', '');
-    this.objectService.create(path, this.model).subscribe(res => {
-      this.router.navigateByUrl(path);
+    this.objectService.create(this.path, this.model).subscribe(res => {
+      this.router.navigateByUrl(this.path);
     });
   }
 

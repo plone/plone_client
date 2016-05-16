@@ -8,6 +8,7 @@ import {Footer} from '../footer/footer.component';
 import {Navigation} from '../navigation/navigation.component';
 import {View} from '../view/view.component';
 import {Edit} from '../edit/edit.component';
+import {Add} from '../add/add.component';
 import TitleTile from '../title-tile/title-tile.component';
 import {DynamicComponentLoader, ViewContainerRef, Input} from '@angular/core';
 import {Location} from '@angular/common';
@@ -39,6 +40,9 @@ export class ViewNegotiator {
       let viewClass:any = View;
       if(path.indexOf('@@edit') !== -1){
         viewClass = Edit;
+      }
+      if(path.indexOf('@@add') !== -1){
+        viewClass = Add;
       }
       this.dcl.loadNextToLocation(viewClass, this.container);
     }

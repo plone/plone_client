@@ -19,13 +19,13 @@ export class ObjectService {
   }
 
   get(path:string) {
-    var url = this.url + '/' + path;
+    var url = this.url + path;
     var headers = this.getHeaders();
     return this.http.get(url, {headers: headers});
   }
 
   put(path:string, data: any) {
-    var url = this.url + '/' + path;
+    var url = this.url + path;
     var headers = this.getHeaders();
     headers.append('Content-Type', 'application/json');
 
@@ -36,7 +36,7 @@ export class ObjectService {
   }
 
   create(path:string, data: any) {
-    var url = this.url + '/' + path;
+    var url = this.url + path;
     var headers = this.getHeaders();
     headers.append('Content-Type', 'application/json');
     var body = JSON.stringify(data);

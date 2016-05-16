@@ -10,6 +10,7 @@ import {Toolbar} from '../toolbar/toolbar.component';
 import {RightColumn} from '../columns/rightcolumn.component';
 import {Footer} from '../footer/footer.component';
 import {Navigation} from '../navigation/navigation.component';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -40,8 +41,10 @@ export class Edit {
   path = '';
 
   constructor(private objectService: ObjectService,
-              private router: Router) {
-    this.path = 'front-page';
+              private router: Router,
+            private location: Location) {
+    this.path = this.location.path() || 'front-page';
+    this.path = this.path.split('/@@')[0];
   }
 
   ngOnInit() {
@@ -63,11 +66,11 @@ export class Edit {
     }
 
     this.objectService.put(this.path, data).subscribe(res => {
-      this.router.navigateByUrl('/' + this.path);
+      this.router.navigateByUrl(this.path);
     });
   }
 
   onCancel() {
-    this.router.navigateByUrl('/' + this.path);
+    this.router.navigateByUrl(this.path);
   }
 }

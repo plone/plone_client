@@ -10,6 +10,7 @@ import {RightColumn} from '../columns/rightcolumn.component';
 import {Footer} from '../footer/footer.component';
 import {Navigation} from '../navigation/navigation.component';
 import {ObjectService} from '../../services/object.service';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -40,7 +41,9 @@ export class View {
   items = [];
   path = 'front-page';
 
-  constructor(private objectService: ObjectService) {
+  constructor(private objectService: ObjectService,
+              private location: Location) {
+    this.path = this.location.path() || 'front-page';
   }
 
   ngOnInit() {
