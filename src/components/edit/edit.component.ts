@@ -66,11 +66,11 @@ export class Edit {
     }
 
     this.objectService.put(this.path, data).subscribe(res => {
-      this.router.navigateByUrl(this.path);
+      this.router.navigate(['front-page']);
     });
   }
 
   onCancel() {
-    this.router.navigateByUrl(this.path);
+    this.router.navigate(['front-page']);
   }
 }
