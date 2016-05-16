@@ -29,7 +29,7 @@ export class Edit {
 
   constructor(private objectService: ObjectService,
               private router: Router,
-            private location: Location) {
+              private location: Location) {
     this.path = this.location.path() || 'front-page';
     this.path = this.path.split('/@@')[0];
   }
