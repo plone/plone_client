@@ -26,8 +26,8 @@ export class Breadcrumbs {
         this.show = true;
 
         this.crumbs.unshift({
-          'label': 'Home',
-          'uri': '/front-page'
+          'title': 'Home',
+          'url': '/front-page'
         });
       }
     });

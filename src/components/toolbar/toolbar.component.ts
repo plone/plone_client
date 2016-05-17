@@ -56,9 +56,7 @@ export class Toolbar {
           return;
         }
         // only care about content type
-        var uri = action.uri;
-        var split = uri.split('++');
-        var type = split[split.length - 1];
+        var type = action['@id'];
         action.type = type;
         action.uri = this.object_path + '/@@add?type=' + type;
         this.factories.push(action);

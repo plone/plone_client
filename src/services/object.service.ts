@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/Observable'
 
 @Injectable()
 export class ObjectService {
-  url = 'http://castanyera.iskra.cat:8070';
+  url = 'http://castanyera.iskra.cat:8070/Plone';
 
   constructor(public http: Http){}
 
