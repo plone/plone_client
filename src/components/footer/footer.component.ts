@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Registry} from '../app/registry.ts';
+import {Location} from '@angular/common';
 
 @Component({
   selector: '.plone-footer', // <app></app>
@@ -7,7 +8,8 @@ import {Registry} from '../app/registry.ts';
   template: require('./footer.component.html')
 })
 export class Footer {
-  constructor() { }
+  constructor(private location: Location) {
+  }
 
 }
 

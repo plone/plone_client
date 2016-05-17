@@ -19,7 +19,10 @@ export class Toolbar {
   folder_path = '';
 
   constructor(private router: Router, private location: Location) {
-    this.path = this.location.path() || 'front-page';
+  }
+
+  ngOnInit(){
+    this.path = this.location.path() || '/front-page';
     this.path = this.path.split('/@@')[0];
     this.object_path = this.path;
     this.folder_path = this.path;

@@ -24,8 +24,10 @@ export class Add {
 
   constructor(private objectService: ObjectService,
               private router: Router,
-              private location: Location) {
-    this.path = this.location.path() || 'front-page';
+              private location: Location) { }
+
+  ngOnInit(){
+    this.path = this.location.path() || '/front-page';
     this.path = this.path.split('/@@')[0];
   }
 
