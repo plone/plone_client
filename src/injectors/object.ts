@@ -12,6 +12,10 @@ export class ObjectUtility {
     var url = item['@id'];
     var split = url.split('/');
     split.splice(0, 3);
-    return '/' + split.join('/');
+    url = '/' + split.join('/');
+    if(url.indexOf('/Plone/') !== -1){
+      url = '/' + url.split('/Plone/')[1];
+    }
+    return url;
   }
 }

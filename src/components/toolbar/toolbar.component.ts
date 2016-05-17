@@ -50,7 +50,7 @@ export class Toolbar {
     }];
 
     this.objectService.actions(this.object_path).subscribe(res => {
-      var actions: Action[] = res.json().object_actions;
+      var actions: Action[] = res.json().actions;
       actions.forEach(action => {
         if(action.category !== 'factories'){
           return;
