@@ -20,6 +20,10 @@ export class Breadcrumbs {
   ngOnInit() {
     this.objectService.get('/components_/breadcrumbs').subscribe(res => {
 
+      var data = res.json();
+      if(data instanceof Array){
+        data = data[0];
+      }
       this.crumbs = res.json().data.items;
       if( this.crumbs.length > 0 ) {
 
