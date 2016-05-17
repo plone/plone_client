@@ -1,9 +1,10 @@
-<nav id="portal-breadcrumbs" class="plone-breadcrumb" role="navigation">
+<nav *ngIf="show" id="portal-breadcrumbs" class="plone-breadcrumb" role="navigation">
   <div class="container">
     <span id="breadcrumbs-you-are-here" class="hiddenStructure">You are here:</span>
     <ol aria-labelledby="breadcrumbs-you-are-here">
-      <li id="breadcrumbs-home">
-        <a href="/home">Home</a>
+      <li *ngFor="let crumb of crumbs; let current = last" [id]="['breadcrumbs-' + crumb.label]">
+        <a *ngIf="current==false" [href]="crumb.uri">{{ crumb.label }}</a>
+        <span *ngIf="current==true">{{ crumb.label }}</span>
       </li>
     </ol>
   </div>
