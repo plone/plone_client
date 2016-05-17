@@ -25,6 +25,12 @@ export class ObjectService {
     return this.http.get(url, {headers: headers});
   }
 
+  actions(path:string){
+    var url = this.url + path + '/actions_';
+    var headers = this.getHeaders();
+    return this.http.get(url, {headers: headers});
+  }
+
   put(path:string, data: any) {
     var url = this.url + path;
     var headers = this.getHeaders();

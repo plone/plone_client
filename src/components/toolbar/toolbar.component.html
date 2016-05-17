@@ -2,14 +2,35 @@
     <div class="plone-toolbar-container">
       <nav>
         <ul class="plone-toolbar-main" >
-          <li *ngFor="let link of links" class="">
-              <a [routerLink]="[link.url]" href="{{link.url}}">
-               <span class="icon-edit" aria-hidden="true">
+          <li *ngFor="let action of actions" id="contentview-{{action.category}}">
+              <a [routerLink]="[action.uri]" href="{{action.uri}}">
+               <span class="icon-{{action.category}}" aria-hidden="true">
                </span>
-               <span>{{ link.label }}</span>
+               <span>{{ action.title }}</span>
              </a>
           </li>
-      </ul>
+          <li *ngIf="factories" id="plone-contentmenu-factories"
+              [class.active]="isActive('factories')">
+            <a href="#" title="Add new items inside this item" class="label-"
+               (click)="toggle('factories')">
+              <span class="icon-plone-contentmenu-factories" aria-hidden="true"></span>
+              <span>Add new…</span>
+              <span class="plone-toolbar-caret">
+              </span>
+            </a>
+            <ul>
+              <li class="plone-toolbar-submenu-header">
+                <span>Add new…</span>
+              </li>
+              <li *ngFor="let action of factories" class="plonetoolbar-contenttype">
+                <a [routerLink]="[action.uri]" href="{{action.uri}}"
+                    class="contenttype-{{action.type.toLowerCase()}}">
+                 {{ action.title }}
+               </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </nav>
     </div>
   </div>

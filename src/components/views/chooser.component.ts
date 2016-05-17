@@ -36,7 +36,7 @@ export class ViewChooser {
     }
   }
 
-    ngOnInit() {``
+    ngOnInit() {
       // TODO: find a way to use loadAsRoot instead of loadNextToLocation to
       // avoid useless markup
       var path = this.location.path();
