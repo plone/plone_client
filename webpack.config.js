@@ -55,7 +55,8 @@ var defaultConfig = {
   },
   plugins: [
     new WebpackNotifierPlugin({
-      title: 'Plone webpack'
+      title: 'Plone webpack',
+      alwaysNotify: true
     })
   ]
 }
