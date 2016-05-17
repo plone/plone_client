@@ -24,7 +24,7 @@ export class Breadcrumbs {
       if(data instanceof Array){
         data = data[0];
       }
-      this.crumbs = res.json().data.items;
+      this.crumbs = data.data.items;
       if( this.crumbs.length > 0 ) {
 
         this.show = true;
