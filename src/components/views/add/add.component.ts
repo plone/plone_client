@@ -17,8 +17,17 @@ import {Location} from '@angular/common';
 })
 export class Add {
   model: Model = {
+    created: null,
+    modified: null,
     title: '',
-    description: ''
+    description: '',
+    UID: '',
+    member: [],
+    text: {
+      data: '',
+      encoding: '',
+      'content-type': ''
+    }
   };
   path = '';
 

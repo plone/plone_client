@@ -3,6 +3,8 @@ import {ObjectService} from '../../services/object.service';
 import {Router} from '@angular/router';
 import {ROUTER_DIRECTIVES} from '@angular/router';
 import {Registry} from '../app/registry.ts';
+import {Summary, Model} from '../../models/model';
+
 
 @Component({
   selector: 'plone-navigation', // <app></app>
@@ -13,7 +15,7 @@ import {Registry} from '../app/registry.ts';
   template: require('./navigation.component.html')
 })
 export class Navigation {
-  items = [];
+  items: Summary[] = [];
 
   constructor(private router: Router, private objectService: ObjectService) { }
 
