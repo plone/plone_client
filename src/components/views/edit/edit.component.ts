@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {Model} from '../../../models/model';
 import {ObjectService} from '../../../services/object.service';
 import {Location} from '@angular/common';
+import {ObjectUtility} from '../../../injectors/object';
 
 
 @Component({
@@ -12,13 +13,17 @@ import {Location} from '@angular/common';
   directives: [
     TitleTile
   ],
-  providers: [ObjectService],
+  providers: [ObjectService, ObjectUtility],
   template: require('./edit.component.html')
 })
 export class Edit {
   model: Model = {
+    created: null,
+    modified: null,
     title: '',
     description: '',
+    UID: '',
+    member: [],
     text: {
       data: '',
       encoding: '',
@@ -29,7 +34,8 @@ export class Edit {
 
   constructor(private objectService: ObjectService,
               private router: Router,
-              private location: Location) {
+              private location: Location,
+              private utility: ObjectUtility) {
   }
 
   ngOnInit() {
@@ -44,7 +50,7 @@ export class Edit {
     // only care about editable things...
     var data = {
       '@context': 'http://www.w3.org/ns/hydra/context.jsonld',
-      '@id': 'http://castanyera.iskra.cat:8070/news/foobar',
+      '@id': this.model['@id'],
       'title': this.model.title,
       'description': this.model.description
     };
@@ -53,11 +59,11 @@ export class Edit {
     }
 
     this.objectService.put(this.path, data).subscribe(res => {
-      this.router.navigate(['/front-page']);
+      this.router.navigate([this.utility.getUrl(this.model)]);
     });
   }
 
   onCancel() {
-    this.router.navigate(['/front-page']);
+    this.router.navigate([this.utility.getUrl(this.model)]);
   }
 }
