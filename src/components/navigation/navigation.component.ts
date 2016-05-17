@@ -22,9 +22,4 @@ export class Navigation {
     });
   }
 
-  public getUrl(item){
-    // convert url since it is from the endpoint...
-    var url = item['@id'];
-    return '/' + url.split
-  }
 }

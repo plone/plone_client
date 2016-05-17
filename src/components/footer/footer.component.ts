@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Location} from '@angular/common';
 
 @Component({
   selector: '.plone-footer', // <app></app>
@@ -6,6 +7,7 @@ import {Component} from '@angular/core';
   template: require('./footer.component.html')
 })
 export class Footer {
-  constructor() { }
+  constructor(private location: Location) {
+  }
 
 }

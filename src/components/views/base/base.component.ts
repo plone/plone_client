@@ -29,10 +29,10 @@ export class View {
 
   constructor(private objectService: ObjectService,
               private location: Location) {
-    this.path = this.location.path() || 'front-page';
   }
 
   ngOnInit() {
+    this.path = this.location.path() || 'front-page';
     this.objectService.get(this.path).subscribe(res => {
       this.model = res.json();
       if(this.model['@type'] === 'Folder'){
