@@ -15,9 +15,7 @@ import {App} from './app.component';
 })
 @Routes([
   { path: '', component: App },
-  { path: '/', component: App },
-  { path: '/*', component: App },
-  { path: '*', component: App }
+  { path: '/*', component: App }
 ])
 export class AppWrapper {
 
