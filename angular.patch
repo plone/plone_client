@@ -5,7 +5,7 @@ diff -Naur node_modules/@angular/router/esm/src/segments.js ../@angular-RC/route
          return false;
      if (a.outlet != b.outlet)
          return false;
-+    if(!a.parameters && !b.parameters) return false;
++    if(!a.parameters || !b.parameters) return false;
      return StringMapWrapper.equals(a.parameters, b.parameters);
  }
  export function equalUrlSegments(a, b) {
@@ -16,7 +16,7 @@ diff -Naur node_modules/@angular/router/src/segments.js ../@angular-RC/router/sr
          return false;
      if (a.outlet != b.outlet)
          return false;
-+    if(!a.parameters && !b.parameters) return false;
++    if(!a.parameters || !b.parameters) return false;
      return collection_1.StringMapWrapper.equals(a.parameters, b.parameters);
  }
  exports.equalSegments = equalSegments;
