@@ -1,9 +1,11 @@
 <div id="portal-searchbox">
-  <div id="searchGadget_form" class="pat-livesearch">
+  <form id="searchGadget_form" class="pat-livesearch" (ngSubmit)="onSubmit()">
     <div class="LSBox">
       <label class="hiddenStructure" for="searchGadget">Search Site</label>
 
-      <input name="SearchableText" type="text" size="18" id="searchGadget" title="Search Site" placeholder="Search Site" class="searchField" autocomplete="off"><ul class="livesearch-results" style="display: none;"></ul>
+      <input name="SearchableText" type="text" size="18" id="searchGadget" title="Search Site"
+             placeholder="Search Site" class="searchField" autocomplete="off"
+             [(ngModel)]="q">
 
       <input class="searchButton" type="submit" value="Search">
 
@@ -12,5 +14,5 @@
         <label for="searchbox_currentfolder_only" style="cursor: pointer">only in current section</label>
       </div>
     </div>
-  </div>
+  </form>
 </div>

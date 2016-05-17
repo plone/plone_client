@@ -9,7 +9,7 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
 
 
 @Component({
-  selector: 'view',
+  selector: 'plone-base-view',
   directives: [
     TitleTile,
     ...ROUTER_DIRECTIVES

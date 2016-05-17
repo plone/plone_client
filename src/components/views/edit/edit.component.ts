@@ -9,7 +9,7 @@ import {ObjectUtility} from '../../../injectors/object';
 
 
 @Component({
-  selector: 'edit',
+  selector: 'plone-view-edit',
   directives: [
     TitleTile
   ],

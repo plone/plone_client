@@ -9,6 +9,7 @@ import {View} from '../views/base/base.component';
 import {Edit} from '../views/edit/edit.component';
 import {Add} from '../views/add/add.component';
 import {Login} from '../views/login/login.component';
+import {Search} from '../views/search/search.component';
 import TitleTile from '../title-tile/title-tile.component';
 import {DynamicComponentLoader, ViewContainerRef, Input} from '@angular/core';
 import {Location} from '@angular/common';
@@ -18,6 +19,7 @@ Registry.registerView('', View);
 Registry.registerView('edit', Edit);
 Registry.registerView('add', Add);
 Registry.registerView('login', Login);
+Registry.registerView('search', Search);
 
 
 @Component({
@@ -43,7 +45,10 @@ export class ViewChooser {
       let viewClass:any = View;
       if(path.indexOf('@@') !== -1){
         var split = path.split('@@');
-        var viewName = split[split.length - 1];
+        var end = split[split.length - 1];
+        // for instance, search uses paths like /@@search/my-query-string
+        split = end.split('/');
+        var viewName = split[0];
         viewClass = Registry.getView(viewName);
       }
       this.dcl.loadNextToLocation(viewClass, this.container);

@@ -8,7 +8,7 @@ import {Location} from '@angular/common';
 
 
 @Component({
-  selector: 'edit',
+  selector: 'plone-view-edit',
   directives: [
     TitleTile
   ],
