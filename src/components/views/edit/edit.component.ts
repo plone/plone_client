@@ -33,7 +33,7 @@ export class Edit {
   }
 
   ngOnInit() {
-    this.path = this.location.path() || 'front-page';
+    this.path = this.location.path() || '/front-page';
     this.path = this.path.split('/@@')[0];
     this.objectService.get(this.path).subscribe(res => {
       this.model = res.json();
@@ -53,11 +53,11 @@ export class Edit {
     }
 
     this.objectService.put(this.path, data).subscribe(res => {
-      this.router.navigate(['front-page']);
+      this.router.navigate(['/front-page']);
     });
   }
 
   onCancel() {
-    this.router.navigate(['front-page']);
+    this.router.navigate(['/front-page']);
   }
 }

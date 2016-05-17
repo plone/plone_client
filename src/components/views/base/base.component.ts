@@ -25,14 +25,14 @@ export class View {
     }
   };
   items = [];
-  path = 'front-page';
+  path = '/front-page';
 
   constructor(private objectService: ObjectService,
               private location: Location) {
   }
 
   ngOnInit() {
-    this.path = this.location.path() || 'front-page';
+    this.path = this.location.path() || '/front-page';
     this.objectService.get(this.path).subscribe(res => {
       this.model = res.json();
       if(this.model['@type'] === 'Folder'){
