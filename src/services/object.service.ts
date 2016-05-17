@@ -56,7 +56,6 @@ export class ObjectService {
     // get a listing of a path
     var url = this.url + '/search';
     var headers = this.getHeaders();
-    headers.append('Content-Type', 'application/json');
 
     if(path && path[0] !== '/'){
       path = '/' + path

@@ -6,12 +6,14 @@ import {Model} from '../../../models/model';
 import {ObjectService} from '../../../services/object.service';
 import {Location} from '@angular/common';
 import {ObjectUtility} from '../../../injectors/object';
+import {Form} from '../../form/form.component';
 
 
 @Component({
   selector: 'edit',
   directives: [
-    TitleTile
+    TitleTile,
+    Form
   ],
   providers: [ObjectService, ObjectUtility],
   template: require('./edit.component.html')
