@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 import {SearchService} from '../../../services/search.service';
 import {ObjectUtility} from '../../../injectors/object';
 import {ROUTER_DIRECTIVES} from '@angular/router';
-import {OnChanges, SimpleChange} from '@angular/core';
+import {DoCheck, SimpleChange} from '@angular/core';
 
 
 @Component({
@@ -17,7 +17,7 @@ import {OnChanges, SimpleChange} from '@angular/core';
   providers: [SearchService, ObjectUtility],
   template: require('./search.component.html')
 })
-export class Search implements OnChanges{
+export class Search{
   q = '';
   previousQ = '';
   resultsQ = '';
