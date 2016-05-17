@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ObjectService} from '../../services/object.service';
 import {Router} from '@angular/router';
 import {ROUTER_DIRECTIVES} from '@angular/router';
+import {Registry} from '../app/registry.ts';
 
 @Component({
   selector: 'plone-navigation', // <app></app>
@@ -28,3 +29,5 @@ export class Navigation {
     return '/' + url.split
   }
 }
+
+Registry.registerComponent('plone.navigation', Navigation);

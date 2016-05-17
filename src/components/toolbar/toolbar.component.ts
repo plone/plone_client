@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {ROUTER_DIRECTIVES} from '@angular/router';
 import {Location} from '@angular/common';
+import {Registry} from '../app/registry.ts';
 
 @Component({
   selector: 'plone-toolbar',
@@ -41,3 +42,5 @@ export class Toolbar {
     }];
   }
 }
+
+Registry.registerComponent('plone.toolbar', Toolbar);

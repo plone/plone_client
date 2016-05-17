@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Registry} from '../app/registry';
 import {Header} from '../header/header.component';
 import {Breadcrumbs} from '../breadcrumbs/breadcrumbs.component';
 import {Toolbar} from '../toolbar/toolbar.component';
@@ -13,22 +14,10 @@ import {DynamicComponentLoader, ViewContainerRef, Input} from '@angular/core';
 import {Location} from '@angular/common';
 
 
-export namespace ViewRegistry {
-  let _registered: { } = {};
-
-  export function register(name: string, view: any ) {
-    _registered[name] = view;
-  }
-
-  export function getView(name: string){
-    return _registered[name];
-  }
-}
-
-ViewRegistry.register('', View);
-ViewRegistry.register('edit', Edit);
-ViewRegistry.register('add', Add);
-ViewRegistry.register('login', Login);
+Registry.registerView('', View);
+Registry.registerView('edit', Edit);
+Registry.registerView('add', Add);
+Registry.registerView('login', Login);
 
 
 @Component({
@@ -55,11 +44,8 @@ export class ViewChooser {
       if(path.indexOf('@@') !== -1){
         var split = path.split('@@');
         var viewName = split[split.length - 1];
-        viewClass = ViewRegistry.getView(viewName);
+        viewClass = Registry.getView(viewName);
       }
       this.dcl.loadNextToLocation(viewClass, this.container);
     }
 }
-
-
-export { ViewRegistry as registry };

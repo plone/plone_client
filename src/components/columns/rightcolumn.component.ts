@@ -10,14 +10,14 @@ import {PloneComponent} from '../plonecomponent/plonecomponent.component';
 })
 export class RightColumn {
 
-    components: { obj: any, klass: string }[] = [];
+    components: { obj: any, name: string }[] = [];
 
     constructor() { }
 
     ngOnInit() {
         this.components = [
-            { obj: new PloneComponent(), klass: 'Logo' },
-            { obj: new PloneComponent(), klass: 'Search' }
+            { obj: new PloneComponent(), name: 'plone.logo' },
+            { obj: new PloneComponent(), name: 'plone.search' }
         ];
     }
 

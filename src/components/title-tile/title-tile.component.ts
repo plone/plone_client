@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {Registry} from '../app/registry.ts';
 
 @Component({
   selector: 'title-tile',
@@ -7,3 +8,5 @@ import {Component, Input} from '@angular/core';
 export default class TitleTile {
   @Input() title;
 }
+
+Registry.registerComponent('plone.title', TitleTile);

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Registry} from '../app/registry.ts';
 
 @Component({
   selector: 'plone-logo', // <app></app>
@@ -9,3 +10,5 @@ export class Logo {
   constructor() { }
 
 }
+
+Registry.registerComponent('plone.logo', Logo);
