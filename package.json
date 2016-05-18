@@ -26,8 +26,7 @@
     "e2e:live": "npm run e2e -- --elementExplorer",
     "webdriver-manager": "webdriver-manager",
     "webdriver:update": "npm run webdriver-manager update",
-    "typings": "typings",
-    "postinstall": "npm run typings -- install",
+    "postinstall": "./node_modules/.bin/typings -- install",
     "patch": "patch -p0 < angular.patch"
   },
   "licenses": [
