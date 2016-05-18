@@ -3,7 +3,7 @@
     <span id="breadcrumbs-you-are-here" class="hiddenStructure">You are here:</span>
     <ol aria-labelledby="breadcrumbs-you-are-here">
       <li *ngFor="let crumb of crumbs; let current = last" [id]="['breadcrumbs-' + crumb.title]">
-        <a *ngIf="current==false" [href]="crumb.url">{{ crumb.title }}</a>
+        <a *ngIf="current==false" [href]="crumb.url" [routerLink]="[utility.getUrl(crumb)]">{{ crumb.title }}</a>
         <span *ngIf="current==true">{{ crumb.title }}</span>
       </li>
     </ol>
