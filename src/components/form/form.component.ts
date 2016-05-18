@@ -1,5 +1,11 @@
 import {Component, Directive} from '@angular/core';
 import {FieldChooser} from './chooser';
+import {FieldRegistry} from './registry';
+import {StringField} from './fields/string';
+import {IntegerField} from './fields/integer';
+
+FieldRegistry.registerField('string', StringField);
+FieldRegistry.registerField('integer', IntegerField);
 
 @Component({
     selector: 'schema-form',
@@ -19,9 +25,11 @@ export class Form {
             "type": "object",
             "properties": {
                 "firstName": {
+                    "description": "First name",
                     "type": "string"
                 },
                 "lastName": {
+                    "description": "Last name",
                     "type": "string"
                 },
                 "age": {
@@ -35,8 +43,13 @@ export class Form {
 
         var fields = [];
 
-        for(var field in schema.properties) {
-            fields.push({field: new FieldChooser(), type: 'text'});
+        for(var id in schema.properties) {
+            var param = schema.properties[id];
+            fields.push({
+                field: new FieldChooser(),
+                type: param['type'],
+                settings: param
+            });
         }
         this.fields = fields;
     }

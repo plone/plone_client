@@ -13,6 +13,7 @@ export class FieldChooser {
     dcl: DynamicComponentLoader;
     container: ViewContainerRef;
     @Input('name') name: string;
+    @Input('settings') settings: any;
 
     constructor(dcl: DynamicComponentLoader = null, container: ViewContainerRef = null) {
         if (!this.dcl && dcl) {
@@ -22,12 +23,15 @@ export class FieldChooser {
     }
 
     ngOnInit() {
+        var _this = this;
         // TODO: find a way to use loadAsRoot instead of loadNextToLocation to
         // avoid useless markup
         var field = FieldRegistry.getField(this.name);
         if(!field) {
             field = DefaultField;
         }
-        this.dcl.loadNextToLocation(field, this.container);
+        this.dcl.loadNextToLocation(field, this.container).then(ref => {
+            ref.instance.label = _this.settings.description;
+        });
     }
 }

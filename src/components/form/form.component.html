@@ -1,3 +1,6 @@
 <form>
-    <field *ngFor="let field of fields" field="field.field" [name]="field.type"></field>
+    <field *ngFor="let field of fields"
+        field="field.field"
+        [name]="field.type"
+        [settings]="field.settings"></field>
 </form>
