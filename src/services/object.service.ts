@@ -57,4 +57,21 @@ export class ObjectService extends APIService {
     return this.http.get(url + query, {
       headers: headers});
   }
+
+  getWorkflow(path:string){
+    // get a listing of a path
+    var url = this.url + path + '/workflow';
+    var headers = this.getHeaders();
+
+    return this.http.get(url, {headers: headers});
+  }
+
+  doTransition(path:string, transition: string){
+    var url = this.url + path + '/workflow/' + transition;
+    var headers = this.getHeaders();
+    headers.append('Content-Type', 'application/json');
+    var body = JSON.stringify({});
+
+    return this.http.post(url, body, {headers: headers});
+  }
 }

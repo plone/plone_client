@@ -26,7 +26,35 @@
                 <a [routerLink]="[action.uri]" href="{{action.uri}}"
                     class="contenttype-{{action.type.toLowerCase()}}">
                  {{ action.title }}
-               </a>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li id="plone-contentmenu-workflow"
+              [class.active]="isActive('workflow')">
+            <a title="Change the state of this item" class="label-state-{{state}}"
+               (click)="toggle('workflow')">
+              <span class="icon-plone-contentmenu-workflow state-{{state}}" aria-hidden="true">
+              </span>
+              <span>
+                <span>State:</span>
+                <span>{{state}}</span>
+              </span>
+              <span class="plone-toolbar-caret">
+              </span>
+            </a>
+            <ul aria-hidden="true">
+              <li class="plone-toolbar-submenu-header">
+                <span>
+                  <span>State:</span>
+                  <span class="state-{{state}}">{{state}}</span>
+                </span>
+              </li>
+              <li *ngFor="let transition of transitions" class="plonetoolbar-workfow-transition">
+                <a (click)="doTransition(transition)"
+                    id="workflow-transition-{{transition.name.toLowerCase()}}">
+                 {{ transition.title }}
+                </a>
               </li>
             </ul>
           </li>

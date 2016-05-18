@@ -18,7 +18,8 @@ import {ObjectService} from '../../services/object.service';
 export class Toolbar {
   actions: Action[] = [];
   factories: Action[] = [];
-  workflow: Action[] = [];
+  transitions: Action[] = [];
+  state = 'published';
 
   path = '';
   object_path = '';
@@ -61,6 +62,23 @@ export class Toolbar {
         action.uri = this.object_path + '/@@add?type=' + type;
         this.factories.push(action);
       });
+    });
+
+    this.transitions = [];
+    this.objectService.getWorkflow(this.object_path).subscribe(res => {
+      var data = res.json();
+      this.state = data.history[0].review_state;
+      data.transitions.forEach(transition => {
+        var parts = transition['@id'].split('/');
+        transition.name = parts[parts.length - 1];
+        this.transitions.push(transition);
+      });
+    });
+  }
+
+  doTransition(transition:any){
+    this.objectService.doTransition(this.object_path, transition.name).subscribe(res => {
+      this.router.navigateByUrl(this.object_path);
     });
   }
 

@@ -4735,7 +4735,9 @@ Plone built CSS
 
  * *******************/
 
- #edit-zone nav>ul ul li:not(.plone-toolbar-submenu-header)>a:before {
+ #edit-zone nav>ul ul li:not(.plone-toolbar-submenu-header)>a:before,
+ #edit-zone nav>ul ul .plone-toolbar-submenu-header :after,
+ #edit-zone nav>ul ul .state-published:after, #edit-zone nav>ul ul a:after {
    /* not loading fonts so remove some font icons */
-   content: " ";
+   content: " " !important;
  }
