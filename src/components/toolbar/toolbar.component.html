@@ -1,7 +1,7 @@
 <div id="edit-zone" role="toolbar" class="pat-toolbar initialized">
     <div class="plone-toolbar-container">
       <nav>
-        <ul class="plone-toolbar-main" >
+        <ul class="plone-toolbar-main" *ngIf="authenticated">
           <li *ngFor="let action of actions" id="contentview-{{action.category}}">
               <a [routerLink]="[action.uri]" href="{{action.uri}}">
                <span class="icon-{{action.category}}" aria-hidden="true">
@@ -54,6 +54,21 @@
                 <a (click)="doTransition(transition)"
                     id="workflow-transition-{{transition.name.toLowerCase()}}">
                  {{ transition.title }}
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li id="portal-personaltools" class="plone-toolbar-separator" [class.active]="isActive('useractions')">
+            <a href="#" (click)="toggle('useractions')">
+              <span class="icon-user" aria-hidden="true"></span>
+              <span>admin</span>
+              <span class="plone-toolbar-caret"></span>
+            </a>
+            <ul>
+              <li class="user-action" [class.active]="isActive('useraction')">
+                <a href="#" [routerLink]="['/@@logout']" id="personaltools-logout" title="Log out">
+                  Log out
+                    <span class="icon-logout"></span>
                 </a>
               </li>
             </ul>

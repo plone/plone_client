@@ -27,6 +27,7 @@ export class Toolbar {
   path = '';
   object_path = '';
   folder_path = '';
+  username = '';
   private _active = null;
 
   constructor(private router: Router, private location: Location,
@@ -39,6 +40,8 @@ export class Toolbar {
     if( !this.authenticated ) {
       return;
     }
+    this.username = this.authUtils.getUserInfo().username;
+
     this.path = this.location.path() || '/front-page';
     this.path = this.path.split('/@@')[0];
     this.object_path = this.path;
