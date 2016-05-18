@@ -10,7 +10,7 @@ import {Form} from '../../form/form.component';
 
 
 @Component({
-  selector: 'edit',
+  selector: 'plone-view-edit',
   directives: [
     TitleTile,
     Form

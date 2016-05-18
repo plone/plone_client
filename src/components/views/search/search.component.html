@@ -1,0 +1,47 @@
+<div id="content-core">
+  <form name="searchform" id="searchform" action="@@search" role="search" class="searchPage pat-formautofocus" (ngSubmit)="search()">
+    <div class="input-group">
+      <input class="searchPage form-control" name="SearchableText" type="text" size="25" title="Search Site"
+              [(ngModel)]="q" />
+      <span class="input-group-btn">
+        <input class="searchPage allowMultiSubmit btn btn-primary" type="submit" value="Search" />
+      </span>
+    </div>
+    <div>
+
+      <div>
+        <h1 class="documentFirstHeading">Search results for <strong id="search-term">{{resultsQ}}</strong></h1>
+      </div>
+      <div class="visualClear"><!-- --></div>
+      <div id="search-results-wrapper">
+
+        <div id="search-results-bar">
+          <span id="results-count"><strong id="search-results-number">3</strong> items matching your search terms.</span>
+        </div>
+
+        <div class="autotabs">
+          <nav class="autotoc-nav" id="searchResultsSort">
+            <span class="autotab-heading">Sort by</span>
+            <span id="sorting-options">
+              <a [class.active]="!sort" (click)="sortBy('', false)">relevance</a>
+              <a [class.active]="sort === 'Date'" (click)="sortBy('Date', true)">date (newest first)</a>
+              <a [class.active]="sort === 'sortable_title'" (click)="sortBy('sortable_title', false)">alphabetically</a>
+            </span>
+          </nav>
+          <div id="search-results">
+            <ol class="searchResults">
+              <li *ngFor="let item of results">
+                <span>
+                  <a href="" [routerLink]="[utility.getUrl(item)]" class="state-{{item.review_state}}">{{item.title}}</a>
+                </span>
+                <p class="discreet croppedDescription">{{item.description}}</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="visualClear"><!-- --></div>
+  </form>
+</div>

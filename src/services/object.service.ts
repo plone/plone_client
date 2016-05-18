@@ -1,22 +1,14 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable'
+import {APIService} from './api.service';
 
 
 @Injectable()
-export class ObjectService {
-  url = 'http://castanyera.iskra.cat:8070/Plone';
+export class ObjectService extends APIService {
 
-  constructor(public http: Http){}
-
-  private getHeaders(): Headers {
-    var headers = new Headers();
-    headers.append('Accept', 'application/json');
-    var auth = localStorage.getItem('auth');
-    if(auth){
-      headers.append('Authorization', auth);
-    }
-    return headers;
+  constructor(public http: Http){
+    super(http);
   }
 
   get(path:string) {
@@ -64,10 +56,5 @@ export class ObjectService {
 
     return this.http.get(url + query, {
       headers: headers});
-  }
-
-  private handleError (error: Response) {
-    console.error(error);
-    return Observable.throw(error.json().error || 'Server error');
   }
 }

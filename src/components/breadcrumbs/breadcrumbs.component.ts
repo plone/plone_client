@@ -1,26 +1,33 @@
 import {Component} from '@angular/core';
 import {Registry} from '../app/registry.ts';
 import {ObjectService} from '../../services/object.service';
+import {Location} from '@angular/common';
+import {ObjectUtility} from '../../injectors/object';
+import {ROUTER_DIRECTIVES} from '@angular/router';
+
 
 @Component({
-  selector: 'plone-breadcrumbs', // <app></app>
-  directives: [],
-  providers: [ObjectService],
+  selector: 'plone-breadcrumbs',
+  directives: [...ROUTER_DIRECTIVES],
+  providers: [ObjectService, ObjectUtility],
   template: require('./breadcrumbs.component.html')
 })
 export class Breadcrumbs {
-  objectService: ObjectService;
   show = false;
   crumbs = [];
 
-  constructor(objectService: ObjectService) {
-    this.objectService = objectService;
-  }
+  constructor(private objectService: ObjectService,
+              private location: Location,
+              public utility: ObjectUtility) { }
 
   ngOnInit() {
-    this.objectService.get('/components_/breadcrumbs').subscribe(res => {
-
-      this.crumbs = res.json().data.items;
+    var path = this.location.path() || '/front-page';
+    this.objectService.get(path + '/components_/breadcrumbs').subscribe(res => {
+      var data = res.json();
+      if(data instanceof Array){
+        data = data[0];
+      }
+      this.crumbs = data.data.items;
       if( this.crumbs.length > 0 ) {
 
         this.show = true;

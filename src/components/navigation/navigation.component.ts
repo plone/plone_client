@@ -3,7 +3,8 @@ import {ObjectService} from '../../services/object.service';
 import {Router} from '@angular/router';
 import {ROUTER_DIRECTIVES} from '@angular/router';
 import {Registry} from '../app/registry.ts';
-import {Summary, Model} from '../../models/model';
+import {Location} from '@angular/common';
+import {ObjectUtility} from '../../injectors/object';
 
 
 @Component({
@@ -11,17 +12,25 @@ import {Summary, Model} from '../../models/model';
   directives: [
     ...ROUTER_DIRECTIVES,
   ],
-  providers: [ObjectService],
+  providers: [ObjectService, ObjectUtility],
   template: require('./navigation.component.html')
 })
 export class Navigation {
-  items: Summary[] = [];
+  items = [];
 
-  constructor(private router: Router, private objectService: ObjectService) { }
+  constructor(private router: Router,
+              private objectService: ObjectService,
+              private location: Location,
+              public utility: ObjectUtility) { }
 
   ngOnInit() {
-    this.objectService.list('').subscribe(res => {
-      this.items = res.json()['member'];
+    var path = this.location.path() || '/front-page';
+    this.objectService.get(path + '/components_/navigation').subscribe(res => {
+      var data = res.json();
+      if(data instanceof Array){
+        data = data[0];
+      }
+      this.items = data.data.items;
     });
   }
 

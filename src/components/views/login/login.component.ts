@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 
 
 @Component({
-  selector: 'login',
+  selector: 'plone-view-login',
   directives: [
   ],
   providers: [LoginService],
