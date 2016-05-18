@@ -28,10 +28,11 @@ export class Login {
   onLogin() {
     this.loginService.login(this.username, this.password).subscribe(res => {
       var data = res.json();
-      if(data.success){
-        localStorage.setItem("auth", 'Basic ' + btoa(this.username + ':' + this.password));
+      if(data.success && data.token){
+        localStorage.setItem("auth", data.token);
         this.router.navigateByUrl('/');
       }else{
+        localStorage.removeItem('auth');
         this.failed = true;
       }
     });

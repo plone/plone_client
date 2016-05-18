@@ -3,6 +3,7 @@
     <div id="portal-header">
       <plone-logo></plone-logo>
       <div id="portal-searchbox">
+        <a *ngIf="showLogin" [routerLink]="['/@@login']">Log in</a>
         <plone-search></plone-search>
       </div>
     </div>

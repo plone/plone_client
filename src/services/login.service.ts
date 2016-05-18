@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/Observable'
 
 @Injectable()
 export class LoginService {
-  url = '/login';
+  url = 'http://castanyera.iskra.cat:8070/Plone/login_';
 
   constructor(public http: Http){}
 

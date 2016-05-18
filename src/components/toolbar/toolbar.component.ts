@@ -5,14 +5,15 @@ import {Location} from '@angular/common';
 import {Registry} from '../app/registry.ts';
 import {Action} from '../../models/action';
 import {ObjectService} from '../../services/object.service';
+import {AuthUtils} from '../../injectors/authUtils';
 
 @Component({
   selector: 'plone-toolbar',
   styleUrls: ['src/components/toolbar/toolbar.css'],
   template: require('./toolbar.component.html'),
-  providers: [ObjectService],
+  providers: [ObjectService, AuthUtils],
   directives: [
-    ...ROUTER_DIRECTIVES,
+    ...ROUTER_DIRECTIVES
   ]
 })
 export class Toolbar {
@@ -21,16 +22,23 @@ export class Toolbar {
   transitions: Action[] = [];
   state = 'published';
 
+  workflow: Action[] = [];
+  authenticated = false;
   path = '';
   object_path = '';
   folder_path = '';
   private _active = null;
 
   constructor(private router: Router, private location: Location,
-              private objectService: ObjectService) {
+              private objectService: ObjectService,
+              private authUtils: AuthUtils) {
   }
 
   ngOnInit(){
+    this.authenticated = this.authUtils.isAuthenticated();
+    if( !this.authenticated ) {
+      return;
+    }
     this.path = this.location.path() || '/front-page';
     this.path = this.path.split('/@@')[0];
     this.object_path = this.path;

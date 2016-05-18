@@ -9,6 +9,7 @@ import {View} from '../views/base/base.component';
 import {Edit} from '../views/edit/edit.component';
 import {Add} from '../views/add/add.component';
 import {Login} from '../views/login/login.component';
+import {Logout} from '../views/logout/logout.component';
 import {Search} from '../views/search/search.component';
 import TitleTile from '../title-tile/title-tile.component';
 import {DynamicComponentLoader, ViewContainerRef, Input} from '@angular/core';
@@ -19,6 +20,7 @@ Registry.registerView('', View);
 Registry.registerView('edit', Edit);
 Registry.registerView('add', Add);
 Registry.registerView('login', Login);
+Registry.registerView('logout', Logout);
 Registry.registerView('search', Search);
 
 
