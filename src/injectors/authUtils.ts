@@ -16,8 +16,15 @@ export class AuthUtils {
     }
     this.loggedIn = true;
     this.tokenParts = token.split('.');
-    this.jwtInfo = JSON.parse( atob(this.tokenParts[0]) );
-    this.userInfo = JSON.parse( atob(this.tokenParts[1]) );
+    try{
+      this.jwtInfo = JSON.parse( atob(this.tokenParts[0]) );
+      this.userInfo = JSON.parse( atob(this.tokenParts[1]) );
+    }catch(e){
+      // XXX needs to be updated here...
+      this.userInfo = {
+        username: 'anonymous'
+      };
+    }
   }
 
   getUserInfo() {

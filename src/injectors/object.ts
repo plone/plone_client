@@ -1,12 +1,21 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers, Response} from '@angular/http';
 import {Model} from '../models/model';
-
+import {Location} from '@angular/common';
 
 @Injectable()
 export class ObjectUtility {
 
-  constructor(){}
+  constructor(private location: Location){}
+
+  getCurrentPath(){
+    var path = this.location.path() || '/front-page';
+    if(path.indexOf('@@') !== -1){
+      var split = path.split('@@');
+      path = split[0];
+    }
+    return path;
+  }
 
   getUrl(item: Model){
     // hacking the url to work again...

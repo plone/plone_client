@@ -20,12 +20,10 @@ export class Navigation {
 
   constructor(private router: Router,
               private objectService: ObjectService,
-              private location: Location,
               public utility: ObjectUtility) { }
 
   ngOnInit() {
-    var path = this.location.path() || '/front-page';
-    this.objectService.get(path + '/components_/navigation').subscribe(res => {
+    this.objectService.get(this.utility.getCurrentPath() + '/components_/navigation').subscribe(res => {
       var data = res.json();
       if(data instanceof Array){
         data = data[0];

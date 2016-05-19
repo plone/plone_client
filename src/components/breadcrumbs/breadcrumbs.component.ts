@@ -21,8 +21,7 @@ export class Breadcrumbs {
               public utility: ObjectUtility) { }
 
   ngOnInit() {
-    var path = this.location.path() || '/front-page';
-    this.objectService.get(path + '/components_/breadcrumbs').subscribe(res => {
+    this.objectService.get(this.utility.getCurrentPath() + '/components_/breadcrumbs').subscribe(res => {
       var data = res.json();
       if(data instanceof Array){
         data = data[0];
