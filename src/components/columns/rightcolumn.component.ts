@@ -1,10 +1,12 @@
 import {Component} from '@angular/core';
 import {PloneComponent} from '../plonecomponent/plonecomponent.component';
+import {ColumnManager} from '../columnmanager/columnmanager.component';
 
 @Component({
     selector: 'plone-right-column',
     directives: [
-        PloneComponent
+        PloneComponent,
+        ColumnManager
     ],
     template: require('./rightcolumn.component.html')
 })
@@ -14,10 +16,12 @@ export class RightColumn {
 
     constructor() { }
 
+    updateComponents($event) {
+      this.components.push({ obj: new PloneComponent(), name: $event});
+    }
+
     ngOnInit() {
         this.components = [
-            { obj: new PloneComponent(), name: 'plone.logo' },
-            { obj: new PloneComponent(), name: 'plone.search' }
         ];
     }
 
