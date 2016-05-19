@@ -1,4 +1,7 @@
-<div class="outer-wrapper">
+<div class="outer-wrapper pat-plone"
+  [class.plone-toolbar-expanded]="authenticated"
+  [class.plone-toolbar-left-expanded]="authenticated"
+  [class.plone-toolbar-left]="authenticated">
   <plone-header></plone-header>
   <plone-navigation></plone-navigation>
   <div id="above-content-wrapper">
@@ -6,7 +9,7 @@
       <plone-breadcrumbs></plone-breadcrumbs>
     </section>
   </div>
-  <plone-toolbar></plone-toolbar>
+  <plone-toolbar *ngIf="authenticated"></plone-toolbar>
   <div class="container">
     <div class="row">
       <aside id="global_statusmessage"></aside>

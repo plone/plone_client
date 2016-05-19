@@ -8,6 +8,7 @@ import {Navigation} from '../navigation/navigation.component';
 import TitleTile from '../title-tile/title-tile.component';
 import {ViewChooser} from '../views/chooser.component';
 import {RightColumn} from '../columns/rightcolumn.component';
+import {AuthUtils} from '../../injectors/authUtils';
 
 
 /////////////////////////
@@ -27,12 +28,18 @@ import {RightColumn} from '../columns/rightcolumn.component';
   styles: [
     require('./app.component.css')
   ],
+  providers: [
+    AuthUtils
+  ],
   template: require('./app.component.html')
 })
 
 export class App{
 
-  constructor() {}
+  authenticated = false;
+  constructor(private authUtils: AuthUtils) {
+    this.authenticated = this.authUtils.isAuthenticated();
+  }
 
   ngOnInit() {
     console.log('Initializing the component App. This is for karma test.');
