@@ -1,30 +1,27 @@
 import {Component, Input} from '@angular/core';
 import {BaseField} from './base';
-
+import {ModelService} from '../model.service';
 
 @Component({
     selector: 'string-field',
-    template: require('./stringfield.component.html')
+    template: require('./stringfield.component.html'),
+    providers: [ModelService]
 })
 export class StringField extends BaseField {
-    _model: any;
-    value: any;
 
-    constructor() {
+    @Input('value') value: string = "loading...";
+    form: any;
+
+    constructor(private modelService: ModelService) {
         super();
-    }
-
-    @Input()
-    set model(value: any) {
-        this._model = value;
-        this.value = value;
-    }
-
-    get model() {
-        return this._model;
+        debugger;
+        modelService.getModelChangeEmitter().subscribe(model => {
+            debugger;
+            this.value = model.title;
+        })
     }
 
     ngOnInit() {
-        
+        this.value = this.modelService.getModel().title;
     }
 }

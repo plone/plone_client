@@ -3,6 +3,9 @@ import {FieldChooser} from './chooser';
 import {FieldRegistry} from './registry';
 import {StringField} from './fields/string';
 import {IntegerField} from './fields/integer';
+import {Model} from '../../models/model';
+import {ObjectService} from '../../services/object.service';
+import {ModelService} from './model.service';
 
 FieldRegistry.registerField('string', StringField);
 FieldRegistry.registerField('integer', IntegerField);
@@ -12,31 +15,32 @@ FieldRegistry.registerField('integer', IntegerField);
     directives: [
         FieldChooser
     ],
+    providers: [ObjectService, ModelService],
     template: require('./form.component.html')
 })
 export class Form {
-    _model: any;
+    @Input('path') path: string;
+    model: Model = {
+        created: null,
+        modified: null,
+        title: '',
+        description: '',
+        UID: '',
+        member: [],
+        text: {
+          data: '',
+          encoding: '',
+          'content-type': ''
+        }
+    };
     _components: {} = {};
     _schema: any;
     fields: { field: any, type: string }[] = [];
 
-    constructor() {}
-
-    @Input()
-    set model(value: any) {
-        this._model = value;
-        if(this._schema) {
-            for(var id in this._schema.properties) {
-                if(this._components[id]) {
-                    this._components[id].model = this._model[id];
-                }
-            }
-        }
-    }
-
-    get model() {
-        return this._model;
-    }
+    constructor(
+        private objectService: ObjectService,
+        private modelService: ModelService
+    ) {}
 
     ngOnInit() {
         this._schema = {
@@ -54,6 +58,10 @@ export class Form {
             },
             "required": ["title", "lastName"]
         };
+        this.objectService.get(this.path).subscribe(res => {
+            this.model = res.json();
+            this.modelService.setModel(this.model);
+        });
 
         var fields = [];
 
@@ -67,8 +75,7 @@ export class Form {
                 field: this._components[id],
                 type: settings['type'],
                 id: id,
-                settings: settings,
-                model: this._model[id]
+                settings: settings
             });
         }
         this.fields = fields;
