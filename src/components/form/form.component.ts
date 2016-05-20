@@ -3,12 +3,14 @@ import {FieldChooser} from './chooser';
 import {FieldRegistry} from './registry';
 import {StringField} from './fields/string';
 import {IntegerField} from './fields/integer';
+import {TextLineField} from './fields/textline';
 import {Model} from '../../models/model';
 import {ObjectService} from '../../services/object.service';
 import {ModelService} from './model.service';
 
 FieldRegistry.registerField('string', StringField);
 FieldRegistry.registerField('integer', IntegerField);
+FieldRegistry.registerField('textline', TextLineField);
 
 @Component({
     selector: 'schema-form',
@@ -36,6 +38,7 @@ export class Form {
     _components: {} = {};
     _schema: any;
     fields: { field: any, type: string }[] = [];
+    url: string;
 
     constructor(
         private objectService: ObjectService,
@@ -43,41 +46,41 @@ export class Form {
     ) {}
 
     ngOnInit() {
-        this._schema = {
-            "title": "Example Schema",
-            "type": "object",
-            "properties": {
-                "title": {
-                    "description": "Title",
-                    "type": "string"
-                },
-                "description": {
-                    "description": "Description",
-                    "type": "string"
-                }
-            },
-            "required": ["title", "lastName"]
-        };
+        this.url = 'http://castanyera.iskra.cat:8070/Plone';
+
         this.objectService.get(this.path).subscribe(res => {
             this.model = res.json();
             this.modelService.setModel(this.model);
+            this.objectService.schema(this.url + "/@types/" + this.model["@type"]).subscribe(res => {
+                var fields = [];
+
+                this._schema = res.json();
+
+                for (var id in this._schema.properties) {
+                    var settings = this._schema.properties[id];
+                    if (this._schema.required.indexOf(id) > -1) {
+                        settings.required = true;
+                    }
+                    var type = settings['type'];
+                    // TODO
+                    if (id === "description") {
+                        type = "textline";
+                    }
+                    this._components[id] = new FieldChooser()
+                    fields.push({
+                        field: this._components[id],
+                        type: type,
+                        id: id,
+                        settings: settings
+                    });
+                }
+
+                this.fields = fields;
+            });
         });
 
-        var fields = [];
 
-        for(var id in this._schema.properties) {
-            var settings = this._schema.properties[id];
-            if(this._schema.required.indexOf(id) > -1) {
-                settings.required = true;
-            }
-            this._components[id] = new FieldChooser()
-            fields.push({
-                field: this._components[id],
-                type: settings['type'],
-                id: id,
-                settings: settings
-            });
-        }
-        this.fields = fields;
+
+        
     }
 }

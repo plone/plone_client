@@ -18,7 +18,7 @@ export class ObjectService extends APIService {
   }
 
   actions(path:string){
-    var url = this.url + path + '/actions_';
+    var url = this.url + path + '/@actions';
     var headers = this.getHeaders();
     return this.http.get(url, {headers: headers});
   }
@@ -56,5 +56,13 @@ export class ObjectService extends APIService {
 
     return this.http.get(url + query, {
       headers: headers});
+  }
+
+  schema(path:string) {
+    var headers = this.getHeaders();
+
+    return this.http.get(path, { 
+      headers: headers 
+    });
   }
 }

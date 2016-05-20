@@ -2,13 +2,15 @@ import {Component, Input} from '@angular/core';
 import {BaseField} from './base';
 import {ModelService} from '../model.service';
 
-
 @Component({
-    selector: 'integer-field',
-    template: require('./integerfield.component.html')
+    selector: 'textline-field',
+    template: require('./textline.component.html'),
+    providers: []
 })
-export class IntegerField extends BaseField {
-	@Input('value') value: number;
+export class TextLineField extends BaseField {
+
+    @Input('value') value: string = "";
+    form: any;
 
     constructor(private modelService: ModelService) {
         super();
