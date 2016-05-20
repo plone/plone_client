@@ -5,23 +5,17 @@ import { Model } from '../../models/model';
 @Injectable()
 export class ModelService {
 
-  model: Model = {
-    created: null,
-    modified: null,
-    title: 'my title',
-    description: '',
-    UID: '',
-    member: [],
-    text: {
-      data: '',
-      encoding: '',
-      'content-type': ''
-    }
-  };
+  model: Model = {};
 
   modelChange: EventEmitter<Model> = new EventEmitter();
+  fieldChange: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor() { 
+    //subscribe to the event fieldChangeEmitter
+    this.fieldChange.subscribe(stringInput => {
+      this.model[stringInput.name] = stringInput.value;
+    });
+  }
 
   getModelChangeEmitter() {
     return this.modelChange;
@@ -31,8 +25,13 @@ export class ModelService {
     return this.model;
   }
 
-  setModel(model: any) {
+  loadModel(model: any) {
     this.model = model;
     this.modelChange.emit(model);
   }
+
+  getFieldChangeEmitter() {
+    return this.fieldChange;
+  }
+
 }
