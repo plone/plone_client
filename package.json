@@ -4,7 +4,7 @@
   "description": "Plone angular 2 client",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pyrenees/plone.git"
+    "url": "https://github.com/plone/plone_client.git"
   },
   "scripts": {
     "watch": "webpack --watch",
@@ -55,7 +55,7 @@
     "angular2-universal": "~0.100.4",
     "body-parser": "^1.15.0",
     "express": "^4.13.3",
-    "plonetheme-preloader": "git+https://github.com/pyrenees/plonetheme-preloader.git",
+    "plonetheme-preloader": "git+https://github.com/plone/plonetheme-preloader.git",
     "preboot": "~2.0.10",
     "rxjs": "5.0.0-beta.6",
     "raw-loader": "0.5.1",
