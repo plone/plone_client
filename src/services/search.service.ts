@@ -16,7 +16,7 @@ export class SearchService extends APIService {
 
   search(q:string, sort: string='', reversed: boolean=false) {
     // get a listing of a path
-    var url = this.configuration.get('url') + '/search';
+    var url = this.configuration.get('url') + '/@search';
     var headers = this.getHeaders();
     var query = '?SearchableText=' + q + '&metadata_fields=_all';
     if(sort){
