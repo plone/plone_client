@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class ConfigurationService {
   config = {
     // url: 'http://castanyera.iskra.cat:8070/Plone/login_'
-    url: 'http://localhost:8080:Plone'
+    url: 'http://localhost:8080/Plone'
   }
 
   constructor() { }

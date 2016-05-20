@@ -30,8 +30,8 @@ import {ConfigurationService} from '../../services/configuration.service';
     require('./app.component.css')
   ],
   providers: [
-    AuthUtils,
-    ConfigurationService
+    ConfigurationService,
+    AuthUtils
   ],
   template: require('./app.component.html')
 })
@@ -40,8 +40,8 @@ export class App{
 
   authenticated = false;
   constructor(
-    private authUtils: AuthUtils,
-    private configuration: ConfigurationService
+    private configuration: ConfigurationService,
+    private authUtils: AuthUtils
   ) {
     this.authenticated = this.authUtils.isAuthenticated();
   }
