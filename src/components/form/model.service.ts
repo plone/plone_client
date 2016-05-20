@@ -20,10 +20,6 @@ export class ModelService {
   };
 
   modelChange: EventEmitter<Model> = new EventEmitter();
-  
-  // private modelSource = new Subject<Model>();
-
-  // model$ = this.modelSource.asObservable();
 
   constructor() { }
 
@@ -36,10 +32,7 @@ export class ModelService {
   }
 
   setModel(model: any) {
-    debugger;
     this.model = model;
     this.modelChange.emit(model);
-    // this.modelSource.next(model);
-    // this.modelSource.complete();
   }
 }
