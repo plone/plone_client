@@ -39,7 +39,10 @@ import {ConfigurationService} from '../../services/configuration.service';
 export class App{
 
   authenticated = false;
-  constructor(private authUtils: AuthUtils) {
+  constructor(
+    private authUtils: AuthUtils,
+    private configuration: ConfigurationService
+  ) {
     this.authenticated = this.authUtils.isAuthenticated();
   }
 
