@@ -24,3 +24,4 @@ This is the plone project for Angular 2 for Universal JavaScript using TypeScrip
 * Docs: http://plonerestapi.readthedocs.io/en/barcelona-mocks/index.html
 * Collab: https://docs.google.com/document/d/1g1e2E-43mrFA0Qfozu2vzle-d-2UCX77zHIt9oSnz1w/edit#heading=h.pzuop7h0p3og
 * Test endpoint: http://castanyera.iskra.cat:8070/
+
