@@ -1,5 +1,5 @@
 {
-  "name": "plone",
+  "name": "plone_client",
   "version": "0.0.1",
   "description": "Plone angular 2 client",
   "repository": {
