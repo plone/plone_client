@@ -9,6 +9,7 @@ import TitleTile from '../title-tile/title-tile.component';
 import {ViewChooser} from '../views/chooser.component';
 import {RightColumn} from '../columns/rightcolumn.component';
 import {AuthUtils} from '../../injectors/authUtils';
+import {ConfigurationService} from '../../services/configuration.service';
 
 
 /////////////////////////
@@ -29,7 +30,8 @@ import {AuthUtils} from '../../injectors/authUtils';
     require('./app.component.css')
   ],
   providers: [
-    AuthUtils
+    AuthUtils,
+    ConfigurationService
   ],
   template: require('./app.component.html')
 })

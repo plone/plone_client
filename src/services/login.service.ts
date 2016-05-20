@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable'
+import {ConfigurationService} from './configuration.service';
 
 
 @Injectable()
 export class LoginService {
-  url = 'http://castanyera.iskra.cat:8070/Plone/login_';
 
-  constructor(public http: Http){}
+  constructor(
+    public http: Http,
+    private configuration: ConfigurationService
+  ){}
 
   login(username: string, password: string){
     var headers = new Headers();
@@ -17,7 +20,8 @@ export class LoginService {
       username: username,
       password: password
     });
-    return this.http.post(this.url, body, {headers: headers});
+    return this.http.post(
+      this.configuration.get('url') + '/@login', body, {headers: headers});
   }
 
   private handleError (error: Response) {

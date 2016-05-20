@@ -4,9 +4,8 @@ import {Observable} from 'rxjs/Observable'
 
 
 export class APIService {
-  url = 'http://castanyera.iskra.cat:8070/Plone';
 
-  constructor(public http: Http){}
+  constructor(public http: Http) { }
 
   public getHeaders(): Headers {
     var headers = new Headers();

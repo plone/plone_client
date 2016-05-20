@@ -9,6 +9,7 @@ import {ObjectService} from '../../services/object.service';
 import {ModelService} from './model.service';
 import {Router} from '@angular/router';
 import {ObjectUtility} from '../../injectors/object';
+import {ConfigurationService} from '../../services/configuration.service';
 
 FieldRegistry.registerField('string', StringField);
 FieldRegistry.registerField('integer', IntegerField);
@@ -27,23 +28,25 @@ export class Form {
     _components: {} = {};
     _schema: any;
     fields: { field: any, type: string }[] = [];
-    url: string;
+    baseurl: string;
 
     constructor(
         private objectService: ObjectService,
         private modelService: ModelService,
+        private configuration: ConfigurationService,
         private utility: ObjectUtility, 
         private router: Router
 
     ) {}
 
     ngOnInit() {
-        this.url = 'http://castanyera.iskra.cat:8070/Plone';
+        // this.url = 'http://castanyera.iskra.cat:8070/Plone';
+        this.baseurl = this.configuration.get('url');
 
         this.objectService.get(this.path).subscribe(res => {
             var model = res.json();
 
-            this.objectService.schema(this.url + "/@types/" + model["@type"]).subscribe(res => {
+            this.objectService.schema(this.baseurl + "/@types/" + model["@type"]).subscribe(res => {
                 var fields = [];
                 var ids = [];
 
