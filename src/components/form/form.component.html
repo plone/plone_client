@@ -1,6 +1,17 @@
 <form>
-    <field *ngFor="let field of fields"
-        field="field.field"
-        [name]="field.type"
-        [settings]="field.settings"></field>
+	<fieldset id="fieldset-default">
+	    <field *ngFor="let data of fields"
+	        field="data.field"
+	        [typename]="data.type"
+	        [id]="data.id"
+	        [settings]="data.settings"></field>
+    </fieldset>
+   <div class="formControls">
+      <button id="form-buttons-save" name="form.buttons.save"
+             class="submit-widget button-field context" type="submit"
+             (click)="onSave()">Save</button>
+      <button id="form-buttons-cancel" name="form.buttons.cancel"
+             class="submit-widget button-field standalone" type="submit"
+             (click)="onCancel()">Cancel</button>
+    </div>
 </form>

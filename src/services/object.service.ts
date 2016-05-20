@@ -18,7 +18,7 @@ export class ObjectService extends APIService {
   }
 
   actions(path:string){
-    var url = this.url + path + '/actions_';
+    var url = this.url + path + '/@actions';
     var headers = this.getHeaders();
     return this.http.get(url, {headers: headers});
   }
@@ -58,6 +58,7 @@ export class ObjectService extends APIService {
       headers: headers});
   }
 
+
   getWorkflow(path:string){
     // get a listing of a path
     var url = this.url + path + '/workflow';
@@ -66,12 +67,21 @@ export class ObjectService extends APIService {
     return this.http.get(url, {headers: headers});
   }
 
-  doTransition(path:string, transition: string){
+  doTransition(path: string, transition: string) {
     var url = this.url + path + '/workflow/' + transition;
     var headers = this.getHeaders();
     headers.append('Content-Type', 'application/json');
     var body = JSON.stringify({});
 
-    return this.http.post(url, body, {headers: headers});
+    return this.http.post(url, body, { headers: headers });
   }
+
+  schema(path:string) {
+    var headers = this.getHeaders();
+
+    return this.http.get(path, { 
+      headers: headers 
+    });
+  }
+  
 }
