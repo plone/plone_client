@@ -2,6 +2,13 @@
  * @author: @AngularClass
  */
 
+const BACKEND_URL = "http://castanyera.iskra.cat:8070";
+
+
+
+
+
+
 const helpers = require('./helpers');
 var webpackConfig = require('./webpack.common');
 /**

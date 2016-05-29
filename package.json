@@ -7,28 +7,64 @@
     "url": "https://github.com/plone/plone_client.git"
   },
   "scripts": {
-    "watch": "webpack --watch",
-    "prebuild": "rimraf dist",
-    "build": "webpack",
-    "prestart": "npm run build",
-    "server": "nodemon dist/server/bundle.js",
-    "start": "npm run server",
+     "rimraf": "rimraf",
+     "typedoc": "typedoc",
+     "typings": "typings",
+     "webpack": "webpack",
+     "webpack-dev-server": "webpack-dev-server",
+     "webdriver-manager": "webdriver-manager",
+     "clean": "npm cache clean && npm run rimraf -- node_modules doc typings coverage dist",
+       "clean:dist": "npm run rimraf -- dist",
+         "preclean:install": "npm run clean",
+       "clean:install": "npm set progress=false && npm install",
+         "preclean:start": "npm run clean",
+       "clean:start": "npm start",
+    
+     "watch": "npm run watch:dev",
+       "watch:dev": "npm run build:dev -- --watch",
+       "watch:dev:hmr": "npm run watch:dev -- --hot",
+       "watch:test": "npm run test -- --auto-watch --no-single-run",
+       "watch:prod": "npm run build:prod -- --watch",
+       "watch:univ": "npm run build:univ -- --watch",
+
+     "build": "npm run build:dev",
+         "prebuild:dev": "npm run clean:dist",
+       "build:dev": "webpack --config config/webpack.dev.js --progress --profile --colors --display-error-details --display-cached",
+         "prebuild:prod": "npm run clean:dist",
+       "build:prod": "webpack --config config/webpack.prod.js  --progress --profile --colors --display-error-details --display-cached --bail",
+         "prebuild:univ": "npm run clean:dist",
+       "build:univ": "webpack --config config/webpack.univ.js  --progress --profile --colors --display-error-details --display-cached --bail",
+
+     "server": "npm run server:dev",
+       "server:dev": "webpack-dev-server --config config/webpack.dev.js --inline --progress --profile --colors --watch --display-error-details --display-cached --content-base src/",
+       "server:dev:hmr": "npm run server:dev -- --hot",
+       "server:prod": "http-server dist --cors",
+       "server:univ": "nodemon dist/server/bundle.js",
+
+     "webdriver:update": "npm run webdriver-manager update",
+     "webdriver:start": "npm run webdriver-manager start",
+
+     "lint": "npm run tslint './src/**/*.ts'",
+
+       "pree2e": "npm run webdriver:update -- --standalone",
+     "e2e": "npm run protractor",
+       "e2e:live": "npm run e2e -- --elementExplorer",
+       
+       "pretest": "npm run lint",
+     "test": "karma start",
+     
+     "start": "npm run server:dev",
+       "start:hmr": "npm run server:dev:hmr",
+      
     "predebug": "npm run build",
     "debug": "node --debug-brk dist/server/bundle.js",
-    "test": "karma start",
     "tslint": "tslint",
-    "lint": "npm run tslint './src/**/*.ts'",
-        "pretest": "npm run lint",
-    "test": "karma start",
     "protractor": "protractor",
-        "pree2e": "npm run webdriver:update -- --standalone",
-    "e2e": "npm run protractor",
-    "e2e:live": "npm run e2e -- --elementExplorer",
-    "webdriver-manager": "webdriver-manager",
-    "webdriver:update": "npm run webdriver-manager update",
-    "postinstall": "./node_modules/.bin/typings -- install",
-    "patch": "patch -p0 < angular.patch"
+    "postinstall": "npm run typings -- install",
+    "patch": "patch -p0 < angular.patch",
+    "ci": "npm test && npm run e2e"
   },
+  "license": "BSD-3-Clause",
   "licenses": [
     {
       "type": "BSD",
@@ -40,7 +76,8 @@
     "Eric Brehault <ebrehault@gmail.com>",
     "Sam Schwartz",
     "Berta Capdevila",
-    "Marc Botifoll"
+    "Marc Botifoll",
+    "Ramon Navarro Bosch <r.navarro@iskra.cat>"
   ],
   "dependencies": {
     "@angular/common": "2.0.0-rc.1",
@@ -51,8 +88,7 @@
     "@angular/platform-browser-dynamic": "2.0.0-rc.1",
     "@angular/platform-server": "2.0.0-rc.1",
     "@angular/router": "2.0.0-rc.1",
-    "@angular/router-deprecated": "2.0.0-rc.1",
-    "angular2-universal": "~0.100.4",
+    "angular2-universal": "~0.101.4",
     "body-parser": "^1.15.0",
     "express": "^4.13.3",
     "plonetheme-preloader": "git+https://github.com/plone/plonetheme-preloader.git",
@@ -60,11 +96,15 @@
     "rxjs": "5.0.0-beta.6",
     "raw-loader": "0.5.1",
     "zone.js": "~0.6.12",
-    "core-js": "^2.2.2"
+    "core-js": "^2.4.0"
   },
   "devDependencies": {
-    "awesome-typescript-loader": "~0.17.0",
-    "istanbul-instrumenter-loader": "^0.2.0",
+    "angular2-hmr": "~0.7.0",
+
+    "es6-promise": "^3.1.2",
+    "es6-shim": "^0.35.0",
+    "es7-reflect-metadata": "^1.6.0",
+
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^1.0.1",
     "karma-coverage": "^1.0.0",
@@ -73,25 +113,52 @@
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "1.7.0",
-    "nodemon": "^1.8.1",
+    
+    "protractor": "^3.2.2",
+    
+    "parse5": "^1.5.1",
+    "mime": "^1.3.4",
     "phantomjs-polyfill": "0.0.2",
     "phantomjs-prebuilt": "^2.1.7",
+    "remap-istanbul": "^0.6.3",
     "rimraf": "^2.5.2",
-    "source-map-loader": "^0.1.5",
-    "ts-helpers": "1.1.1",
-    "ts-loader": "^0.8.1",
+    
+    "codelyzer": "~0.0.19",
+
     "tslint": "^3.7.1",
-    "tslint-loader": "^2.1.3",
-    "typescript": "^1.8.7",
-    "typings": "~0.8.1",
-    "webpack": "^1.12.10",
-    "webpack-dev-server": "^1.14.0",
-    "webpack-merge": "^0.8.4",
-    "webpack-notifier": "^1.3.0",
+    "ts-helpers": "1.1.1",
+    "ts-node": "^0.7.3",
+    "typedoc": "^0.3.12",
+    "typescript": "~1.8.9",
+    "typings": "~1.0.3",
+
     "awesome-typescript-loader": "~0.17.0",
+    "tslint-loader": "^2.1.3",
+    "url-loader": "^0.5.7",
+    "style-loader": "^0.13.1",
+    "raw-loader": "0.5.1",
+    "source-map-loader": "^0.1.5",
+    "imports-loader": "^0.6.5",
     "istanbul-instrumenter-loader": "^0.2.0",
-    "protractor": "^3.2.2",
-    "ts-node": "^0.7.1",
-    "ts-helpers": "1.1.1"
+    "json-loader": "^0.5.4",
+    "es6-promise-loader": "^1.0.1",
+    "css-loader": "^0.23.1",
+    "exports-loader": "^0.6.3",
+    "expose-loader": "^0.7.1",
+    "file-loader": "^0.8.5",
+    "http-server": "^0.9.0",
+    "sass-loader": "^3.2.0",
+    "node-sass": "^3.4.2",
+    "nodemon": "^1.8.1",
+    "methods": "^1.1.2",
+ 
+    "html-webpack-plugin": "^2.17.0",
+    "compression-webpack-plugin": "^0.3.1",
+    "copy-webpack-plugin": "^2.1.3",
+ 
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-md5-hash": "^0.0.5",
+    "webpack-merge": "^0.12.0"
   }
 }

@@ -1,4 +1,4 @@
-import {Component, Directive, ElementRef, Renderer} from '@angular/core';
+import {Component, Directive, ElementRef, Renderer, ViewEncapsulation} from '@angular/core';
 import {Http} from '@angular/http';
 import {Header} from '../header/header.component';
 import {Breadcrumbs} from '../breadcrumbs/breadcrumbs.component';
@@ -26,17 +26,16 @@ import {ConfigurationService} from '../../services/configuration.service';
     ViewChooser,
     RightColumn
   ],
-  styles: [
-    require('./app.component.css')
-  ],
+  styles: [ require('./app.component.scss') ],
   providers: [
     ConfigurationService,
     AuthUtils
   ],
+  encapsulation: ViewEncapsulation.None,
   template: require('./app.component.html')
 })
 
-export class App{
+export class App {
 
   authenticated = false;
   constructor(

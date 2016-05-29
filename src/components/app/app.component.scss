@@ -1,0 +1,44 @@
+@import "./scss/barceloneta.plone.scss";
+
+//*// PLONE 5 BARCELONETA LESS //*//
+
+//*// Font families
+@import "./scss/fonts.plone.scss";
+
+//*// Core variables and mixins
+@import "./scss/variables.plone.scss";
+	@import "./scss/mixin.prefixes.plone.scss";
+	@import "./scss/mixin.tabfocus.plone.scss";
+	@import "./scss/mixin.images.plone.scss";
+	@import "./scss/mixin.forms.plone.scss";
+	@import "./scss/mixin.borderradius.plone.scss";
+	@import "./scss/mixin.buttons.plone.scss";
+	@import "./scss/mixin.clearfix.plone.scss";
+	//@import "./scss/mixin.gridframework.plone.scss"; //grid Bootstrap
+	//@import "./scss/mixin.grid.plone.scss"; //grid Bootstrap
+	@import "./scss/mixin.font.plone.scss";
+
+
+//*// Reset and dependencies
+@import "./scss/normalize.plone.scss";
+@import "./scss/print.plone.scss";
+
+//*// Core CSS
+@import "./scss/scaffolding.plone.scss";
+@import "./scss/type.plone.scss";
+@import "./scss/code.plone.scss";
+//@import "./scss/deco.plone.scss"; //uncomment for deco variant
+//@import "./scss/grid.plone.scss"; //grid Bootstrap
+@import "./scss/tables.plone.scss";
+@import "./scss/forms.plone.scss";
+@import "./scss/buttons.plone.scss";
+@import "./scss/states.plone.scss";
+
+//*// Structure
+@import "./scss/header.plone.scss";
+@import "./scss/sitenav.plone.scss";
+@import "./scss/main.plone.scss";
+@import "./scss/footer.plone.scss";
+@import "./scss/loginform.plone.scss";
+@import "./scss/sitemap.plone.scss";
+
