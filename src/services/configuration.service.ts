@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ConfigurationService {
   config = {
-    // url: 'http://castanyera.iskra.cat:8070/Plone/login_'
-    url: 'http://localhost:8080/Plone'
-  }
+    url: ''
+  };
 
-  constructor() { }
+  constructor() {
+    this.config.url = process.env.PLONE;
+   }
 
   get(key: string) {
     return this.config[key];

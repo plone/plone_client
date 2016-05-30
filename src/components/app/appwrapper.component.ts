@@ -2,6 +2,7 @@ import {Component, Directive} from '@angular/core';
 import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {App} from './app.component';
+import { AppState } from '../../services/app.service';
 
 /////////////////////////
 // ** MAIN APP COMPONENT **
@@ -19,6 +20,10 @@ import {App} from './app.component';
 ])
 export class AppWrapper {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public appState: AppState) {}
+
+  ngOnInit() {
+    console.log('Initial App State', this.appState.state);
+  }
 
 }

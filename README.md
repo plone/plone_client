@@ -7,13 +7,32 @@ This is the plone project for Angular 2 for Universal JavaScript using TypeScrip
 * `npm install`
 * `npm run patch`
 
+## Development static single page app
+
+* `npm start` it starts and watches changes
+
+## Production static single page app
+
+* `npm run build:prod` creates the static dist folder to deliver
+* `npm run server:prod` starts a http static server offering the single page app
+
+## Testing static single page app
+
+* `npm tests`
+
+## Development angular2 universal
+
+## Production angular2 universal
+
+## Testing angular2 universal
+
 ## Serve
 
 * `npm start` to build your client app and start a web server
 * `npm run build` to prepare a distributable bundle
 
 ## Development
-* run `npm start` and `npm run watch` in two separate terminals to build your client app, start a web server, and allow file changes to update in realtime
+* run `npm start`
 
 ## Watch files
 * `npm run watch` to build your client app and start a web server

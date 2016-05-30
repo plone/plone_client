@@ -4,8 +4,6 @@
 
 module.exports = function(config) {
   var testWebpackConfig = require('./webpack.test.js');
-  // var testWebpackConfig = require('./webpack.config.js');
-  // var testWebpackConfig = webpackMerge({}, defaultConfig, commonConfig, clientConfig);
 
   config.set({
 
