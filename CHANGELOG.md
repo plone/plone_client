@@ -1,5 +1,6 @@
 0.0.1
 -----
 
-* Adding HRM [ramonnb] for dev
-* 
+* Adding HRM for dev [ramonnb]
+* Adding SCSS files from barceloneta [ramonnb]
+* Adding single page app dev/prod mode [ramonnb]

@@ -14,6 +14,7 @@ import {Search} from '../views/search/search.component';
 import TitleTile from '../title-tile/title-tile.component';
 import {DynamicComponentLoader, ViewContainerRef, Input} from '@angular/core';
 import {Location} from '@angular/common';
+import { OnActivate, Router, RouteSegment } from '@angular/router';
 
 
 Registry.registerView('', View);
@@ -28,22 +29,22 @@ Registry.registerView('search', Search);
   selector: 'view-chooser', // <app></app>
   template: `<div></div>`
 })
-export class ViewChooser {
+export class ViewChooser implements OnActivate {
   dcl: DynamicComponentLoader;
   container: ViewContainerRef;
 
   constructor(dcl: DynamicComponentLoader, container: ViewContainerRef,
-              public location: Location) {
+              public location: Location, private router: Router) {
     if (!this.dcl && dcl) {
       this.dcl = dcl;
       this.container = container;
     }
   }
-
     ngOnInit() {
       // TODO: find a way to use loadAsRoot instead of loadNextToLocation to
       // avoid useless markup
-      var path = this.location.path();
+      // var path = this.location.path();
+      var path = this.location.platformStrategy._platformLocation._location.pathname
       let viewClass:any = View;
       if(path.indexOf('@@') !== -1){
         var split = path.split('@@');
