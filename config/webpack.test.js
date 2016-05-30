@@ -2,15 +2,8 @@
  * @author: @AngularClass
  */
 
-const BACKEND_URL = "http://castanyera.iskra.cat:8070";
-
-
-
-
-
-
 const helpers = require('./helpers');
-var webpackConfig = require('./webpack.common');
+
 /**
  * Webpack Plugins
  */
@@ -22,8 +15,26 @@ const DefinePlugin = require('webpack/lib/DefinePlugin');
  */
 const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
 
-var testWebpackConfig = {
+/**
+ * Webpack configuration
+ *
+ * See: http://webpack.github.io/docs/configuration.html#cli
+ */
+module.exports = {
+
+  /**
+   * Source map for Karma from the help of karma-sourcemap-loader &  karma-webpack
+   *
+   * Do not change, leave as is or it wont work.
+   * See: https://github.com/webpack/karma-webpack#source-maps
+   */
   devtool: 'inline-source-map',
+
+  /**
+   * Options affecting the resolving of modules.
+   *
+   * See: http://webpack.github.io/docs/configuration.html#resolve
+   */
   resolve: {
 
     /**
@@ -40,6 +51,11 @@ var testWebpackConfig = {
 
   },
 
+  /**
+   * Options affecting the normal modules.
+   *
+   * See: http://webpack.github.io/docs/configuration.html#module
+   */
   module: {
 
     /**
@@ -72,7 +88,6 @@ var testWebpackConfig = {
         exclude: [
         // these packages have problems with their sourcemaps
         helpers.root('node_modules/rxjs'),
-        helpers.root('node_modules/@angular2-material'),
         helpers.root('node_modules/@angular')
       ]}
 
@@ -93,6 +108,11 @@ var testWebpackConfig = {
        *
        * See: https://github.com/s-panferov/awesome-typescript-loader
        */
+       {   test: /\.scss$/,
+           exclude: [
+             helpers.root('node_modules')
+           ],
+           loaders: ['raw-loader', 'sass-loader']},
       {
         test: /\.ts$/,
         loader: 'awesome-typescript-loader',
@@ -215,12 +235,4 @@ var testWebpackConfig = {
     setImmediate: false
   }
 
-}
-
-
-
-var webpackMerge = require('webpack-merge');
-module.exports = [
-  // Client
-  webpackMerge({}, testWebpackConfig, webpackConfig),
-]
+};

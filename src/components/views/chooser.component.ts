@@ -29,7 +29,7 @@ Registry.registerView('search', Search);
   selector: 'view-chooser', // <app></app>
   template: `<div></div>`
 })
-export class ViewChooser implements OnActivate {
+export class ViewChooser {
   dcl: DynamicComponentLoader;
   container: ViewContainerRef;
 
@@ -45,6 +45,7 @@ export class ViewChooser implements OnActivate {
       // avoid useless markup
       // var path = this.location.path();
       var path = this.location.platformStrategy._platformLocation._location.pathname
+
       let viewClass:any = View;
       if(path.indexOf('@@') !== -1){
         var split = path.split('@@');

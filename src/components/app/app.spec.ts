@@ -10,9 +10,14 @@ import {
 
 import { App } from './app.component.ts';
 
+import {AuthUtils} from '../../injectors/authUtils';
+import {ConfigurationService} from '../../services/configuration.service';
+
 describe('App', () => {
 	beforeEachProviders(() => [
-		App
+		App,
+    ConfigurationService,
+    AuthUtils
 	]);
 
 	it('should log ngOnInit', inject([App], (app) => {
