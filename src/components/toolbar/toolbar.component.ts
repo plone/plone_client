@@ -10,6 +10,7 @@ import {AuthUtils} from '../../injectors/authUtils';
 @Component({
   selector: 'plone-toolbar',
   template: require('./toolbar.component.html'),
+  styles: [require('../app/scss/toolbar.plone.scss')],
   providers: [ObjectService, AuthUtils],
   directives: [
     ...ROUTER_DIRECTIVES
