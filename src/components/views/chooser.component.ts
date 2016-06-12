@@ -14,7 +14,7 @@ import {Search} from '../views/search/search.component';
 import TitleTile from '../title-tile/title-tile.component';
 import {DynamicComponentLoader, ViewContainerRef, Input} from '@angular/core';
 import {Location} from '@angular/common';
-import { OnActivate, Router, RouteSegment } from '@angular/router';
+import {Router} from '@angular/router';
 
 
 Registry.registerView('', View);
