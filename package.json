@@ -51,7 +51,6 @@
     "tslint": "tslint",
     "protractor": "protractor",
     "postinstall": "npm run typings -- install",
-    "patch": "patch -p0 < angular.patch",
     "ci": "npm test && npm run e2e"
   },
   "license": "BSD-3-Clause",
