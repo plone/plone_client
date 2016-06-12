@@ -1,4 +1,10 @@
-import {Component} from '@angular/core';
+import {Component,
+  ViewContainerRef,
+  ComponentRef,
+  ComponentResolver,
+  ReflectiveInjector
+} from '@angular/core';
+import {Location} from '@angular/common';
 import {Registry} from '../app/registry';
 import {Header} from '../header/header.component';
 import {Breadcrumbs} from '../breadcrumbs/breadcrumbs.component';
@@ -12,10 +18,6 @@ import {Login} from '../views/login/login.component';
 import {Logout} from '../views/logout/logout.component';
 import {Search} from '../views/search/search.component';
 import TitleTile from '../title-tile/title-tile.component';
-import {DynamicComponentLoader, ViewContainerRef, Input} from '@angular/core';
-import {Location} from '@angular/common';
-import {Router} from '@angular/router';
-
 
 Registry.registerView('', View);
 Registry.registerView('edit', Edit);
@@ -27,34 +29,42 @@ Registry.registerView('search', Search);
 
 @Component({
   selector: 'view-chooser', // <app></app>
-  template: `<div></div>`
+  template: ""
 })
 export class ViewChooser {
-  dcl: DynamicComponentLoader;
-  container: ViewContainerRef;
+  private container: ViewContainerRef;
+  private resolver: ComponentResolver;
+  private location: Location;
 
-  constructor(dcl: DynamicComponentLoader, container: ViewContainerRef,
-              public location: Location, private router: Router) {
-    if (!this.dcl && dcl) {
-      this.dcl = dcl;
-      this.container = container;
-    }
+  constructor(container: ViewContainerRef, resolver: ComponentResolver, location: Location) {
+    this.container = container;
+    this.resolver = resolver;
+    this.location = location;
   }
-    ngOnInit() {
-      // TODO: find a way to use loadAsRoot instead of loadNextToLocation to
-      // avoid useless markup
-      // var path = this.location.path();
-      var path = this.location.platformStrategy._platformLocation._location.pathname
-
-      let viewClass:any = View;
-      if(path.indexOf('@@') !== -1){
-        var split = path.split('@@');
-        var end = split[split.length - 1];
-        // for instance, search uses paths like /@@search/my-query-string
-        split = end.split('/');
-        var viewName = split[0];
-        viewClass = Registry.getView(viewName);
-      }
-      this.dcl.loadNextToLocation(viewClass, this.container);
+  ngOnInit() {
+    let viewClass:any = View;
+    let path = this.location.path();
+    if(path.indexOf('@@') !== -1){
+      var split = path.split('@@');
+      var end = split[split.length - 1];
+      // for instance, search uses paths like /@@search/my-query-string
+      split = end.split('/');
+      var viewName = split[0];
+      viewClass = Registry.getView(viewName);
     }
+    this.createView(viewClass);    
+  }
+  createView(viewClass: any): Promise<ComponentRef<any>> {
+    return new Promise(
+      (resolve, reject) => {
+        this.resolver.resolveComponent(viewClass).then(
+          componentFactory => {
+            let injector = ReflectiveInjector.fromResolvedProviders([], this.container.injector);
+            let component = this.container.createComponent(componentFactory, 0, injector);
+            resolve(component);
+          }
+        );
+      }
+    )
+  }
 }
