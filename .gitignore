@@ -4,6 +4,7 @@
 /typings
 /tsd_typings/
 npm-debug.log
+coverage
 
 /dist/
 
