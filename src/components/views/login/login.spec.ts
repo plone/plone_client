@@ -32,7 +32,13 @@ import {Login} from './login.component.ts';
 import {LoginService} from '../../../services/login.service.ts';
 import {ConfigurationService} from '../../../services/configuration.service';
 
-import {ROUTER_FAKE_PROVIDERS} from '@angular/router/testing';
+import {Router} from '@angular/router';
+//import {ROUTER_FAKE_PROVIDERS} from '@angular/router/testing';
+
+import { ComponentResolver } from '@angular/core';
+import { UrlSerializer, RouterOutletMap, DefaultUrlSerializer } from '@angular/router';
+
+import { SpyLocation } from '@angular/common/testing';
 
 describe('Login Component', () => {
 
@@ -52,7 +58,19 @@ describe('Login Component', () => {
     Login,
     ConfigurationService,
     LoginService,
-    ROUTER_FAKE_PROVIDERS
+    RouterOutletMap,
+    {provide: UrlSerializer, useClass: DefaultUrlSerializer},
+    {provide: Location, useClass: SpyLocation},
+    {
+        provide: Router,
+        useFactory: (resolver:ComponentResolver, urlSerializer:UrlSerializer, outletMap:RouterOutletMap, location:Location, injector:Injector) => {
+          const r = new Router(RootCmp, resolver, urlSerializer, outletMap, location, injector, config);
+          r.initialNavigation();
+          return r;
+        },
+        deps: [ComponentResolver, UrlSerializer, RouterOutletMap, Location, Injector]
+      },
+    //ROUTER_FAKE_PROVIDERS
   ]);
 
 
