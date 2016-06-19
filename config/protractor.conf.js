@@ -14,10 +14,7 @@ exports.config = {
     helpers.root('src/**/**.e2e.ts'),
     helpers.root('src/**/*.e2e.ts')
   ],
-  exclude: [
-    'src/server.ts',
-    'src/client.ts'
-  ],
+  exclude: [],
 
   framework: 'jasmine2',
 

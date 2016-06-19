@@ -13,7 +13,7 @@ function routerFactory(
     componentResolver: ComponentResolver, urlSerializer: UrlSerializer,
     routerOutletMap: RouterOutletMap, location: Location): Router {
   return new Router(
-      FakeAppRootCmp, componentResolver, urlSerializer, routerOutletMap, location);
+      FakeAppRootCmp, componentResolver, urlSerializer, routerOutletMap, location, undefined, undefined);
 }
 
 export const ROUTER_FAKE_PROVIDERS: any[] = /*@ts2dart_const*/[
