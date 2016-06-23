@@ -64,10 +64,12 @@ export class Search{
     var searchQ = this.q;
     if(!this.q){
       this.results = [];
+    } else {
+      this.searchService.search(this.q, this.sort, this.reversed).subscribe(res => {
+        this.results = res.json()['items'];
+        this.resultsQ = searchQ;
+      });
     }
-    this.searchService.search(this.q, this.sort, this.reversed).subscribe(res => {
-      this.results = res.json()['member'];
-      this.resultsQ = searchQ;
-    });
+
   }
 }
