@@ -69,22 +69,22 @@ describe('Navigation Component', () => {
             "items": [
               {
                 "title":"Home",
-                "url":"http://castanyera.iskra.cat:8070/Plone"
+                "url":"http://localhost:3000/Plone"
               }, {
                 "title":"News",
-                "url":"http://castanyera.iskra.cat:8070/Plone/news"
+                "url":"http://localhost:3000/Plone/news"
               }, {
                 "title":"Events",
-                "url":"http://castanyera.iskra.cat:8070/Plone/events"
+                "url":"http://localhost:3000/Plone/events"
               }, {
                 "title":"Users",
-                "url":"http://castanyera.iskra.cat:8070/Plone/Members"
+                "url":"http://localhost:3000/Plone/Members"
               }, {
                 "title":"Something interesting here",
-                "url":"http://castanyera.iskra.cat:8070/Plone/junk"
+                "url":"http://localhost:3000/Plone/junk"
               }, {
                 "title":"Another page",
-                "url":"http://castanyera.iskra.cat:8070/Plone/sdfklsd-flds-j"
+                "url":"http://localhost:3000/Plone/sdfklsd-flds-j"
               }
             ]
           },
@@ -98,22 +98,22 @@ describe('Navigation Component', () => {
     var items = [
       {
         "title":"Home",
-        "url":"http://castanyera.iskra.cat:8070/Plone"
+        "url":"http://localhost:3000/Plone"
       }, {
         "title":"News",
-        "url":"http://castanyera.iskra.cat:8070/Plone/news"
+        "url":"http://localhost:3000/Plone/news"
       }, {
         "title":"Events",
-        "url":"http://castanyera.iskra.cat:8070/Plone/events"
+        "url":"http://localhost:3000/Plone/events"
       }, {
         "title":"Users",
-        "url":"http://castanyera.iskra.cat:8070/Plone/Members"
+        "url":"http://localhost:3000/Plone/Members"
       }, {
         "title":"Something interesting here",
-        "url":"http://castanyera.iskra.cat:8070/Plone/junk"
+        "url":"http://localhost:3000/Plone/junk"
       }, {
         "title":"Another page",
-        "url":"http://castanyera.iskra.cat:8070/Plone/sdfklsd-flds-j"
+        "url":"http://localhost:3000/Plone/sdfklsd-flds-j"
       }
     ]
     expect(navigation.items).toEqual(items);
