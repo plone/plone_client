@@ -1,17 +1,22 @@
-import { TestComponentBuilder } from '@angular/compiler/testing';
-import { Component, provide } from '@angular/core';
+import {TestComponentBuilder} from '@angular/compiler/testing';
+import {
+  Component,
+  provide
+} from '@angular/core';
+
 import {
  beforeEachProviders,
  describe,
  inject,
- injectAsync,
  it
 } from '@angular/core/testing';
 
-import { App } from './app.component.ts';
+import {App} from './app.component.ts';
 
 import {AuthUtils} from '../../injectors/authUtils';
 import {ConfigurationService} from '../../services/configuration.service';
+
+
 
 describe('App', () => {
 	beforeEachProviders(() => [
@@ -27,4 +32,6 @@ describe('App', () => {
 		app.ngOnInit();
 		expect(console.log).toHaveBeenCalled();
 	}));
+
+
 });

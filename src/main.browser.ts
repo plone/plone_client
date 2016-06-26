@@ -14,7 +14,7 @@ import { ENV_PROVIDERS } from './platform/environment';
 * our top level component that holds all of our components
 */
 import {AppWrapper} from './components/app/appwrapper.component';
-
+import { APP_ROUTER_PROVIDERS } from './components/app/app.routes';
 import { AppState } from './services/app.service';
 
 const APP_PROVIDERS = [
@@ -32,7 +32,8 @@ export function main(initialHmrState?: any): Promise<any> {
     ...ENV_PROVIDERS,
     ...DIRECTIVES,
     ...PIPES,
-    ...APP_PROVIDERS
+    ...APP_PROVIDERS,
+    ...APP_ROUTER_PROVIDERS
   ])
   .catch(err => console.error(err));
 

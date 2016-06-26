@@ -2,16 +2,16 @@
   <div id="login-form">
     <div class="field">
       <label for="__ac_name">Login Name</label>
-      <input type="text" size="15" name="__ac_name" id="__ac_name" value=""
+      <input class="username" type="text" size="15" name="__ac_name" id="__ac_name" value=""
              [(ngModel)]="username">
     </div>
     <div class="field">
       <label for="__ac_password">Password</label>
-      <input type="password" size="15" name="__ac_password" id="__ac_password"
+      <input class="password" type="password" size="15" name="__ac_password" id="__ac_password"
              [(ngModel)]="password">
     </div>
     <div class="formControls">
-      <button class="context" type="submit" (click)="onLogin()">Submit</button>
+      <button class="context submitLogin" type="submit" (click)="onLogin()">Submit</button>
     </div>
   </div>
 </div>

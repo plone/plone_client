@@ -6,8 +6,6 @@
 import { FORM_PROVIDERS, HashLocationStrategy, LocationStrategy } from '@angular/common';
 // Angular 2 Http
 import { HTTP_PROVIDERS } from '@angular/http';
-// Angular 2 Router
-import { ROUTER_PROVIDERS } from '@angular/router';
 
 /*
 * Application Providers/Directives/Pipes
@@ -16,7 +14,6 @@ import { ROUTER_PROVIDERS } from '@angular/router';
 export const APPLICATION_PROVIDERS = [
   ...FORM_PROVIDERS,
   ...HTTP_PROVIDERS,
-  ...ROUTER_PROVIDERS,
   {provide: LocationStrategy, useClass: HashLocationStrategy }
 ];
 
