@@ -22,8 +22,8 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
 })
 export class View {
   model: Model = {
-    created: null,
-    modified: null,
+    created: undefined,
+    modified: undefined,
     title: '',
     description: '',
     UID: '',

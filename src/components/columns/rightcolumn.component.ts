@@ -17,9 +17,7 @@ export class RightColumn {
     constructor() { }
 
     updateComponents($event) {
-      debugger;
       this.components.push({ obj: new PloneComponent(), name: $event});
-      console.warn('HHH',this.components);
     }
 
     ngOnInit() {

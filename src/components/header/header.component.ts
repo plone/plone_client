@@ -20,7 +20,7 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
 export class Header {
   private showLogin = true;
   constructor(private authUtils: AuthUtils) {
-    if( authUtils.isAuthenticated() ) {
+    if ( authUtils.isAuthenticated() ) {
       this.showLogin = false;
     }
   }

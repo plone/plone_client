@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers, Response} from '@angular/http';
-import {Observable} from 'rxjs/Observable'
+import {Observable} from 'rxjs/Observable';
 import {ConfigurationService} from './configuration.service';
 
 
@@ -10,13 +10,13 @@ export class LoginService {
   constructor(
     public http: Http,
     private configuration: ConfigurationService
-  ){}
+  ) {}
 
-  login(username: string, password: string){
-    var headers = new Headers();
+  login(username: string, password: string) {
+    let headers = new Headers();
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
-    var body = JSON.stringify({
+    let body = JSON.stringify({
       username: username,
       password: password
     });

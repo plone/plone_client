@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
-import {Router} from '@angular/router';
 import {ROUTER_DIRECTIVES} from '@angular/router';
 import {Location} from '@angular/common';
 import {Registry} from '../app/registry.ts';
 import {Action} from '../../models/action';
 import {ObjectService} from '../../services/object.service';
 import {AuthUtils} from '../../injectors/authUtils';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'plone-toolbar',
@@ -24,82 +24,83 @@ export class Toolbar {
   workflow: Action[] = [];
   authenticated = false;
   path = '';
-  object_path = '';
-  folder_path = '';
+  objectPath = '';
+  folderPath = '';
   username = '';
-  private _active = null;
+  private _active = undefined;
 
-  constructor(private router: Router, private location: Location,
+  constructor(private router: Router,
+              private location: Location,
               private objectService: ObjectService,
               private authUtils: AuthUtils) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.authenticated = this.authUtils.isAuthenticated();
-    if( !this.authenticated ) {
+    if ( !this.authenticated ) {
       return;
     }
     this.username = this.authUtils.getUserInfo().username;
 
     this.path = this.location.path() || '/front-page';
     this.path = this.path.split('/@@')[0];
-    this.object_path = this.path;
-    this.folder_path = this.path;
-    if(this.object_path === '/'){
+    this.objectPath = this.path;
+    this.folderPath = this.path;
+    if (this.objectPath === '/') {
       // default page is front page...
-      this.object_path = '/front-page';
+      this.objectPath = '/front-page';
     }
 
     this.actions = [{
       title: 'View',
-      uri: this.object_path,
+      uri: this.objectPath,
       category: 'view'
     }, {
       title: 'Edit',
-      uri: this.object_path + '/@@edit',
+      uri: this.objectPath + '/@@edit',
       category: 'edit'
     }];
 
-    this.objectService.actions(this.object_path).subscribe(res => {
-      var actions: Action[] = res.json().actions;
+    this.objectService.actions(this.objectPath).subscribe(res => {
+      let actions: Action[] = res.json().actions;
       actions.forEach(action => {
-        if(action.category !== 'factories'){
+        if (action.category !== 'factories') {
           return;
         }
         // only care about content type
-        var type = action['@id'];
+        let type = action['@id'];
         action.type = type;
-        action.uri = this.object_path + '/@@add?type=' + type;
+        action.uri = this.objectPath + '/@@add?type=' + type;
         this.factories.push(action);
       });
     });
 
     this.transitions = [];
-    this.objectService.getWorkflow(this.object_path).subscribe(res => {
-      var data = res.json();
+    this.objectService.getWorkflow(this.objectPath).subscribe(res => {
+      let data = res.json();
       this.state = data.history[0].review_state;
       data.transitions.forEach(transition => {
-        var parts = transition['@id'].split('/');
+        let parts = transition['@id'].split('/');
         transition.name = parts[parts.length - 1];
         this.transitions.push(transition);
       });
     });
   }
 
-  doTransition(transition:any){
-    this.objectService.doTransition(this.object_path, transition.name).subscribe(res => {
-      this.router.navigateByUrl(this.object_path);
+  doTransition(transition: any) {
+    this.objectService.doTransition(this.objectPath, transition.name).subscribe(res => {
+      this.router.navigateByUrl(this.objectPath);
     });
   }
 
-  isActive(category: string){
+  isActive(category: string) {
     return this._active === category;
   }
 
-  toggle(category: string){
-    if(this._active === category){
-      this._active = null;
-    }else{
+  toggle(category: string) {
+    if (this._active === category) {
+      this._active = undefined;
+    } else {
       this._active = category;
     }
   }

@@ -9,14 +9,14 @@ import {ModelService} from '../model.service';
 })
 export class StringField extends BaseField {
 
-    @Input('value') value: string = "";
+    @Input('value') value: string = '';
     valueChange: EventEmitter<any> = new EventEmitter();
 
     constructor(private modelService: ModelService) {
         super();
         modelService.getModelChangeEmitter().subscribe(model => {
             this.value = model[this.name];
-        })
+        });
     }
 
     ngOnInit() {

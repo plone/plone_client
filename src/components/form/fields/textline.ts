@@ -9,14 +9,14 @@ import {ModelService} from '../model.service';
 })
 export class TextLineField extends BaseField {
 
-    @Input('value') value: string = "";
+    @Input('value') value: string = '';
     form: any;
 
     constructor(private modelService: ModelService) {
         super();
         modelService.getModelChangeEmitter().subscribe(model => {
             this.value = model[this.name];
-        })
+        });
     }
 
     ngOnInit() {

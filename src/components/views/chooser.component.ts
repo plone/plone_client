@@ -29,7 +29,7 @@ Registry.registerView('search', Search);
 
 @Component({
   selector: 'view-chooser', // <app></app>
-  template: ""
+  template: ''
 })
 export class ViewChooser {
   private container: ViewContainerRef;
@@ -42,17 +42,17 @@ export class ViewChooser {
     this.location = location;
   }
   ngOnInit() {
-    let viewClass:any = View;
+    let viewClass: any = View;
     let path = this.location.path();
-    if(path.indexOf('@@') !== -1){
-      var split = path.split('@@');
-      var end = split[split.length - 1];
+    if (path.indexOf('@@') !== -1) {
+      let split = path.split('@@');
+      let end = split[split.length - 1];
       // for instance, search uses paths like /@@search/my-query-string
       split = end.split('/');
-      var viewName = split[0];
+      let viewName = split[0];
       viewClass = Registry.getView(viewName);
     }
-    this.createView(viewClass);    
+    this.createView(viewClass);
   }
   createView(viewClass: any): Promise<ComponentRef<any>> {
     return new Promise(
@@ -65,6 +65,6 @@ export class ViewChooser {
           }
         );
       }
-    )
+    );
   }
 }

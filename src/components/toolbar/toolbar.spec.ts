@@ -10,7 +10,6 @@ import {
  beforeEachProviders,
  describe,
  inject,
- injectAsync,
  it
 } from '@angular/core/testing';
 
@@ -41,8 +40,6 @@ import {ROUTER_FAKE_PROVIDERS} from '../../platform/fakerouter';
 describe('Toolbar Component', () => {
 
   let injector;
-  let backend;
-  let bread;
 
   beforeEachProviders(() => [
     BaseRequestOptions,
@@ -63,24 +60,24 @@ describe('Toolbar Component', () => {
   ]);
   it('toolbar factories and transitions empty', inject([Toolbar, MockBackend, AuthUtils], (toolbar, backend, authUtils) => {
     backend.connections.subscribe(c => {
-      var response;
+      let response;
       if (c.request.url.indexOf('@actions') > -1) {
         response = {
-          "actions": []
+          'actions': []
         };
       } else if (c.request.url.indexOf('workflow') > -1) {
         response = {
-          "history": [
+          'history': [
             {
-              "action": null,
-              "actor": "test_user_1_",
-              "comments": "",
-              "review_state": "private",
-              "time": "2016-05-19T10:32:40+00:00"
+              'action': undefined,
+              'actor': 'test_user_1_',
+              'comments': '',
+              'review_state': 'private',
+              'time': '2016-05-19T10:32:40+00:00'
             }
           ],
-          "transitions": []
-        }
+          'transitions': []
+        };
       }
       c.mockRespond(new Response(new ResponseOptions({body: response})));
     });
@@ -90,9 +87,9 @@ describe('Toolbar Component', () => {
     };
     toolbar.ngOnInit();
     expect(toolbar.authenticated).toBe(true);
-    var factoriesExpected = [];
+    let factoriesExpected = [];
     expect(toolbar.factories).toEqual(factoriesExpected);
-    var transitionsExpected = [];
+    let transitionsExpected = [];
 
     expect(toolbar.transitions).toEqual(transitionsExpected);
 
@@ -100,59 +97,59 @@ describe('Toolbar Component', () => {
   }));
   it('toolbar factories and transitions', inject([Toolbar, MockBackend, AuthUtils], (toolbar, backend, authUtils) => {
     backend.connections.subscribe(c => {
-      var response;
+      let response;
       if (c.request.url.indexOf('@actions') > -1) {
         response = {
-          "actions": [
+          'actions': [
             {
-              "@id": "view",
-              "category": "",
-              "title": "View"
+              '@id': 'view',
+              'category': '',
+              'title': 'View'
             },
             {
-              "@id": "edit",
-              "category": "",
-              "title": "Edit"
+              '@id': 'edit',
+              'category': '',
+              'title': 'Edit'
             },
             {
-              "@id": "Collection",
-              "category": "factories",
-              "title": "Collection"
+              '@id': 'Collection',
+              'category': 'factories',
+              'title': 'Collection'
             },
             {
-              "@id": "Document",
-              "category": "factories",
-              "title": "Document"
+              '@id': 'Document',
+              'category': 'factories',
+              'title': 'Document'
             },
             {
-              "@id": "reject",
-              "category": "workflow",
-              "title": "Send back"
+              '@id': 'reject',
+              'category': 'workflow',
+              'title': 'Send back'
             }
           ]
         };
       } else if (c.request.url.indexOf('workflow') > -1) {
         response = {
-          "history": [
+          'history': [
             {
-              "action": null,
-              "actor": "test_user_1_",
-              "comments": "",
-              "review_state": "private",
-              "time": "2016-05-19T10:32:40+00:00"
+              'action': undefined,
+              'actor': 'test_user_1_',
+              'comments': '',
+              'review_state': 'private',
+              'time': '2016-05-19T10:32:40+00:00'
             }
           ],
-          "transitions": [
+          'transitions': [
             {
-              "@id": "http://localhost:55001/plone/front-page/@workflow/publish",
-              "title": "Publish"
+              '@id': 'http://localhost:55001/plone/front-page/@workflow/publish',
+              'title': 'Publish'
             },
             {
-              "@id": "http://localhost:55001/plone/front-page/@workflow/submit",
-              "title": "Submit for publication"
+              '@id': 'http://localhost:55001/plone/front-page/@workflow/submit',
+              'title': 'Submit for publication'
             }
           ]
-        }
+        };
       }
       c.mockRespond(new Response(new ResponseOptions({body: response})));
     });
@@ -162,31 +159,31 @@ describe('Toolbar Component', () => {
     };
     toolbar.ngOnInit();
     expect(toolbar.authenticated).toBe(true);
-    var factoriesExpected = [
+    let factoriesExpected = [
       {
-        "@id": "Collection",
-        "category": "factories",
-        "title": "Collection",
-        "type": "Collection",
-        "uri": "/front-page/@@add?type=Collection"
+        '@id': 'Collection',
+        'category': 'factories',
+        'title': 'Collection',
+        'type': 'Collection',
+        'uri': '/front-page/@@add?type=Collection'
       }, {
-        "@id": "Document",
-        "category": "factories",
-        "title": "Document",
-        "type": "Document",
-        "uri": "/front-page/@@add?type=Document"
+        '@id': 'Document',
+        'category': 'factories',
+        'title': 'Document',
+        'type': 'Document',
+        'uri': '/front-page/@@add?type=Document'
       }
-    ]
+    ];
     expect(toolbar.factories).toEqual(factoriesExpected);
-    var transitionsExpected = [
+    let transitionsExpected = [
       {
-        "@id": "http://localhost:55001/plone/front-page/@workflow/publish",
-        "title": "Publish",
-        "name": "publish"
+        '@id': 'http://localhost:55001/plone/front-page/@workflow/publish',
+        'title': 'Publish',
+        'name': 'publish'
       }, {
-        "@id": "http://localhost:55001/plone/front-page/@workflow/submit",
-        "title": "Submit for publication",
-        "name": "submit"
+        '@id': 'http://localhost:55001/plone/front-page/@workflow/submit',
+        'title': 'Submit for publication',
+        'name': 'submit'
       }
     ];
 
@@ -195,24 +192,24 @@ describe('Toolbar Component', () => {
 
   it('toolbar active categories', inject([Toolbar, MockBackend, AuthUtils], (toolbar, backend, authUtils) => {
     backend.connections.subscribe(c => {
-      var response;
+      let response;
       if (c.request.url.indexOf('@actions') > -1) {
         response = {
-          "actions": []
+          'actions': []
         };
       } else if (c.request.url.indexOf('workflow') > -1) {
         response = {
-          "history": [
+          'history': [
             {
-              "action": null,
-              "actor": "test_user_1_",
-              "comments": "",
-              "review_state": "private",
-              "time": "2016-05-19T10:32:40+00:00"
+              'action': undefined,
+              'actor': 'test_user_1_',
+              'comments': '',
+              'review_state': 'private',
+              'time': '2016-05-19T10:32:40+00:00'
             }
           ],
-          "transitions": []
-        }
+          'transitions': []
+        };
       }
       c.mockRespond(new Response(new ResponseOptions({body: response})));
     });
@@ -222,7 +219,7 @@ describe('Toolbar Component', () => {
     };
     toolbar.ngOnInit();
     toolbar._active = 'anyCategory';
-    var active;
+    let active;
     active = toolbar.isActive('anotherCategory');
     expect(active).toBe(false);
 
@@ -231,24 +228,24 @@ describe('Toolbar Component', () => {
   }));
   it('toolbar categories toogle()', inject([Toolbar, MockBackend, AuthUtils], (toolbar, backend, authUtils) => {
     backend.connections.subscribe(c => {
-      var response;
+      let response;
       if (c.request.url.indexOf('@actions') > -1) {
         response = {
-          "actions": []
+          'actions': []
         };
       } else if (c.request.url.indexOf('workflow') > -1) {
         response = {
-          "history": [
+          'history': [
             {
-              "action": null,
-              "actor": "test_user_1_",
-              "comments": "",
-              "review_state": "private",
-              "time": "2016-05-19T10:32:40+00:00"
+              'action': undefined,
+              'actor': 'test_user_1_',
+              'comments': '',
+              'review_state': 'private',
+              'time': '2016-05-19T10:32:40+00:00'
             }
           ],
-          "transitions": []
-        }
+          'transitions': []
+        };
       }
       c.mockRespond(new Response(new ResponseOptions({body: response})));
     });
@@ -260,7 +257,7 @@ describe('Toolbar Component', () => {
     toolbar._active = 'anyCategory';
 
     toolbar.toggle('anyCategory');
-    expect(toolbar._active).toBe(null);
+    expect(toolbar._active).toBe(undefined);
 
     toolbar.toggle('anyCategory');
     expect(toolbar._active).toEqual('anyCategory');

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers, Response} from '@angular/http';
-import {Observable} from 'rxjs/Observable'
+import {Observable} from 'rxjs/Observable';
 
 
 export class APIService {
@@ -8,15 +8,15 @@ export class APIService {
   constructor(public http: Http) { }
 
   public getHeaders(): Headers {
-    var headers = new Headers();
+    let headers = new Headers();
     headers.append('Accept', 'application/json');
-    var auth = localStorage.getItem('auth');
-    if(auth){
+    let auth = localStorage.getItem('auth');
+    if (auth) {
 
-      //TODO Do I need to mention this needs to be replaced?
-      //Just faking auth until tokens are set up
-      headers.append('Authorization', 'basic ' + btoa('admin:admin'))
-      //headers.append('Authorization', auth);
+      // TODO Do I need to mention this needs to be replaced?
+      // Just faking auth until tokens are set up
+      headers.append('Authorization', 'basic ' + btoa('admin:admin'));
+      // headers.append('Authorization', auth);
     }
     return headers;
   }

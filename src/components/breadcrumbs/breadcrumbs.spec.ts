@@ -10,7 +10,6 @@ import {
  beforeEachProviders,
  describe,
  inject,
- injectAsync,
  it
 } from '@angular/core/testing';
 
@@ -35,13 +34,9 @@ import {ObjectService} from '../../services/object.service';
 
 import {ObjectUtility} from '../../injectors/object';
 import {AuthUtils} from '../../injectors/authUtils';
-
+import {SpyLocation} from '@angular/common/testing';
 
 describe('Breadcrumbs Component', () => {
-
-  let injector;
-  let backend;
-  let bread;
 
   beforeEachProviders(() => [
     BaseRequestOptions,
@@ -53,18 +48,17 @@ describe('Breadcrumbs Component', () => {
       },
       deps: [MockBackend, BaseRequestOptions]
     },
-
-    Breadcrumbs,
     ObjectService,
-    Location,
     ObjectUtility,
-    ConfigurationService
+    ConfigurationService,
+    {provide: Location, useClass: SpyLocation},
+    Breadcrumbs
   ]);
 
   it('breadcrumbs has to return data with home', inject([Breadcrumbs, MockBackend], (bread, backend) => {
     backend.connections.subscribe(c => {
       expect(c.request.url).toMatch('.@components/breadcrumbs');
-      var response = [{
+      let response = [{
         'data': {
           'items': [{
             'title': 'anyTitle',
@@ -90,7 +84,7 @@ describe('Breadcrumbs Component', () => {
     );
     expect(bread.show).toEqual(true);
 
-  }))
+  }));
 
 
 });
