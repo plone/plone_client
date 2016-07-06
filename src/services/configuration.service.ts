@@ -7,7 +7,12 @@ export class ConfigurationService {
   };
 
   constructor() {
-    this.config.url = process.env.PLONE;
+    if (process.env.PLONE === undefined) {
+      // in case we are testing we don't have a PLONE BACKEND
+      this.config.url = 'http://missing.site/';
+    } else {
+      this.config.url = process.env.PLONE;
+    }
    }
 
   get(key: string) {

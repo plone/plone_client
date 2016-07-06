@@ -1,4 +1,5 @@
 export namespace FieldRegistry {
+    'use strict';
     let _fields: {} = {};
 
     export function registerField(fieldtype: string, field: any) {
@@ -10,9 +11,11 @@ export namespace FieldRegistry {
     }
 
     export function getFields() {
-        var fields = [];
-        for (var c in this._fields) {
+        let fields = [];
+        for (let c in this._fields) {
+          if (this._fields.hasOwnProperty(c)) {
             fields.push(c);
+          }
         }
         return fields;
     }

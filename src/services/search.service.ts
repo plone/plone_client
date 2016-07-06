@@ -14,15 +14,15 @@ export class SearchService extends APIService {
     super(http);
   }
 
-  search(q:string, sort: string='', reversed: boolean=false) {
+  search(q: string, sort: string= '', reversed: boolean= false) {
     // get a listing of a path
-    var url = this.configuration.get('url') + '/@search';
-    var headers = this.getHeaders();
-    var query = '?SearchableText=' + q + '&metadata_fields=_all';
-    if(sort){
+    let url = this.configuration.get('url') + '/@search';
+    let headers = this.getHeaders();
+    let query = '?SearchableText=' + q + '&metadata_fields=_all';
+    if (sort) {
       query += '&sort_on=' + sort;
     }
-    if(reversed){
+    if (reversed) {
       query += '&sort_order=reversed';
     }
 

@@ -6,7 +6,7 @@ import {Registry} from '../app/registry.ts';
   selector: 'plone-example-content',
   template: require('./example.component.html')
 })
-export class ExampleComponent{}
+export class ExampleComponent {}
 
 Registry.registerComponent('plone.news', ExampleComponent);
 

@@ -10,7 +10,6 @@ import {
  beforeEachProviders,
  describe,
  inject,
- injectAsync,
  it
 } from '@angular/core/testing';
 
@@ -43,8 +42,6 @@ import {PloneComponent} from '../plonecomponent/plonecomponent.component';
 describe('Rightcolumn Component', () => {
 
   let injector;
-  let backend;
-  let bread;
 
   beforeEachProviders(() => [
     BaseRequestOptions,
@@ -64,23 +61,23 @@ describe('Rightcolumn Component', () => {
 
     backend.connections.subscribe(c => {
       expect(c.request.url).toMatch('@components/navigation');
-      var response;
+      let response;
       if (c.request.url.indexOf() > -1) {
-        response = []
+        response = [];
       }
       c.mockRespond(new Response(new ResponseOptions({body: response})));
     });
 
     rightColumn.ngOnInit();
-    var components;
+    let components;
     components = [];
     expect(rightColumn.components).toEqual(components);
 
     rightColumn.updateComponents('anyEvent');
     components = [
       {
-        "obj": new PloneComponent(),
-        "name": "anyEvent"
+        'obj': new PloneComponent(),
+        'name': 'anyEvent'
       }
     ];
     expect(rightColumn.components).toEqual(components);
@@ -91,21 +88,21 @@ describe('Rightcolumn Component', () => {
 
     backend.connections.subscribe(c => {
       expect(c.request.url).toMatch('@components/navigation');
-      var response;
+      let response;
       if (c.request.url.indexOf() > -1) {
-        response = []
+        response = [];
       }
       c.mockRespond(new Response(new ResponseOptions({body: response})));
     });
 
     rightColumn.ngOnInit();
-    var components;
+    let components;
 
     rightColumn.updateComponents('anyEvent');
     components = [
       {
-        "obj": new PloneComponent(),
-        "name": "anyEvent"
+        'obj': new PloneComponent(),
+        'name': 'anyEvent'
       }
     ];
     expect(rightColumn.components).toEqual(components);

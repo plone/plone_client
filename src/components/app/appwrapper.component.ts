@@ -10,8 +10,7 @@ import { AppState } from '../../services/app.service';
   directives: [
     ROUTER_DIRECTIVES
   ],
-  template: `
-<router-outlet></router-outlet>`
+  template: `<router-outlet></router-outlet>`
 })
 export class AppWrapper {
 

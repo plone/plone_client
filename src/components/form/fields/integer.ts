@@ -14,7 +14,7 @@ export class IntegerField extends BaseField {
         super();
         modelService.getModelChangeEmitter().subscribe(model => {
             this.value = model[this.name];
-        })
+        });
     }
 
     ngOnInit() {

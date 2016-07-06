@@ -11,7 +11,6 @@ import {
  beforeEachProviders,
  describe,
  inject,
- injectAsync,
  it
 } from '@angular/core/testing';
 
@@ -36,8 +35,7 @@ import {ROUTER_FAKE_PROVIDERS} from '../platform/fakerouter';
 describe('Object Service', () => {
 
   let injector;
-  let backend;
-  let bread;
+
   beforeEachProviders(() => [
     BaseRequestOptions,
     MockBackend,
@@ -57,60 +55,58 @@ describe('Object Service', () => {
   it('object service getWorkflow data', inject([ObjectService, MockBackend], (objectService, backend) => {
     backend.connections.subscribe(c => {
       expect(c.request.url).toMatch('workflow');
-      //if (c.request.url.toMatch('.@workflow')) {
-        var response = {
-          "history": [
+        let response = {
+          'history': [
             {
-              "action": null,
-              "actor": "test_user_1_",
-              "comments": "",
-              "review_state": "private",
-              "time": "2016-05-19T10:32:40+00:00"
+              'action': undefined,
+              'actor': 'test_user_1_',
+              'comments': '',
+              'review_state': 'private',
+              'time': '2016-05-19T10:32:40+00:00'
             }
           ],
-          "transitions": [
+          'transitions': [
             {
-              "@id": "http://localhost:55001/plone/front-page/@workflow/publish",
-              "title": "Publish"
+              '@id': 'http://localhost:55001/plone/front-page/@workflow/publish',
+              'title': 'Publish'
             },
             {
-              "@id": "http://localhost:55001/plone/front-page/@workflow/submit",
-              "title": "Submit for publication"
+              '@id': 'http://localhost:55001/plone/front-page/@workflow/submit',
+              'title': 'Submit for publication'
             }
           ]
-        }
-      //}
+        };
 
       c.mockRespond(new Response(new ResponseOptions({body: response})));
     });
     objectService.getWorkflow().subscribe(data => {
-      var responseReceived = new Response(new ResponseOptions(
+      let responseReceived = new Response(new ResponseOptions(
         {
-          "body": {
-            "history": [
+          'body': {
+            'history': [
               {
-                "action": null,
-                "actor": "test_user_1_",
-                "comments": "",
-                "review_state": "private",
-                "time": "2016-05-19T10:32:40+00:00"
+                'action': undefined,
+                'actor': 'test_user_1_',
+                'comments': '',
+                'review_state': 'private',
+                'time': '2016-05-19T10:32:40+00:00'
               }
             ],
-            "transitions": [
+            'transitions': [
               {
-                "@id": "http://localhost:55001/plone/front-page/@workflow/publish",
-                "title": "Publish"
+                '@id': 'http://localhost:55001/plone/front-page/@workflow/publish',
+                'title': 'Publish'
               },
               {
-                "@id": "http://localhost:55001/plone/front-page/@workflow/submit",
-                "title": "Submit for publication"
+                '@id': 'http://localhost:55001/plone/front-page/@workflow/submit',
+                'title': 'Submit for publication'
               }
             ]
           },
-          "url": null,
-          "status": null,
-          "statusText": null,
-          "type": null
+          'url': undefined,
+          'status': undefined,
+          'statusText': undefined,
+          'type': undefined
         }
       ));
       expect(data).toEqual(responseReceived);
@@ -118,7 +114,7 @@ describe('Object Service', () => {
     });
 
 
-  }))
+  }));
 
 
 

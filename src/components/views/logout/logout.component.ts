@@ -13,8 +13,8 @@ export class Logout {
   }
 
   onLogout() {
-    //Since we're using JWT, the logout is done exclusively
-    //on the client.
+    // Since we're using JWT, the logout is done exclusively
+    // on the client.
     localStorage.removeItem('auth');
     this.router.navigateByUrl('/');
   }

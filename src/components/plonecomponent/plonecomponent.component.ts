@@ -11,7 +11,7 @@ export class PloneComponent {
     container: ViewContainerRef;
     @Input('name') name: string;
 
-    constructor(dcl: DynamicComponentLoader = null, container: ViewContainerRef = null) {
+    constructor(dcl: DynamicComponentLoader = undefined, container: ViewContainerRef = undefined) {
         if (!this.dcl && dcl) {
             this.dcl = dcl;
             this.container = container;

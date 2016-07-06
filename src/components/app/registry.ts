@@ -1,4 +1,5 @@
 export namespace Registry {
+    'use strict';
     let _components: {} = {};
     let _views: {} = {};
 
@@ -19,9 +20,11 @@ export namespace Registry {
     }
 
     export function getComponents() {
-        var components = [];
-        for(var c in this._components) {
+        let components = [];
+        for (let c in this._components) {
+          if (this._components.hasOwnProperty(c)) {
             components.push(c);
+          }
         }
         return components;
     }

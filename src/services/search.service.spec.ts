@@ -11,7 +11,6 @@ import {
  beforeEachProviders,
  describe,
  inject,
- injectAsync,
  it
 } from '@angular/core/testing';
 
@@ -36,7 +35,6 @@ import {ROUTER_FAKE_PROVIDERS} from '../platform/fakerouter';
 describe('Configuration Service', () => {
 
   let injector;
-  let backend;
   let bread;
   beforeEachProviders(() => [
     BaseRequestOptions,
