@@ -72,6 +72,7 @@
     "@angular/common": "2.0.0-rc.4",
     "@angular/compiler": "2.0.0-rc.4",
     "@angular/core": "2.0.0-rc.4",
+    "@angular/forms": "^0.2.0",
     "@angular/http": "2.0.0-rc.4",
     "@angular/platform-browser": "2.0.0-rc.4",
     "@angular/platform-browser-dynamic": "2.0.0-rc.4",
@@ -79,13 +80,13 @@
     "@angular/router": "3.0.0-beta.2",
     "angular2-universal": "~0.104.0",
     "body-parser": "^1.15.1",
+    "core-js": "^2.4.0",
     "express": "^4.13.4",
     "plonetheme-preloader": "git+https://github.com/plone/plonetheme-preloader.git",
     "preboot": "^2.1.2",
-    "rxjs": "5.0.0-beta.6",
     "raw-loader": "0.5.1",
-    "zone.js": "~0.6.12",
-    "core-js": "^2.4.0"
+    "rxjs": "5.0.0-beta.6",
+    "zone.js": "~0.6.12"
   },
   "devDependencies": {
     "angular2-hmr": "~0.7.0",
