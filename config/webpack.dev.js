@@ -1,4 +1,9 @@
-
+try {
+  const localSettings = require('./local.settings.js');
+  console.log("Using local settings.");
+} catch(e) {
+  console.log("Using default settings.");
+}
 const helpers = require('./helpers');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
 const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
@@ -10,7 +15,7 @@ const HMR = helpers.hasProcessFlag('hot');
 const METADATA = webpackMerge(commonConfig.metadata, {
   host: 'localhost',
   port: 3000,
-  PLONE: 'http://castanyera.iskra.cat:8070/Plone',
+  PLONE: localSettings ? localSettings.PLONE : 'http://castanyera.iskra.cat:8070/Plone',
   ENV: ENV,
   HMR: HMR
 });

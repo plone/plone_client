@@ -5,6 +5,7 @@
 /tsd_typings/
 npm-debug.log
 coverage
+/config/local.settings.js
 
 /dist/
 
