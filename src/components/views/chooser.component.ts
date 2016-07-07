@@ -4,6 +4,7 @@ import {Component,
   ComponentResolver,
   ReflectiveInjector
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
 import {Registry} from '../app/registry';
 import {Header} from '../header/header.component';
@@ -35,25 +36,40 @@ export class ViewChooser {
   private container: ViewContainerRef;
   private resolver: ComponentResolver;
   private location: Location;
+  private route: ActivatedRoute;
 
-  constructor(container: ViewContainerRef, resolver: ComponentResolver, location: Location) {
+  constructor(
+    container: ViewContainerRef,
+    resolver: ComponentResolver,
+    location: Location,
+    route: ActivatedRoute
+  ) {
     this.container = container;
     this.resolver = resolver;
     this.location = location;
+    this.route = route;
   }
   ngOnInit() {
-    let viewClass: any = View;
-    let path = this.location.path();
-    if (path.indexOf('@@') !== -1) {
-      let split = path.split('@@');
-      let end = split[split.length - 1];
-      // for instance, search uses paths like /@@search/my-query-string
-      split = end.split('/');
-      let viewName = split[0];
-      viewClass = Registry.getView(viewName);
-    }
-    this.createView(viewClass);
+    let route = this.route;
+    this.routeSubscriber = this.route.params.subscribe(params => {
+      let viewClass: any = View;
+      let path = this.location.path();
+      if (path.indexOf('@@') !== -1) {
+        let split = path.split('@@');
+        let end = split[split.length - 1];
+        // for instance, search uses paths like /@@search/my-query-string
+        split = end.split('/');
+        let viewName = split[0];
+        viewClass = Registry.getView(viewName);
+      }
+      this.createView(viewClass);
+    });
   }
+
+  ngOnDestroy() {
+    this.routeSubscriber.unsubscribe();
+  }
+
   createView(viewClass: any): Promise<ComponentRef<any>> {
     return new Promise(
       (resolve, reject) => {
