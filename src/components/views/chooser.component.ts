@@ -37,6 +37,7 @@ export class ViewChooser {
   private resolver: ComponentResolver;
   private location: Location;
   private route: ActivatedRoute;
+  private routeSubscriber: any;
 
   constructor(
     container: ViewContainerRef,
@@ -51,7 +52,7 @@ export class ViewChooser {
   }
   ngOnInit() {
     let route = this.route;
-    this.routeSubscriber = this.route.params.subscribe(params => {
+    this.routeSubscriber = this.route.url.subscribe(urlPath => {
       let viewClass: any = View;
       let path = this.location.path();
       if (path.indexOf('@@') !== -1) {
