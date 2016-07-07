@@ -1,5 +1,6 @@
+let localSettings = undefined;
 try {
-  const localSettings = require('./local.settings.js');
+  localSettings = require('./local.settings.js');
   console.log("Using local settings.");
 } catch(e) {
   console.log("Using default settings.");
