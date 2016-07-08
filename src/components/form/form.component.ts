@@ -34,7 +34,7 @@ export class Form {
         private objectService: ObjectService,
         private modelService: ModelService,
         private configuration: ConfigurationService,
-        private utility: ObjectUtility, 
+        private utility: ObjectUtility,
         private router: Router
 
     ) {}
@@ -43,26 +43,28 @@ export class Form {
         // this.url = 'http://castanyera.iskra.cat:8070/Plone';
         this.baseurl = this.configuration.get('url');
 
-        this.objectService.get(this.path).subscribe(res => {
-            var model = res.json();
+        this.objectService.get(this.path).subscribe(res1 => {
+            let model = res1.json();
 
-            this.objectService.schema(this.baseurl + "/@types/" + model["@type"]).subscribe(res => {
-                var fields = [];
-                var ids = [];
+            this.objectService.schema(this.baseurl + '/@types/' + model['@type']).subscribe(res => {
+                let fields = [];
+                let ids = [];
 
                 this._schema = res.json();
 
-                for (var id in this._schema.properties) {
-                    var settings = this._schema.properties[id];
+                for (let id in this._schema.properties) {
+                  if (this._schema.properties.hasOwnProperty(id)) {
+                    let settings = this._schema.properties[id];
                     if (this._schema.required.indexOf(id) > -1) {
                         settings.required = true;
                     }
-                    var type = settings['type'];
+                    const typeKey = 'type';
+                    let type = settings[typeKey];
                     // TODO: remove exception
-                    if (id === "description") {
-                        type = "textline";
+                    if (id === 'description') {
+                        type = 'textline';
                     }
-                    this._components[id] = new FieldChooser()
+                    this._components[id] = new FieldChooser();
                     fields.push({
                         field: this._components[id],
                         type: type,
@@ -70,14 +72,14 @@ export class Form {
                         settings: settings
                     });
                     ids.push(id);
-
+                  }
                 }
                 this.fields = fields;
                 // only care about editable things...
                 // TODO: when API will provide the fields attribute
-                var dataModel = {};
-                for (var id in model) {
-                    if (ids.indexOf(id) > -1 || id === "@type") {
+                let dataModel = {};
+                for (let id in model) {
+                    if (ids.indexOf(id) > -1 || id === '@type') {
                         dataModel[id] = model[id];
                     }
                 }

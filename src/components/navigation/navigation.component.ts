@@ -1,14 +1,12 @@
 import {Component} from '@angular/core';
 import {ObjectService} from '../../services/object.service';
-import {Router} from '@angular/router';
-import {ROUTER_DIRECTIVES} from '@angular/router';
 import {Registry} from '../app/registry.ts';
-import {Location} from '@angular/common';
 import {ObjectUtility} from '../../injectors/object';
+import {ROUTER_DIRECTIVES} from '@angular/router';
 
 
 @Component({
-  selector: 'plone-navigation', // <app></app>
+  selector: 'plone-navigation',
   directives: [
     ...ROUTER_DIRECTIVES,
   ],
@@ -18,14 +16,13 @@ import {ObjectUtility} from '../../injectors/object';
 export class Navigation {
   items = [];
 
-  constructor(private router: Router,
-              private objectService: ObjectService,
+  constructor(private objectService: ObjectService,
               public utility: ObjectUtility) { }
 
   ngOnInit() {
     this.objectService.get(this.utility.getCurrentPath() + '/@components/navigation').subscribe(res => {
-      var data = res.json();
-      if(data instanceof Array){
+      let data = res.json();
+      if (data instanceof Array) {
         data = data[0];
       }
       this.items = data.data.items;

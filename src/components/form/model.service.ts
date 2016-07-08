@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core'
+import { Injectable, EventEmitter } from '@angular/core';
 import { Subject }    from 'rxjs/Subject';
 import { Model } from '../../models/model';
 
@@ -10,8 +10,8 @@ export class ModelService {
   modelChange: EventEmitter<Model> = new EventEmitter();
   fieldChange: EventEmitter<any> = new EventEmitter();
 
-  constructor() { 
-    //subscribe to the event fieldChangeEmitter
+  constructor() {
+    // subscribe to the event fieldChangeEmitter
     this.fieldChange.subscribe(stringInput => {
       this.model[stringInput.name] = stringInput.value;
     });
@@ -34,4 +34,4 @@ export class ModelService {
     return this.fieldChange;
   }
 
-}
+};

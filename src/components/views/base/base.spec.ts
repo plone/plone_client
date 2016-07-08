@@ -11,7 +11,6 @@ import {
  beforeEachProviders,
  describe,
  inject,
- injectAsync,
  it
 } from '@angular/core/testing';
 
@@ -40,7 +39,6 @@ import {ObjectUtility} from '../../../injectors/object';
 describe('View Component', () => {
 
   let injector;
-  let backend;
   let bread;
   beforeEachProviders(() => [
     BaseRequestOptions,
@@ -61,88 +59,90 @@ describe('View Component', () => {
 
   it('view component model attribute', inject([View, MockBackend], (view, backend) => {
     backend.connections.subscribe(c => {
-      var response = {
-        "@id": "http://castanyera.iskra.cat:8070/Plone/front-page",
-        "@type": "Document",
-        "UID": "7e019104059740d89b5929612282c12a",
-        "allow_discussion": null,
-        "changeNote": "",
-        "contributors": [],
-        "created": "2016-05-14T13:57:16+00:00",
-        "creators": [
-          "admin"
+      let response = {
+        '@id': 'http://castanyera.iskra.cat:8070/Plone/front-page',
+        '@type': 'Document',
+        'UID': '7e019104059740d89b5929612282c12a',
+        'allow_discussion': undefined,
+        'changeNote': '',
+        'contributors': [],
+        'created': '2016-05-14T13:57:16+00:00',
+        'creators': [
+          'admin'
         ],
-        "description": "LALALAALAL",
-        "effective": "2016-05-15T13:08:00",
-        "exclude_from_nav": false,
-        "expires": "2016-05-15T13:08:00",
-        "id": "front-page",
-        "language": "en-us",
-        "modified": "2016-05-28T14:56:18+00:00",
-        "parent": {
-          "@id": "http://castanyera.iskra.cat:8070/Plone",
-          "@type": "Plone Site",
-          "description": "",
-          "title": "Site"
+        'description': 'LALALAALAL',
+        'effective': '2016-05-15T13:08:00',
+        'exclude_from_nav': false,
+        'expires': '2016-05-15T13:08:00',
+        'id': 'front-page',
+        'language': 'en-us',
+        'modified': '2016-05-28T14:56:18+00:00',
+        'parent': {
+          '@id': 'http://castanyera.iskra.cat:8070/Plone',
+          '@type': 'Plone Site',
+          'description': '',
+          'title': 'Site'
         },
-        "relatedItems": [],
-        "rights": "",
-        "subjects": [],
-        "table_of_contents": null,
-        "text": {
-          "content-type": "text/html",
-          "data": "<p>foobar 5</p>",
-          "encoding": "utf8"
+        'relatedItems': [],
+        'rights': '',
+        'subjects': [],
+        'table_of_contents': undefined,
+        'text': {
+          'content-type': 'text/html',
+          'data': '<p>foobar 5</p>',
+          'encoding': 'utf8'
         },
-        "title": "Another thing67"
+        'title': 'Another thing67'
       };
       c.mockRespond(new Response(new ResponseOptions({body: response})));
     });
 
     view.ngOnInit();
-    var responseJSON = {
-       "@id":"http://castanyera.iskra.cat:8070/Plone/front-page",
-       "@type":"Document",
-       "UID":"7e019104059740d89b5929612282c12a",
-       "allow_discussion":null,
-       "changeNote":"",
-       "contributors":[
+    let responseJSON = {
+       '@id': 'http://castanyera.iskra.cat:8070/Plone/front-page',
+       '@type': 'Document',
+       'UID': '7e019104059740d89b5929612282c12a',
+       'allow_discussion': undefined,
+       'changeNote': '',
+       'contributors': [
 
        ],
-       "created":"2016-05-14T13:57:16+00:00",
-       "creators":[
-          "admin"
+       'created': '2016-05-14T13:57:16+00:00',
+       'creators': [
+          'admin'
        ],
-       "description":"LALALAALAL",
-       "effective":"2016-05-15T13:08:00",
-       "exclude_from_nav":false,
-       "expires":"2016-05-15T13:08:00",
-       "id":"front-page",
-       "language":"en-us",
-       "modified":"2016-05-28T14:56:18+00:00",
-       "parent":{
-          "@id":"http://castanyera.iskra.cat:8070/Plone",
-          "@type":"Plone Site",
-          "description":"",
-          "title":"Site"
+       'description': 'LALALAALAL',
+       'effective': '2016-05-15T13:08:00',
+       'exclude_from_nav': false,
+       'expires': '2016-05-15T13:08:00',
+       'id': 'front-page',
+       'language': 'en-us',
+       'modified': '2016-05-28T14:56:18+00:00',
+       'parent':
+       {
+          '@id': 'http://castanyera.iskra.cat:8070/Plone',
+          '@type': 'Plone Site',
+          'description': '',
+          'title': 'Site'
        },
-       "relatedItems":[
+       'relatedItems': [
 
        ],
-       "rights":"",
-       "subjects":[
+       'rights': '',
+       'subjects': [
 
        ],
-       "table_of_contents":null,
-       "text":{
-          "content-type":"text/html",
-          "data":"<p>foobar 5</p>",
-          "encoding":"utf8"
+       'table_of_contents': undefined,
+       'text':
+       {
+          'content-type': 'text/html',
+          'data': '<p>foobar 5</p>',
+          'encoding': 'utf8'
        },
-       "title":"Another thing67"
-    }
+       'title': 'Another thing67'
+    };
     expect(view.model).toEqual(responseJSON);
 
-  }))
+  }));
 
 });

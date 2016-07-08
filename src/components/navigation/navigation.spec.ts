@@ -10,7 +10,6 @@ import {
  beforeEachProviders,
  describe,
  inject,
- injectAsync,
  it
 } from '@angular/core/testing';
 
@@ -34,15 +33,10 @@ import {ConfigurationService} from '../../services/configuration.service';
 import {ObjectService} from '../../services/object.service';
 
 import {ObjectUtility} from '../../injectors/object';
-import {AuthUtils} from '../../injectors/authUtils';
 
-import {ROUTER_FAKE_PROVIDERS} from '../../platform/fakerouter';
+import {SpyLocation} from '@angular/common/testing';
 
 describe('Navigation Component', () => {
-
-  let injector;
-  let backend;
-  let bread;
 
   beforeEachProviders(() => [
     BaseRequestOptions,
@@ -54,68 +48,68 @@ describe('Navigation Component', () => {
       },
       deps: [MockBackend, BaseRequestOptions]
     },
-    Navigation,
-    ROUTER_FAKE_PROVIDERS,
     ObjectService,
+    ObjectUtility,
     ConfigurationService,
-    ObjectUtility
+    {provide: Location, useClass: SpyLocation},
+    Navigation
   ]);
   it('navigation items', inject([Navigation, MockBackend], (navigation, backend) => {
     backend.connections.subscribe(c => {
       expect(c.request.url).toMatch('@components/navigation');
-      var response = [
+      let response = [
         {
-          "data": {
-            "items": [
+          'data': {
+            'items': [
               {
-                "title":"Home",
-                "url":"http://localhost:3000/Plone"
+                'title': 'Home',
+                'url': 'http://localhost:3000/Plone'
               }, {
-                "title":"News",
-                "url":"http://localhost:3000/Plone/news"
+                'title': 'News',
+                'url': 'http://localhost:3000/Plone/news'
               }, {
-                "title":"Events",
-                "url":"http://localhost:3000/Plone/events"
+                'title': 'Events',
+                'url': 'http://localhost:3000/Plone/events'
               }, {
-                "title":"Users",
-                "url":"http://localhost:3000/Plone/Members"
+                'title': 'Users',
+                'url': 'http://localhost:3000/Plone/Members'
               }, {
-                "title":"Something interesting here",
-                "url":"http://localhost:3000/Plone/junk"
+                'title': 'Something interesting here',
+                'url': 'http://localhost:3000/Plone/junk'
               }, {
-                "title":"Another page",
-                "url":"http://localhost:3000/Plone/sdfklsd-flds-j"
+                'title': 'Another page',
+                'url': 'http://localhost:3000/Plone/sdfklsd-flds-j'
               }
             ]
           },
-          "id":"navigation"
+          'id': 'navigation'
         }
-      ]
+      ];
       c.mockRespond(new Response(new ResponseOptions({body: response})));
     });
 
     navigation.ngOnInit();
-    var items = [
+    let items = [
       {
-        "title":"Home",
-        "url":"http://localhost:3000/Plone"
+        'title': 'Home',
+        'url': 'http://localhost:3000/Plone'
       }, {
-        "title":"News",
-        "url":"http://localhost:3000/Plone/news"
+        'title': 'News',
+        'url': 'http://localhost:3000/Plone/news'
       }, {
-        "title":"Events",
-        "url":"http://localhost:3000/Plone/events"
+        'title': 'Events',
+        'url': 'http://localhost:3000/Plone/events'
       }, {
-        "title":"Users",
-        "url":"http://localhost:3000/Plone/Members"
+        'title': 'Users',
+        'url': 'http://localhost:3000/Plone/Members'
       }, {
-        "title":"Something interesting here",
-        "url":"http://localhost:3000/Plone/junk"
+        'title': 'Something interesting here',
+        'url': 'http://localhost:3000/Plone/junk'
       }, {
-        "title":"Another page",
-        "url":"http://localhost:3000/Plone/sdfklsd-flds-j"
+        'title': 'Another page',
+        'url': 'http://localhost:3000/Plone/sdfklsd-flds-j'
       }
-    ]
+    ];
     expect(navigation.items).toEqual(items);
 
   }));

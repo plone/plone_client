@@ -9,17 +9,17 @@ export class AuthUtils {
   private userInfo;
   private loggedIn = false;
 
-  constructor(){
+  constructor() {
     let token = localStorage.getItem('auth');
-    if( !token ) {
+    if ( !token ) {
       return;
     }
     this.loggedIn = true;
     this.tokenParts = token.split('.');
-    try{
+    try {
       this.jwtInfo = JSON.parse( atob(this.tokenParts[0]) );
       this.userInfo = JSON.parse( atob(this.tokenParts[1]) );
-    }catch(e){
+    } catch (e) {
       // XXX needs to be updated here...
       this.userInfo = {
         username: 'anonymous'
@@ -28,9 +28,9 @@ export class AuthUtils {
   }
 
   getUserInfo() {
-    if( this.loggedIn ) {
+    if ( this.loggedIn ) {
       return this.userInfo;
-    }else{
+    } else {
       return undefined;
     }
   }

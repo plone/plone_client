@@ -4,6 +4,7 @@ import {Component,
   ComponentResolver,
   ReflectiveInjector
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
 import {Registry} from '../app/registry';
 import {Header} from '../header/header.component';
@@ -29,31 +30,47 @@ Registry.registerView('search', Search);
 
 @Component({
   selector: 'view-chooser', // <app></app>
-  template: ""
+  template: ''
 })
 export class ViewChooser {
   private container: ViewContainerRef;
   private resolver: ComponentResolver;
   private location: Location;
+  private route: ActivatedRoute;
+  private routeSubscriber: any;
 
-  constructor(container: ViewContainerRef, resolver: ComponentResolver, location: Location) {
+  constructor(
+    container: ViewContainerRef,
+    resolver: ComponentResolver,
+    location: Location,
+    route: ActivatedRoute
+  ) {
     this.container = container;
     this.resolver = resolver;
     this.location = location;
+    this.route = route;
   }
   ngOnInit() {
-    let viewClass:any = View;
-    let path = this.location.path();
-    if(path.indexOf('@@') !== -1){
-      var split = path.split('@@');
-      var end = split[split.length - 1];
-      // for instance, search uses paths like /@@search/my-query-string
-      split = end.split('/');
-      var viewName = split[0];
-      viewClass = Registry.getView(viewName);
-    }
-    this.createView(viewClass);    
+    let route = this.route;
+    this.routeSubscriber = this.route.url.subscribe(urlPath => {
+      let viewClass: any = View;
+      let path = this.location.path();
+      if (path.indexOf('@@') !== -1) {
+        let split = path.split('@@');
+        let end = split[split.length - 1];
+        // for instance, search uses paths like /@@search/my-query-string
+        split = end.split('/');
+        let viewName = split[0];
+        viewClass = Registry.getView(viewName);
+      }
+      this.createView(viewClass);
+    });
   }
+
+  ngOnDestroy() {
+    this.routeSubscriber.unsubscribe();
+  }
+
   createView(viewClass: any): Promise<ComponentRef<any>> {
     return new Promise(
       (resolve, reject) => {
@@ -65,6 +82,6 @@ export class ViewChooser {
           }
         );
       }
-    )
+    );
   }
 }

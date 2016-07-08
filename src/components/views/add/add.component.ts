@@ -17,8 +17,8 @@ import {Location} from '@angular/common';
 })
 export class Add {
   model: Model = {
-    created: null,
-    modified: null,
+    created: undefined,
+    modified: undefined,
     title: '',
     description: '',
     UID: '',
@@ -35,7 +35,7 @@ export class Add {
               private router: Router,
               private location: Location) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.path = this.location.path() || '/front-page';
     this.path = this.path.split('/@@')[0];
   }
