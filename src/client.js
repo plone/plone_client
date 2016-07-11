@@ -8,6 +8,7 @@ import {AppWrapper} from './components/app/appwrapper.component';
 enableProdMode();
 
 bootstrap(AppWrapper, [
+    disableDeprecatedForms(),provideForms(),
   ...BROWSER_HTTP_PROVIDERS,
   ...ROUTER_PROVIDERS
 ]);

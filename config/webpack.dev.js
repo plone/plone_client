@@ -1,4 +1,4 @@
-let localSettings = undefined;
+var localSettings = undefined;
 try {
   localSettings = require('./local.settings.js');
   console.log("Using local settings.");
