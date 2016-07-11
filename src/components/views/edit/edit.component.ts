@@ -1,56 +1,90 @@
-import {Component, Renderer} from '@angular/core';
-import {Http, Headers} from '@angular/http';
+import {Component, Directive} from '@angular/core';
 import TitleTile from '../../title-tile/title-tile.component';
-import {Router} from '@angular/router';
 import {Model} from '../../../models/model';
 import {ObjectService} from '../../../services/object.service';
+import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {ObjectUtility} from '../../../injectors/object';
-import {Form} from '../../form/form.component';
+import {ConfigurationService} from '../../../services/configuration.service';
+import {Form} from "angular2-schema-form";
 
 
 @Component({
-  selector: 'plone-view-edit',
-  directives: [
-    TitleTile,
-    Form
-  ],
-  providers: [ObjectService, ObjectUtility],
-  template: require('./edit.component.html')
+    selector: 'plone-view-edit',
+    directives: [
+        TitleTile,
+        Form
+    ],
+    providers: [ObjectService, ObjectUtility],
+    template: require('./edit.component.html')
 })
 export class Edit {
+    private schema:any = {};
+    private actions:any = {};
+    private model:any;
+    private path:string = '';
 
-  path = '';
+    constructor(
+        private objectService: ObjectService,
+        private configuration: ConfigurationService,
+        private location: Location,
+        private utility: ObjectUtility,
+        private router: Router
+    ) {
+        this.model = {};
+    }
 
-  constructor(private objectService: ObjectService,
-              private router: Router,
-              private location: Location,
-              private utility: ObjectUtility) {
-  }
+    ngOnInit() {
+        this.path = this.location.path() || '/front-page';
+        this.path = this.path.split('/@@')[0];
 
-  ngOnInit() {
-    this.path = this.location.path() || '/front-page';
-    this.path = this.path.split('/@@')[0];
-  }
+        let form = this;
+        let baseurl = this.configuration.get('url');
 
-  onSave() {
-    // only care about editable things...
-    // var data = {
-    //   '@context': 'http://www.w3.org/ns/hydra/context.jsonld',
-    //   '@id': this.model['@id'],
-    //   'title': this.model.title,
-    //   'description': this.model.description
-    // };
-    // if(this.model.text){
-    //   data['text'] = this.model.text;
-    // }
+        this.objectService.get(this.path).subscribe(res1 => {
+            this.model = res1.json();
 
-    // this.objectService.put(this.path, data).subscribe(res => {
-    //   this.router.navigate([this.utility.getUrl(this.model)]);
-    // });
-  }
+            this.objectService.schema(
+                baseurl + '/@types/' + this.model['@type'])
+            .subscribe(res => {
+                let schema = res.json();
 
-  // onCancel() {
-  //   this.router.navigate([this.utility.getUrl(this.model)]);
-  // }
+                schema.buttons = [
+                    {id: 'save', label: 'Save'},
+                    {id: 'cancel', label: 'Cancel'}
+                ];
+                this.actions = {
+                    save: form.onSave.bind(form),
+                    cancel: form.onCancel.bind(form)
+                };
+                
+                // TODO: to be removed when angular-schema-form will support
+                // schemas without fieldsets and/or when restapi will provide
+                // fieldsets
+                if(!schema.fieldsets) {
+                    let all = [];
+                    for(let field in schema.properties) {
+                        all.push(field);
+                    }
+                    schema.fieldsets = [{
+                        id: 'default',
+                        title: 'Default',
+                        fields: all
+                    }];
+                }
+
+                this.schema = schema;
+            });
+        });
+    }
+
+    onSave(schemaForm) {
+        this.objectService.put(this.path, schemaForm.getModel()).subscribe(res => {
+            this.router.navigate([this.utility.getUrl(this.model)]);
+        });
+    }
+
+   onCancel() {
+       this.router.navigate([this.utility.getUrl(this.model)]);
+   }
 }
