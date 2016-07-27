@@ -64,7 +64,8 @@ export class Toolbar {
         uri: this.objectPath + '/@@edit',
         category: 'edit'
       }];
-
+      this.factories = [];
+      
       this.objectService.actions(this.objectPath).subscribe(res => {
         let actions: Action[] = res.json().actions;
         actions.forEach(action => {
