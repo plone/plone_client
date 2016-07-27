@@ -46,7 +46,7 @@ export class Toolbar {
       this.username = this.authUtils.getUserInfo().username;
 
       this.path = urlPath.reduce(
-        function(curr, prev) {return curr + '/' + prev.path}, '');
+        function(curr, prev) {return curr + '/' + prev.path}, '') || '/';
       this.path = this.path.split('/@@')[0];
       this.objectPath = this.path;
       this.folderPath = this.path;
@@ -65,7 +65,7 @@ export class Toolbar {
         category: 'edit'
       }];
       this.factories = [];
-      
+
       this.objectService.actions(this.objectPath).subscribe(res => {
         let actions: Action[] = res.json().actions;
         actions.forEach(action => {
