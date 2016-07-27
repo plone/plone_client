@@ -1,11 +1,12 @@
 import {Component,
   ViewContainerRef,
   ComponentRef,
+  ComponentFactory,
+  ViewChild,
   ComponentResolver,
   ReflectiveInjector
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {Location} from '@angular/common';
 import {Registry} from '../app/registry';
 import {Header} from '../header/header.component';
 import {Breadcrumbs} from '../breadcrumbs/breadcrumbs.component';
@@ -30,57 +31,59 @@ Registry.registerView('search', Search);
 
 @Component({
   selector: 'view-chooser', // <app></app>
-  template: ''
+  template: '<div #target></div>'
 })
 export class ViewChooser {
+  @ViewChild('target', {read: ViewContainerRef}) target;
+  cmpRef: ComponentRef<any>; 
   private container: ViewContainerRef;
   private resolver: ComponentResolver;
-  private location: Location;
   private route: ActivatedRoute;
   private routeSubscriber: any;
 
   constructor(
     container: ViewContainerRef,
     resolver: ComponentResolver,
-    location: Location,
     route: ActivatedRoute
   ) {
     this.container = container;
     this.resolver = resolver;
-    this.location = location;
     this.route = route;
   }
+
   ngOnInit() {
-    let route = this.route;
     this.routeSubscriber = this.route.url.subscribe(urlPath => {
-      let viewClass: any = View;
-      let path = this.location.path();
-      if (path.indexOf('@@') !== -1) {
-        let split = path.split('@@');
-        let end = split[split.length - 1];
-        // for instance, search uses paths like /@@search/my-query-string
-        split = end.split('/');
-        let viewName = split[0];
-        viewClass = Registry.getView(viewName);
+      let viewName: string;
+      let viewClass: any;
+      for(let i=0; i<urlPath.length; i++) {
+        if(urlPath[i].path.indexOf('@@') !== -1) {
+          viewName = urlPath[i].path.slice(2);
+        }
       }
+      if(viewName) {
+        viewClass = Registry.getView(viewName);
+      } else {
+        viewClass = View;
+      }
+
       this.createView(viewClass);
     });
   }
 
   ngOnDestroy() {
     this.routeSubscriber.unsubscribe();
+    if(this.cmpRef) {
+      this.cmpRef.destroy();
+    }
   }
 
-  createView(viewClass: any): Promise<ComponentRef<any>> {
-    return new Promise(
-      (resolve, reject) => {
-        this.resolver.resolveComponent(viewClass).then(
-          componentFactory => {
-            let injector = ReflectiveInjector.fromResolvedProviders([], this.container.injector);
-            let component = this.container.createComponent(componentFactory, 0, injector);
-            resolve(component);
-          }
-        );
+  createView(viewClass: any) {
+    if(this.cmpRef) {
+      this.cmpRef.destroy();
+    }
+    this.resolver.resolveComponent(viewClass).then(
+      (factory:ComponentFactory<any>) => {
+        this.cmpRef = this.target.createComponent(factory)
       }
     );
   }
