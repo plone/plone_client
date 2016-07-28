@@ -8,6 +8,8 @@ import { bootstrap } from '@angular/platform-browser-dynamic';
 */
 import { DIRECTIVES, PIPES, PROVIDERS } from './platform/browser';
 import { ENV_PROVIDERS } from './platform/environment';
+import {disableDeprecatedForms, provideForms} from "@angular/forms";
+import {FieldRegistryService} from "angular2-schema-form";
 
 /*
 * App Component
@@ -33,7 +35,8 @@ export function main(initialHmrState?: any): Promise<any> {
     ...DIRECTIVES,
     ...PIPES,
     ...APP_PROVIDERS,
-    ...APP_ROUTER_PROVIDERS
+    ...APP_ROUTER_PROVIDERS,
+    disableDeprecatedForms(), provideForms(), FieldRegistryService
   ])
   .catch(err => console.error(err));
 

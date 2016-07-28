@@ -11,7 +11,6 @@ import {RightColumn} from '../columns/rightcolumn.component';
 import {AuthUtils} from '../../injectors/authUtils';
 import {ConfigurationService} from '../../services/configuration.service';
 
-
 /////////////////////////
 // ** MAIN APP COMPONENT **
 @Component({
