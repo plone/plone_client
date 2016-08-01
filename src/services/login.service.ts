@@ -12,12 +12,12 @@ export class LoginService {
     private configuration: ConfigurationService
   ) {}
 
-  login(username: string, password: string) {
+  login(login: string, password: string) {
     let headers = new Headers();
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
     let body = JSON.stringify({
-      username: username,
+      login: login,
       password: password
     });
     return this.http.post(
