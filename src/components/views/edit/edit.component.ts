@@ -32,6 +32,9 @@ export class Edit {
         private router: Router
     ) {
         this.model = {};
+        this.schema = {
+            'properties': {}
+        };
     }
 
     ngOnInit() {
@@ -57,22 +60,6 @@ export class Edit {
                     save: form.onSave.bind(form),
                     cancel: form.onCancel.bind(form)
                 };
-                
-                // TODO: to be removed when angular-schema-form will support
-                // schemas without fieldsets and/or when restapi will provide
-                // fieldsets
-                if(!schema.fieldsets) {
-                    let all = [];
-                    for(let field in schema.properties) {
-                        all.push(field);
-                    }
-                    schema.fieldsets = [{
-                        id: 'default',
-                        title: 'Default',
-                        fields: all
-                    }];
-                }
-
                 this.schema = schema;
             });
         });
