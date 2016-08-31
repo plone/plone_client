@@ -68,7 +68,7 @@ export class ObjectService extends APIService {
 
   getWorkflow(path: string) {
     // get a listing of a path
-    let url = this.configuration.get('url') + path + '/workflow';
+    let url = this.configuration.get('url') + path + '/@workflow';
     let headers = this.getHeaders();
 
     return this.http.get(url, { headers: headers });

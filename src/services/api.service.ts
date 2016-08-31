@@ -12,11 +12,7 @@ export class APIService {
     headers.append('Accept', 'application/json');
     let auth = localStorage.getItem('auth');
     if (auth) {
-
-      // TODO Do I need to mention this needs to be replaced?
-      // Just faking auth until tokens are set up
-      headers.append('Authorization', 'basic ' + btoa('admin:admin'));
-      // headers.append('Authorization', auth);
+      headers.append('Authorization', 'Bearer ' + auth);
     }
     return headers;
   }

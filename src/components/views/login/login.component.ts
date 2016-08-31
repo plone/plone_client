@@ -28,7 +28,7 @@ export class Login {
   onLogin() {
     this.loginService.login(this.username, this.password).subscribe(res => {
       let data = res.json();
-      if (data.success && data.token) {
+      if (data.token) {
         localStorage.setItem('auth', data.token);
         this.router.navigateByUrl('/');
       } else {
