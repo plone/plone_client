@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {ROUTER_DIRECTIVES} from '@angular/router';
 import {Location} from '@angular/common';
 import {Registry} from '../app/registry.ts';
 import {Action} from '../../models/action';
@@ -9,11 +8,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'plone-toolbar',
-  template: require('./toolbar.component.html'),
-  providers: [ObjectService, AuthUtils],
-  directives: [
-    ...ROUTER_DIRECTIVES
-  ]
+  template: require('./toolbar.component.html')
 })
 export class Toolbar {
   actions: Action[] = [];

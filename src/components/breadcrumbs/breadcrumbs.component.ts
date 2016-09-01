@@ -2,13 +2,10 @@ import {Component} from '@angular/core';
 import {Registry} from '../app/registry.ts';
 import {ObjectService} from '../../services/object.service';
 import {ObjectUtility} from '../../injectors/object';
-import {ROUTER_DIRECTIVES} from '@angular/router';
 
 
 @Component({
   selector: 'plone-breadcrumbs',
-  directives: [...ROUTER_DIRECTIVES],
-  providers: [ObjectService, ObjectUtility],
   template: require('./breadcrumbs.component.html')
 })
 export class Breadcrumbs {

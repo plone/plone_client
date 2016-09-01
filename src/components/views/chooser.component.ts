@@ -3,7 +3,7 @@ import {Component,
   ComponentRef,
   ComponentFactory,
   ViewChild,
-  ComponentResolver,
+  ComponentFactoryResolver,
   ReflectiveInjector
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -30,20 +30,19 @@ Registry.registerView('search', Search);
 
 
 @Component({
-  selector: 'view-chooser', // <app></app>
+  selector: 'view-chooser',
   template: '<div #target></div>'
 })
 export class ViewChooser {
-  @ViewChild('target', {read: ViewContainerRef}) target;
-  cmpRef: ComponentRef<any>; 
-  private container: ViewContainerRef;
-  private resolver: ComponentResolver;
+  @ViewChild('target', {read: ViewContainerRef}) private container: ViewContainerRef;
+  private viewInstance: any;
+  private resolver: ComponentFactoryResolver;
   private route: ActivatedRoute;
   private routeSubscriber: any;
 
   constructor(
     container: ViewContainerRef,
-    resolver: ComponentResolver,
+    resolver: ComponentFactoryResolver,
     route: ActivatedRoute
   ) {
     this.container = container;
@@ -66,25 +65,19 @@ export class ViewChooser {
         viewClass = View;
       }
 
-      this.createView(viewClass);
+      this.viewInstance = this.createView(this.container, viewClass);
     });
   }
 
   ngOnDestroy() {
     this.routeSubscriber.unsubscribe();
-    if(this.cmpRef) {
-      this.cmpRef.destroy();
+    if(this.viewInstance) {
+      this.viewInstance.destroy();
     }
   }
 
-  createView(viewClass: any) {
-    if(this.cmpRef) {
-      this.cmpRef.destroy();
-    }
-    this.resolver.resolveComponent(viewClass).then(
-      (factory:ComponentFactory<any>) => {
-        this.cmpRef = this.target.createComponent(factory)
-      }
-    );
+  createView(container: ViewContainerRef, viewClass: any): ComponentRef<any> {
+    let componentFactory = this.resolver.resolveComponentFactory(viewClass);
+    return container.createComponent(componentFactory);
   }
 }

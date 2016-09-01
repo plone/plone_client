@@ -1,6 +1,4 @@
 import {Component, Renderer} from '@angular/core';
-import {Http, Headers} from '@angular/http';
-import TitleTile from '../../title-tile/title-tile.component';
 import {Model} from '../../../models/model';
 import {ObjectService} from '../../../services/object.service';
 import {Router} from '@angular/router';
@@ -9,10 +7,6 @@ import {Location} from '@angular/common';
 
 @Component({
   selector: 'plone-view-edit',
-  directives: [
-    TitleTile
-  ],
-  providers: [ObjectService],
   template: require('./add.component.html')
 })
 export class Add {

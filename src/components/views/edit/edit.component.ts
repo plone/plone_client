@@ -1,21 +1,14 @@
 import {Component, Directive} from '@angular/core';
-import TitleTile from '../../title-tile/title-tile.component';
 import {Model} from '../../../models/model';
 import {ObjectService} from '../../../services/object.service';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {ObjectUtility} from '../../../injectors/object';
 import {ConfigurationService} from '../../../services/configuration.service';
-import {Form} from "angular2-schema-form";
 
 
 @Component({
     selector: 'plone-view-edit',
-    directives: [
-        TitleTile,
-        Form
-    ],
-    providers: [ObjectService, ObjectUtility],
     template: require('./edit.component.html')
 })
 export class Edit {

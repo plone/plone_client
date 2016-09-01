@@ -16,8 +16,6 @@ import {
 
 import {
   BaseRequestOptions,
-  Response,
-  ResponseOptions,
   Http
 } from '@angular/http';
 

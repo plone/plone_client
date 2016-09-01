@@ -5,7 +5,6 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'plone-search',
-  directives: [],
   template: require('./search.component.html')
 })
 export class Search {

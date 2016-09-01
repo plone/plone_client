@@ -1,6 +1,4 @@
 import {Component, Renderer} from '@angular/core';
-import {Http} from '@angular/http';
-import TitleTile from '../../title-tile/title-tile.component';
 import {LoginService} from '../../../services/login.service';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
@@ -8,9 +6,6 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'plone-view-login',
-  directives: [
-  ],
-  providers: [LoginService],
   template: require('./login.component.html')
 })
 export class Login {
