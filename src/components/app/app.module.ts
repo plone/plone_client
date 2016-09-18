@@ -18,6 +18,11 @@ import { Footer } from '../footer/footer.component';
 import { Navigation } from '../navigation/navigation.component';
 import TitleTile from '../title-tile/title-tile.component';
 import { ViewChooser } from '../views/chooser.component';
+import { View } from '../views/base/base.component';
+import { Edit } from '../views/edit/edit.component';
+import { Add } from '../views/add/add.component';
+import { Login } from '../views/login/login.component';
+import { Logout } from '../views/logout/logout.component';
 import { Logo } from '../logo/logo.component';
 import { Search } from '../search/search.component';
 
@@ -39,7 +44,13 @@ import { SearchService } from '../../services/search.service';
         Toolbar,
         Footer,
         Navigation,
+        TitleTile,
         ViewChooser,
+        View,
+        Edit,
+        Add,
+        Login,
+        Logout,
         Logo,
         Search
     ],
@@ -50,6 +61,13 @@ import { SearchService } from '../../services/search.service';
         HttpModule,
         SchemaFormModule,
         routing
+    ],
+    entryComponents: [
+        View,
+        Edit,
+        Add,
+        Login,
+        Logout
     ],
     providers: [
         AppState,
