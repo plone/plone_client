@@ -69,29 +69,29 @@
     "Ramon Navarro Bosch <r.navarro@iskra.cat>"
   ],
   "dependencies": {
-    "@angular/common": "2.0.0-rc.6",
-    "@angular/compiler": "2.0.0-rc.6",
-    "@angular/core": "2.0.0-rc.6",
-    "@angular/forms": "2.0.0-rc.6",
-    "@angular/http": "2.0.0-rc.6",
-    "@angular/platform-browser": "2.0.0-rc.6",
-    "@angular/platform-browser-dynamic": "2.0.0-rc.6",
-    "@angular/platform-server": "2.0.0-rc.6",
-    "@angular/router": "3.0.0-rc.2",
-    "angular2-schema-form": "^1.0.0-alpha.18",
-    "angular2-universal": "~0.104.0",
+    "@angular/common": "2.0.0",
+    "@angular/compiler": "2.0.0",
+    "@angular/core": "2.0.0",
+    "@angular/forms": "2.0.0",
+    "@angular/http": "2.0.0",
+    "@angular/platform-browser": "2.0.0",
+    "@angular/platform-browser-dynamic": "2.0.0",
+    "@angular/platform-server": "2.0.0",
+    "@angular/router": "3.0.0",
+    "angular2-schema-form": "^1.0.0-alpha.23",
+    "angular2-universal": "~1.0.6",
     "body-parser": "^1.15.1",
-    "core-js": "^2.4.0",
+    "core-js": "^2.4.1",
     "express": "^4.13.4",
     "plonetheme-preloader": "git+https://github.com/plone/plonetheme-preloader.git",
     "preboot": "^2.1.2",
     "raw-loader": "0.5.1",
-    "rxjs": "5.0.0-beta.11",
+    "rxjs": "5.0.0-beta.12",
     "tinymce": "^4.4.0",
-    "zone.js": "~0.6.17"
+    "zone.js": "~0.6.23"
   },
   "devDependencies": {
-    "angular2-hmr": "~0.7.0",
+    "angular2-hmr": "~0.8.1",
     "awesome-typescript-loader": "~0.17.0",
     "codelyzer": "~0.0.19",
     "compression-webpack-plugin": "^0.3.1",
@@ -139,9 +139,9 @@
     "typescript": "2.0.2",
     "typings": "~1.0.3",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1",
+    "webpack": "^2.1.0-beta.22",
+    "webpack-dev-server": "^2.1.0-beta.4",
     "webpack-md5-hash": "^0.0.5",
-    "webpack-merge": "^0.14.0"
+    "webpack-merge": "^0.14.1"
   }
 }
