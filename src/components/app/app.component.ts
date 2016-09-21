@@ -4,9 +4,11 @@ import {ConfigurationService} from '../../services/configuration.service';
 
 /////////////////////////
 // ** MAIN APP COMPONENT **
+
+import './app.component.scss';
+
 @Component({
   selector: 'plone-app',
-  styles: [ require('./app.component.scss') ],
   template: require('./app.component.html')
 })
 
