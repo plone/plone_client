@@ -20,7 +20,7 @@ export class Navigation {
       if (data instanceof Array) {
         data = data[0];
       }
-      this.items = data.data.items;
+      this.items = data.items;
     });
   }
 
