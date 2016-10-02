@@ -31,7 +31,7 @@ export class Add {
 
   ngOnInit() {
     this.path = this.location.path() || '/front-page';
-    this.path = this.path.split('/@@')[0];
+    this.path = this.path.split('/!!')[0];
   }
 
   onAdd() {

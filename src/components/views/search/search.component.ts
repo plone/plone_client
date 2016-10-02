@@ -28,8 +28,8 @@ export class Search {
 
   ngOnInit() {
     let path = this.location.path();
-    if (path.indexOf('@@search/') !== -1) {
-      let splitpath = path.split('@@search/');
+    if (path.indexOf('!!search/') !== -1) {
+      let splitpath = path.split('!!search/');
       this.q = splitpath[splitpath.length - 1];
       this.search();
     }

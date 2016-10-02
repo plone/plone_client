@@ -165,13 +165,13 @@ describe('Toolbar Component', () => {
         'category': 'factories',
         'title': 'Collection',
         'type': 'Collection',
-        'uri': '/front-page/@@add?type=Collection'
+        'uri': '/front-page/!!add?type=Collection'
       }, {
         '@id': 'Document',
         'category': 'factories',
         'title': 'Document',
         'type': 'Document',
-        'uri': '/front-page/@@add?type=Document'
+        'uri': '/front-page/!!add?type=Document'
       }
     ];
     expect(toolbar.factories).toEqual(factoriesExpected);

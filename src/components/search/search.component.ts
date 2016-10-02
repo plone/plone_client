@@ -14,7 +14,7 @@ export class Search {
 
   onSubmit() {
     // pass off to the search page now...
-    this.router.navigateByUrl('/@@search/' + this.q);
+    this.router.navigateByUrl('/!!search/' + this.q);
   }
 }
 

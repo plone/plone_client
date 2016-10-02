@@ -42,7 +42,7 @@ export class Toolbar {
 
       this.path = urlPath.reduce(
         function(curr, prev) {return curr + '/' + prev.path}, '') || '/';
-      this.path = this.path.split('/@@')[0];
+      this.path = this.path.split('/!!')[0];
       this.objectPath = this.path;
       this.folderPath = this.path;
       if (this.objectPath === '/') {
@@ -56,7 +56,7 @@ export class Toolbar {
         category: 'view'
       }, {
         title: 'Edit',
-        uri: this.objectPath + '/@@edit',
+        uri: this.objectPath + '/!!edit',
         category: 'edit'
       }];
       this.factories = [];

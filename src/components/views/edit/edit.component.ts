@@ -32,7 +32,7 @@ export class Edit {
 
     ngOnInit() {
         this.path = this.location.path() || '/front-page';
-        this.path = this.path.split('/@@')[0];
+        this.path = this.path.split('/!!')[0];
 
         let form = this;
         let baseurl = this.configuration.get('url');

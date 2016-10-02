@@ -55,7 +55,7 @@ export class ViewChooser {
       let viewName: string;
       let viewClass: any;
       for(let i=0; i<urlPath.length; i++) {
-        if(urlPath[i].path.indexOf('@@') !== -1) {
+        if(urlPath[i].path.indexOf('!!') !== -1) {
           viewName = urlPath[i].path.slice(2);
         }
       }
