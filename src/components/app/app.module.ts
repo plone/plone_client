@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule  } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router'
-import { SchemaFormModule, WidgetRegistry } from 'angular2-schema-form';
+import {
+    SchemaFormModule,
+    WidgetRegistry,
+    DefaultWidgetRegistry } from 'angular2-schema-form';
 import { HttpModule } from '@angular/http';
 
 import { routing,
@@ -78,7 +81,7 @@ import { SearchService } from '../../services/search.service';
         ObjectUtility,
         LoginService,
         SearchService,
-        WidgetRegistry
+        {provide: WidgetRegistry, useClass: DefaultWidgetRegistry}
     ],
     bootstrap: [AppWrapper],
 })
