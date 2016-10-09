@@ -19,7 +19,7 @@ import { Breadcrumbs } from '../breadcrumbs/breadcrumbs.component';
 import { Toolbar } from '../toolbar/toolbar.component';
 import { Footer } from '../footer/footer.component';
 import { Navigation } from '../navigation/navigation.component';
-import TitleTile from '../title-tile/title-tile.component';
+import { TitleTile } from '../title-tile/title-tile.component';
 import { ViewChooser } from '../views/chooser.component';
 import { View } from '../views/base/base.component';
 import { Edit } from '../views/edit/edit.component';

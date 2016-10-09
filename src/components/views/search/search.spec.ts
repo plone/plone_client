@@ -1,18 +1,4 @@
-import {TestComponentBuilder} from '@angular/compiler/testing';
-
-import {
-  Component,
-  provide,
-  Injector,
-  ReflectiveInjector
-} from '@angular/core';
-
-import {
- beforeEachProviders,
- describe,
- inject,
- it
-} from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 
 import {
   BaseRequestOptions,
@@ -25,34 +11,35 @@ import {
   MockBackend,
   MockConnection
 } from '@angular/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import {Search} from './search.component.ts';
-
 import {ConfigurationService} from '../../../services/configuration.service';
 import {SearchService} from '../../../services/search.service.ts';
-
-import {ROUTER_FAKE_PROVIDERS} from '../../../platform/fakerouter';
-
 import {ObjectUtility} from '../../../injectors/object';
 
 describe('Search Component', () => {
 
-  beforeEachProviders(() => [
-    BaseRequestOptions,
-    MockBackend,
-    {
-      provide: Http,
-      useFactory: function(backend, defaultOptions) {
-        return new Http(backend, defaultOptions);
-      },
-      deps: [MockBackend, BaseRequestOptions]
-    },
-    Search,
-    SearchService,
-    ObjectUtility,
-    ConfigurationService,
-    ROUTER_FAKE_PROVIDERS
-  ]);
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        ObjectUtility,
+        ConfigurationService,
+        SearchService,
+        Search,
+        BaseRequestOptions,
+        MockBackend,
+        {
+          provide: Http,
+          useFactory: (backend: MockBackend, defaultOptions: BaseRequestOptions) => {
+            return new Http(backend, defaultOptions);
+          },
+          deps: [MockBackend, BaseRequestOptions],
+        },
+      ],
+      imports: [RouterTestingModule]
+    });
+  });
 
   it('search action with no query', inject([Search, MockBackend], (search, backend) => {
     backend.connections.subscribe(c => {

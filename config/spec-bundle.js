@@ -2,27 +2,18 @@ Error.stackTraceLimit = Infinity;
 
 require('core-js/es6');
 require('core-js/es7/reflect');
+require('core-js/client/shim');
+require('reflect-metadata');
 
-// Typescript emit helpers polyfill
 require('ts-helpers');
 
 require('zone.js/dist/zone');
 require('zone.js/dist/long-stack-trace-zone');
+require('zone.js/dist/proxy');
+require('zone.js/dist/sync-test');
 require('zone.js/dist/jasmine-patch');
 require('zone.js/dist/async-test');
-require('zone.js/dist/fake-async-test');
-require('zone.js/dist/sync-test');
-
-// RxJS
-require('rxjs/Rx');
-
-var testing = require('@angular/core/testing');
-var browser = require('@angular/platform-browser-dynamic/testing');
-
-testing.setBaseTestProviders(
-  browser.TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS,
-  browser.TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS
-);
+require('zone.js/dist/fake-async-test');;
 
 /*
  * Ok, this is kinda crazy. We can use the the context method on
@@ -40,9 +31,15 @@ var testContext = require.context('../src', true, /\.spec\.ts/);
  * that will require the file and load it up here. Context will
  * loop and require those spec files here
  */
-function requireAll(requireContext) {
-  return requireContext.keys().map(requireContext);
-}
+testContext.keys().forEach(testContext);
 
-// requires and returns all modules that match
-var modules = requireAll(testContext);
+// Select BrowserDomAdapter.
+// see https://github.com/AngularClass/angular2-webpack-starter/issues/124
+// Somewhere in the test setup
+var testing = require('@angular/core/testing');
+var browser = require('@angular/platform-browser-dynamic/testing');
+
+testing.TestBed.initTestEnvironment(
+    browser.BrowserDynamicTestingModule,
+    browser.platformBrowserDynamicTesting()
+);

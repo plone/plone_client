@@ -1,17 +1,4 @@
-import {TestComponentBuilder} from '@angular/compiler/testing';
-import {
-  Component,
-  provide,
-  Injector,
-  ReflectiveInjector
-} from '@angular/core';
-
-import {
- beforeEachProviders,
- describe,
- inject,
- it
-} from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 
 import {
   BaseRequestOptions,
@@ -24,40 +11,38 @@ import {
   MockBackend,
   MockConnection
 } from '@angular/http/testing';
-
-import {Location} from '@angular/common';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import {Toolbar} from './toolbar.component.ts';
-
 import {ConfigurationService} from '../../services/configuration.service';
 import {ObjectService} from '../../services/object.service';
-
 import {ObjectUtility} from '../../injectors/object';
 import {AuthUtils} from '../../injectors/authUtils';
 
-import {ROUTER_FAKE_PROVIDERS} from '../../platform/fakerouter';
-
 describe('Toolbar Component', () => {
 
-  let injector;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        ObjectService,
+        ObjectUtility,
+        ConfigurationService,
+        AuthUtils,
+        Toolbar,
+        BaseRequestOptions,
+        MockBackend,
+        {
+          provide: Http,
+          useFactory: (backend: MockBackend, defaultOptions: BaseRequestOptions) => {
+            return new Http(backend, defaultOptions);
+          },
+          deps: [MockBackend, BaseRequestOptions],
+        },
+      ],
+      imports: [RouterTestingModule]
+    });
+  });
 
-  beforeEachProviders(() => [
-    BaseRequestOptions,
-    MockBackend,
-    {
-      provide: Http,
-      useFactory: function(backend, defaultOptions) {
-        return new Http(backend, defaultOptions);
-      },
-      deps: [MockBackend, BaseRequestOptions]
-    },
-
-    Toolbar,
-    ROUTER_FAKE_PROVIDERS,
-    ObjectService,
-    ConfigurationService,
-    AuthUtils
-  ]);
   it('toolbar factories and transitions empty', inject([Toolbar, MockBackend, AuthUtils], (toolbar, backend, authUtils) => {
     backend.connections.subscribe(c => {
       let response;

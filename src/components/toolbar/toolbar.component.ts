@@ -70,7 +70,7 @@ export class Toolbar {
           // only care about content type
           let type = action['@id'];
           action.type = type;
-          action.uri = this.objectPath + '/@@add?type=' + type;
+          action.uri = this.objectPath + '/!!add?type=' + type;
           this.factories.push(action);
         });
       });

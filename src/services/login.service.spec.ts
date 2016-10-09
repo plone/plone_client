@@ -1,18 +1,4 @@
-import {TestComponentBuilder} from '@angular/compiler/testing';
-
-import {
-  Component,
-  provide,
-  Injector,
-  ReflectiveInjector
-} from '@angular/core';
-
-import {
- beforeEachProviders,
- describe,
- inject,
- it
-} from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 
 import {
   BaseRequestOptions,
@@ -30,25 +16,25 @@ import {LoginService} from './login.service.ts';
 
 import {ConfigurationService} from './configuration.service';
 
-import {ROUTER_FAKE_PROVIDERS} from '../platform/fakerouter';
-
 describe('Login Service', () => {
 
-  beforeEachProviders(() => [
-    BaseRequestOptions,
-    MockBackend,
-    {
-      provide: Http,
-      useFactory: function(backend, defaultOptions) {
-        return new Http(backend, defaultOptions);
-      },
-      deps: [MockBackend, BaseRequestOptions]
-    },
-    LoginService,
-    ConfigurationService,
-    LoginService,
-    ROUTER_FAKE_PROVIDERS
-  ]);
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        LoginService,
+        ConfigurationService,
+        BaseRequestOptions,
+        MockBackend,
+        {
+          provide: Http,
+          useFactory: (backend: MockBackend, defaultOptions: BaseRequestOptions) => {
+            return new Http(backend, defaultOptions);
+          },
+          deps: [MockBackend, BaseRequestOptions],
+        },
+      ],
+    });
+  });
 
 
   it('login service has to success', inject([LoginService, MockBackend], (loginService, backend) => {

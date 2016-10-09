@@ -5,7 +5,7 @@ import {Registry} from '../app/registry.ts';
   selector: 'title-tile',
   template: require('./title-tile.component.html'),
 })
-export default class TitleTile {
+export class TitleTile {
   @Input() title;
 }
 

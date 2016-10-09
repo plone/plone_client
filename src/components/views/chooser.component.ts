@@ -19,7 +19,6 @@ import {Add} from '../views/add/add.component';
 import {Login} from '../views/login/login.component';
 import {Logout} from '../views/logout/logout.component';
 import {Search} from '../views/search/search.component';
-import TitleTile from '../title-tile/title-tile.component';
 
 Registry.registerView('', View);
 Registry.registerView('edit', Edit);
