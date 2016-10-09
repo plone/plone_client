@@ -5,7 +5,6 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'plone-search',
-  directives: [],
   template: require('./search.component.html')
 })
 export class Search {
@@ -15,7 +14,7 @@ export class Search {
 
   onSubmit() {
     // pass off to the search page now...
-    this.router.navigateByUrl('/@@search/' + this.q);
+    this.router.navigateByUrl('/!!search/' + this.q);
   }
 }
 

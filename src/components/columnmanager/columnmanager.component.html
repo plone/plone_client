@@ -1,7 +1,0 @@
-<div>
-  <button value="Add" (click)="addComponent()">Add</button>
-  <select [(ngModel)]="component">
-    <option value=""></option>
-    <option *ngFor="let component of options" [value]="component">{{ component.replace('plone.', '') }}</option>
-  </select>
-</div>

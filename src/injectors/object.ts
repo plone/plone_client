@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers, Response} from '@angular/http';
 import {Model} from '../models/model';
 import {Location} from '@angular/common';
 
@@ -12,8 +11,8 @@ export class ObjectUtility {
 
   getCurrentPath() {
     let path = this.location.path() || '/front-page';
-    if (path.indexOf('@@') !== -1) {
-      let split = path.split('@@');
+    if (path.indexOf('!!') !== -1) {
+      let split = path.split('!!');
       path = split[0];
     }
     return path;

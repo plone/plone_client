@@ -1,6 +1,4 @@
 import {Component, Renderer} from '@angular/core';
-import {Http, Headers} from '@angular/http';
-import TitleTile from '../../title-tile/title-tile.component';
 import {Model} from '../../../models/model';
 import {ObjectService} from '../../../services/object.service';
 import {Router} from '@angular/router';
@@ -9,10 +7,6 @@ import {Location} from '@angular/common';
 
 @Component({
   selector: 'plone-view-edit',
-  directives: [
-    TitleTile
-  ],
-  providers: [ObjectService],
   template: require('./add.component.html')
 })
 export class Add {
@@ -37,7 +31,7 @@ export class Add {
 
   ngOnInit() {
     this.path = this.location.path() || '/front-page';
-    this.path = this.path.split('/@@')[0];
+    this.path = this.path.split('/!!')[0];
   }
 
   onAdd() {

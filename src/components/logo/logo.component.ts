@@ -3,7 +3,6 @@ import {Registry} from '../app/registry.ts';
 
 @Component({
   selector: 'plone-logo', // <app></app>
-  directives: [],
   template: require('./logo.component.html')
 })
 export class Logo {

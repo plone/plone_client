@@ -24,7 +24,7 @@ function waitForUrlToChangeTo(urlRegex) {
 describe('Login', () => {
 
   beforeEach(() => {
-    browser.get('http://localhost:3000/@@login');
+    browser.get('http://localhost:3000/!!login');
   });
 
 
@@ -62,7 +62,7 @@ describe('Login', () => {
 
   //  browser.driver.sleep(1000);
   //  browser.waitForAngular();
-  //  expect(browser.driver.getCurrentUrl()).toEqual('http://localhost:3000/@@login')
+  //  expect(browser.driver.getCurrentUrl()).toEqual('http://localhost:3000/!!login')
   //});
 
 

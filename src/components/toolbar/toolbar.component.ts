@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {ROUTER_DIRECTIVES} from '@angular/router';
 import {Location} from '@angular/common';
 import {Registry} from '../app/registry.ts';
 import {Action} from '../../models/action';
@@ -9,11 +8,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'plone-toolbar',
-  template: require('./toolbar.component.html'),
-  providers: [ObjectService, AuthUtils],
-  directives: [
-    ...ROUTER_DIRECTIVES
-  ]
+  template: require('./toolbar.component.html')
 })
 export class Toolbar {
   actions: Action[] = [];
@@ -47,7 +42,7 @@ export class Toolbar {
 
       this.path = urlPath.reduce(
         function(curr, prev) {return curr + '/' + prev.path}, '') || '/';
-      this.path = this.path.split('/@@')[0];
+      this.path = this.path.split('/!!')[0];
       this.objectPath = this.path;
       this.folderPath = this.path;
       if (this.objectPath === '/') {
@@ -61,7 +56,7 @@ export class Toolbar {
         category: 'view'
       }, {
         title: 'Edit',
-        uri: this.objectPath + '/@@edit',
+        uri: this.objectPath + '/!!edit',
         category: 'edit'
       }];
       this.factories = [];
@@ -75,7 +70,7 @@ export class Toolbar {
           // only care about content type
           let type = action['@id'];
           action.type = type;
-          action.uri = this.objectPath + '/@@add?type=' + type;
+          action.uri = this.objectPath + '/!!add?type=' + type;
           this.factories.push(action);
         });
       });

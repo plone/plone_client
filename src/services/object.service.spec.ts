@@ -1,18 +1,4 @@
-import {TestComponentBuilder} from '@angular/compiler/testing';
-
-import {
-  Component,
-  provide,
-  Injector,
-  ReflectiveInjector
-} from '@angular/core';
-
-import {
- beforeEachProviders,
- describe,
- inject,
- it
-} from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 
 import {
   BaseRequestOptions,
@@ -30,26 +16,25 @@ import {ObjectService} from './object.service.ts';
 
 import {ConfigurationService} from './configuration.service';
 
-import {ROUTER_FAKE_PROVIDERS} from '../platform/fakerouter';
-
 describe('Object Service', () => {
 
-  let injector;
-
-  beforeEachProviders(() => [
-    BaseRequestOptions,
-    MockBackend,
-    {
-      provide: Http,
-      useFactory: function(backend, defaultOptions) {
-        return new Http(backend, defaultOptions);
-      },
-      deps: [MockBackend, BaseRequestOptions]
-    },
-    ObjectService,
-    ConfigurationService,
-    ROUTER_FAKE_PROVIDERS
-  ]);
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        ObjectService,
+        ConfigurationService,
+        BaseRequestOptions,
+        MockBackend,
+        {
+          provide: Http,
+          useFactory: (backend: MockBackend, defaultOptions: BaseRequestOptions) => {
+            return new Http(backend, defaultOptions);
+          },
+          deps: [MockBackend, BaseRequestOptions],
+        },
+      ],
+    });
+  });
 
 
   it('object service getWorkflow data', inject([ObjectService, MockBackend], (objectService, backend) => {

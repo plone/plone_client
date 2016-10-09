@@ -1,4 +1,4 @@
-# Plone Universal Starter [![Universal Angular 2](https://img.shields.io/badge/universal-angular2-brightgreen.svg?style=flat)](https://github.com/angular/universal)
+# Plone Universal Starter [![Universal Angular 2](https://img.shields.io/badge/universal-angular2-brightgreen.svg?style=flat)](https://github.com/angular/universal) [![Build Status](https://travis-ci.org/plone/plone_client.svg?branch=master)](https://travis-ci.org/plone/plone_client)
 
 This is the plone project for Angular 2 for Universal JavaScript using TypeScript and Webpack
 

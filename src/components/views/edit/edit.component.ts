@@ -1,21 +1,14 @@
 import {Component, Directive} from '@angular/core';
-import TitleTile from '../../title-tile/title-tile.component';
 import {Model} from '../../../models/model';
 import {ObjectService} from '../../../services/object.service';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {ObjectUtility} from '../../../injectors/object';
 import {ConfigurationService} from '../../../services/configuration.service';
-import {Form} from "angular2-schema-form";
 
 
 @Component({
     selector: 'plone-view-edit',
-    directives: [
-        TitleTile,
-        Form
-    ],
-    providers: [ObjectService, ObjectUtility],
     template: require('./edit.component.html')
 })
 export class Edit {
@@ -39,16 +32,16 @@ export class Edit {
 
     ngOnInit() {
         this.path = this.location.path() || '/front-page';
-        this.path = this.path.split('/@@')[0];
+        this.path = this.path.split('/!!')[0];
 
         let form = this;
         let baseurl = this.configuration.get('url');
 
         this.objectService.get(this.path).subscribe(res1 => {
-            this.model = res1.json();
+            let model = res1.json();
 
             this.objectService.schema(
-                baseurl + '/@types/' + this.model['@type'])
+                baseurl + '/@types/' + model['@type'])
             .subscribe(res => {
                 let schema = res.json();
 
@@ -61,6 +54,7 @@ export class Edit {
                     cancel: form.onCancel.bind(form)
                 };
                 this.schema = schema;
+                this.model = model;
             });
         });
     }

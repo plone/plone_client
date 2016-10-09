@@ -4,6 +4,8 @@ const helpers = require('./helpers');
 var CopyWebpackPlugin = (CopyWebpackPlugin = require('copy-webpack-plugin'), CopyWebpackPlugin.default || CopyWebpackPlugin);
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 
 const METADATA = {
   title: 'Plone Client',
@@ -39,11 +41,9 @@ module.exports = {
         loader: 'awesome-typescript-loader',
         exclude: [/\.(spec|e2e)\.ts$/]
       },
-      {   test: /\.scss$/,
-          exclude: [
-            helpers.root('node_modules')
-          ],
-          loaders: ['raw-loader', 'sass-loader']},
+      {
+          test: /\.scss$/,
+          loader: ExtractTextPlugin.extract(['css','sass'])},
       {   test: /\.(png|jpg|gif)$/,
           exclude: [
             helpers.root('node_modules')
@@ -95,7 +95,6 @@ module.exports = {
   plugins: [
 
     new ForkCheckerPlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['polyfills', 'vendor'].reverse()
     }),
@@ -103,6 +102,8 @@ module.exports = {
       from: 'src/static',
       to: 'static'
     }]),
+
+    new ExtractTextPlugin("styles.css"),
 
     new HtmlWebpackPlugin({
       template: 'src/index.html',

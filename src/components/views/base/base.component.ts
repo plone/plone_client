@@ -1,23 +1,12 @@
 import {Component, Renderer} from '@angular/core';
-import {Http} from '@angular/http';
-import TitleTile from '../../title-tile/title-tile.component';
 import {ObjectService} from '../../../services/object.service';
 import {Location} from '@angular/common';
 import {Model, Summary} from '../../../models/model';
 import {ObjectUtility} from '../../../injectors/object';
-import {ROUTER_DIRECTIVES} from '@angular/router';
 
 
 @Component({
   selector: 'plone-base-view',
-  directives: [
-    TitleTile,
-    ...ROUTER_DIRECTIVES
-  ],
-  providers: [
-    ObjectService,
-    ObjectUtility
-  ],
   template: require('./base.component.html')
 })
 export class View {

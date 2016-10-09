@@ -1,21 +1,14 @@
 import {Component, Renderer} from '@angular/core';
-import {Http} from '@angular/http';
-import TitleTile from '../../title-tile/title-tile.component';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {SearchService} from '../../../services/search.service';
 import {ObjectUtility} from '../../../injectors/object';
-import {ROUTER_DIRECTIVES} from '@angular/router';
 import {DoCheck, SimpleChange} from '@angular/core';
 
 const itemsKey = 'items';
 
 @Component({
   selector: 'plone-view-search',
-  directives: [
-    ...ROUTER_DIRECTIVES
-  ],
-  providers: [SearchService, ObjectUtility],
   template: require('./search.component.html')
 })
 export class Search {
@@ -35,8 +28,8 @@ export class Search {
 
   ngOnInit() {
     let path = this.location.path();
-    if (path.indexOf('@@search/') !== -1) {
-      let splitpath = path.split('@@search/');
+    if (path.indexOf('!!search/') !== -1) {
+      let splitpath = path.split('!!search/');
       this.q = splitpath[splitpath.length - 1];
       this.search();
     }
