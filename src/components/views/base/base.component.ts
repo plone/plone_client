@@ -1,4 +1,12 @@
-import {Component, Renderer} from '@angular/core';
+import {
+  Component,
+  Renderer,
+  trigger,
+  state,
+  style,
+  transition,
+  animate
+} from '@angular/core';
 import {ObjectService} from '../../../services/object.service';
 import {Location} from '@angular/common';
 import {Model, Summary} from '../../../models/model';
@@ -7,7 +15,23 @@ import {ObjectUtility} from '../../../injectors/object';
 
 @Component({
   selector: 'plone-base-view',
-  template: require('./base.component.html')
+  template: require('./base.component.html'),
+  animations: [
+    trigger('fade', [
+      state('in', style({opacity: 1})),
+      transition('void => *', [
+        style({
+          opacity: 0
+        }),
+        animate('0.5s ease-in')
+      ]),
+      transition('* => void', [
+        animate('0.5s 10 ease-out', style({
+          opacity: 0
+        }))
+      ])
+    ])
+  ]
 })
 export class View {
   model: Model = {

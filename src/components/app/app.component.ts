@@ -1,4 +1,10 @@
-import {Component, Directive, ElementRef, Renderer, ViewEncapsulation} from '@angular/core';
+import {
+  Component,
+  Directive,
+  ElementRef,
+  Renderer,
+  ViewEncapsulation
+} from '@angular/core';
 import {AuthUtils} from '../../injectors/authUtils';
 import {ConfigurationService} from '../../services/configuration.service';
 

@@ -1,4 +1,11 @@
-import {Component} from '@angular/core';
+import {
+  Component,
+  trigger,
+  state,
+  style,
+  transition,
+  animate
+} from '@angular/core';
 import {Location} from '@angular/common';
 import {Registry} from '../app/registry.ts';
 import {Action} from '../../models/action';
@@ -8,7 +15,19 @@ import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'plone-toolbar',
-  template: require('./toolbar.component.html')
+  template: require('./toolbar.component.html'),
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({transform: 'translateX(0)'})),
+      transition('void => *', [
+        style({transform: 'translateX(-100%)'}),
+        animate(200)
+      ]),
+      transition('* => void', [
+        animate(200, style({transform: 'translateX(100%)'}))
+      ])
+    ])
+  ]
 })
 export class Toolbar {
   actions: Action[] = [];
