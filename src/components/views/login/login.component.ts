@@ -1,5 +1,6 @@
 import {Component, Renderer} from '@angular/core';
 import {LoginService} from '../../../services/login.service';
+import {AuthUtils} from '../../../injectors/authUtils';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 
@@ -11,26 +12,23 @@ import {Router} from '@angular/router';
 export class Login {
   username = '';
   password = '';
-  failed = false;
 
-  constructor(private loginService: LoginService,
-              private router: Router) {
-  }
+  constructor(
+    private loginService: LoginService,
+    private authUtils: AuthUtils,
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    this.authUtils.isAuthenticated.subscribe(isAuthenticated => {
+      if (isAuthenticated) {
+        this.router.navigateByUrl('/');
+      }
+    });
   }
 
   onLogin() {
-    this.loginService.login(this.username, this.password).subscribe(res => {
-      let data = res.json();
-      if (data.token) {
-        localStorage.setItem('auth', data.token);
-        this.router.navigateByUrl('/');
-      } else {
-        localStorage.removeItem('auth');
-        this.failed = true;
-      }
-    });
+    this.loginService.login(this.username, this.password);
   }
 
 }

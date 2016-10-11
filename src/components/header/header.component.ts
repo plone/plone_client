@@ -8,10 +8,14 @@ import {AuthUtils} from '../../injectors/authUtils';
 })
 export class Header {
   private showLogin = true;
-  constructor(private authUtils: AuthUtils) {
-    if ( authUtils.isAuthenticated() ) {
-      this.showLogin = false;
-    }
+  constructor(
+      private authUtils: AuthUtils
+  ) {}
+
+  ngOnInit() {
+    this.authUtils.isAuthenticated.subscribe(isAuthenticated => {
+      this.showLogin = !isAuthenticated;
+    })
   }
 
 }

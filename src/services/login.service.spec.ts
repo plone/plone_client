@@ -13,7 +13,7 @@ import {
 } from '@angular/http/testing';
 
 import {LoginService} from './login.service.ts';
-
+import {AuthUtils} from '../injectors/authUtils.ts';
 import {ConfigurationService} from './configuration.service';
 
 describe('Login Service', () => {
@@ -22,6 +22,7 @@ describe('Login Service', () => {
     TestBed.configureTestingModule({
       providers: [
         LoginService,
+        AuthUtils,
         ConfigurationService,
         BaseRequestOptions,
         MockBackend,
@@ -46,20 +47,9 @@ describe('Login Service', () => {
       };
       c.mockRespond(new Response(new ResponseOptions({body: response})));
     });
-    loginService.login().subscribe(data => {
-      let responseReceived = new Response(new ResponseOptions(
-        {
-          'body': {
-            'success': true,
-            'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZnVsbG5hbWUiOiJGb28gYmFyIiwiZXhwaXJlcyI6MTQ2NjE0MDA2Ni42MzQ5ODYsInR5cGUiOiJKV1QiLCJhbGdvcml0aG0iOiJIUzI1NiJ9.D9EL5A9xD1z3E_HPecXA-Ee7kKlljYvpDtan69KHwZ8'
-          },
-          'url': undefined,
-          'status': undefined,
-          'statusText': undefined,
-          'type': undefined
-        }
-      ));
-      expect(data).toEqual(responseReceived);
+    loginService.login();
+    loginService.authUtils.isAuthenticated.subscribe(authenticated => {
+      expect(authenticated).toBe(true);
     });
 
 

@@ -19,11 +19,14 @@ export class App {
     private configuration: ConfigurationService,
     private authUtils: AuthUtils
   ) {
-    this.authenticated = this.authUtils.isAuthenticated();
+    //this.authenticated = this.authUtils.isAuthenticated();
   }
 
   ngOnInit() {
     console.log('Initializing the component App. This is for karma test.');
+    this.authUtils.isAuthenticated.subscribe(isAuthenticated => {
+      this.authenticated = isAuthenticated;
+    })
   }
 
 }
