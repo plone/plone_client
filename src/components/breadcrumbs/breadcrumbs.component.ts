@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import {Registry} from '../app/registry.ts';
 import {ObjectService} from '../../services/object.service';
 import {ObjectUtility} from '../../injectors/object';
@@ -12,25 +13,29 @@ export class Breadcrumbs {
   show = false;
   crumbs = [];
 
-  constructor(private objectService: ObjectService,
-              public utility: ObjectUtility) { }
+  constructor(
+    private objectService: ObjectService,
+    private route: ActivatedRoute,
+    public utility: ObjectUtility) { }
 
   ngOnInit() {
-    this.objectService.get(this.utility.getCurrentPath() + '/@components/breadcrumbs').subscribe(res => {
-      let data = res.json();
-      if (data instanceof Array) {
-        data = data[0];
-      }
-      this.crumbs = data.items;
-      if ( this.crumbs.length > 0 ) {
+    this.route.url.subscribe(() => {
+      this.objectService.get(this.utility.getCurrentPath() + '/@components/breadcrumbs').subscribe(res => {
+        let data = res.json();
+        if (data instanceof Array) {
+          data = data[0];
+        }
+        this.crumbs = data.items;
+        if ( this.crumbs.length > 0 ) {
 
-        this.show = true;
+          this.show = true;
 
-        this.crumbs.unshift({
-          'title': 'Home',
-          'url': '/front-page'
-        });
-      }
+          this.crumbs.unshift({
+            'title': 'Home',
+            'url': '/front-page'
+          });
+        }
+      });
     });
   }
 }
