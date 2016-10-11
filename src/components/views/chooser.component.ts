@@ -64,7 +64,7 @@ export class ViewChooser {
         viewClass = View;
       }
 
-      this.viewInstance = this.createView(this.container, viewClass);
+      this.createView(this.container, viewClass);
     });
   }
 
@@ -75,8 +75,11 @@ export class ViewChooser {
     }
   }
 
-  createView(container: ViewContainerRef, viewClass: any): ComponentRef<any> {
+  createView(container: ViewContainerRef, viewClass: any) {
+    if(this.viewInstance) {
+      this.viewInstance.destroy();
+    }
     let componentFactory = this.resolver.resolveComponentFactory(viewClass);
-    return container.createComponent(componentFactory);
+    this.viewInstance = container.createComponent(componentFactory);
   }
 }
