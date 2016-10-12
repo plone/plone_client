@@ -18,6 +18,10 @@
 }
 
 //*// Adjustments
+#main-container {
+    min-height: calc(100vh - 353px);
+}
+
 #content {margin-bottom: $plone-padding-base-horizontal * 4;}
 
 #content-core a {
