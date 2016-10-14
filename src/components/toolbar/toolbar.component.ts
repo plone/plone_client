@@ -78,10 +78,24 @@ export class Toolbar {
           uri: this.objectPath + '/!!edit',
           category: 'edit'
         }];
-        this.factories = [];
 
-        this.objectService.actions(this.objectPath).subscribe(res => {
-          let actions: Action[] = res.json().actions;
+        // MOCK
+        let MOCK = [
+          {
+            "@id": "Collection",
+            "title": "Collection",
+            "category": "factories"
+          }, {
+            "@id": "Document",
+            "title": "Document",
+            "category": "factories"
+          }]
+
+        this.factories = [];
+        // UNCOMMENT WHEN @actions is implemented in restapi
+        // this.objectService.actions(this.objectPath).subscribe(res => {
+        //  let actions: Action[] = res.json().actions;
+          let actions: Action[] = MOCK;
           actions.forEach(action => {
             if (action.category !== 'factories') {
               return;
@@ -89,10 +103,10 @@ export class Toolbar {
             // only care about content type
             let type = action['@id'];
             action.type = type;
-            action.uri = this.objectPath + '/!!add?type=' + type;
+            action.uri = this.folderPath + '/!!add/' + type;
             this.factories.push(action);
           });
-        });
+        // });
 
         this.transitions = [];
         this.objectService.getWorkflow(this.objectPath).subscribe(res => {

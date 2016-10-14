@@ -44,6 +44,11 @@ export class Edit {
                 baseurl + '/@types/' + model['@type'])
             .subscribe(res => {
                 let schema = res.json();
+                // for(let property in schema.properties) {
+                //     if(schema.properties[property].widget === 'richtext') {
+                //         schema.properties[property].widget = 'tinymce';
+                //     }
+                // };
 
                 schema.buttons = [
                     {id: 'save', label: 'Save'},
@@ -60,7 +65,7 @@ export class Edit {
     }
 
     onSave(schemaForm) {
-        this.objectService.put(this.path, schemaForm.getModel()).subscribe(res => {
+        this.objectService.put(this.path, schemaForm.value).subscribe(res => {
             this.router.navigate([this.utility.getUrl(this.model)]);
         });
     }

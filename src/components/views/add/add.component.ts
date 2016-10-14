@@ -24,20 +24,23 @@ export class Add {
     }
   };
   path = '';
+  type: string;
 
   constructor(private objectService: ObjectService,
               private router: Router,
               private location: Location) { }
 
   ngOnInit() {
-    this.path = this.location.path() || '/front-page';
-    this.path = this.path.split('/!!')[0];
+    let path = this.location.path();
+    this.path = path.split('/!!')[0];
+    this.type = path.split('/!!')[1].split('/')[1];
   }
 
   onAdd() {
     this.model['@context'] = '/@@context.jsonld';
-    // until we figure out routing...
-    this.model['@type'] = window.location.search.replace('?type=', '');
+    this.model['@type'] = this.type;
+    // TODO: fix plone.app.textfield transformation issue
+    delete this.model.text;
     this.objectService.create(this.path, this.model).subscribe(res => {
       this.router.navigateByUrl(this.path);
     });
