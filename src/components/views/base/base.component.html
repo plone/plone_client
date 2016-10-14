@@ -4,8 +4,8 @@
   <p class="description">{{ model.description }}</p>
   <div *ngIf="model.text" class="body" [innerHTML]="model.text.data"></div>
 
-  <div class="contents" *ngIf="model.member">
-    <article class="tileItem" *ngFor="let item of model.member">
+  <div class="contents" *ngIf="model.items">
+    <article class="tileItem" *ngFor="let item of model.items">
       <h2 class="tileHeadline">
         <a class="summary url" href="{{utility.getUrl(item)}}"
            [routerLink]="[utility.getUrl(item)]">{{item.title}}</a>
