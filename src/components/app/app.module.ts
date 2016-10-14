@@ -6,6 +6,7 @@ import {
     SchemaFormModule,
     WidgetRegistry,
     DefaultWidgetRegistry } from 'angular2-schema-form';
+import { Ng2SFTinyMCEModule } from 'ng2sf-tinymce';
 import { HttpModule } from '@angular/http';
 
 import { routing,
@@ -63,6 +64,7 @@ import { SearchService } from '../../services/search.service';
         RouterModule,
         HttpModule,
         SchemaFormModule,
+        Ng2SFTinyMCEModule,
         routing
     ],
     entryComponents: [
