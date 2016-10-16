@@ -27,6 +27,7 @@ import { Edit } from '../views/edit/edit.component';
 import { Add } from '../views/add/add.component';
 import { Login } from '../views/login/login.component';
 import { Logout } from '../views/logout/logout.component';
+import { Search as SearchView } from '../views/search/search.component';
 import { Logo } from '../logo/logo.component';
 import { Search } from '../search/search.component';
 
@@ -55,6 +56,7 @@ import { SearchService } from '../../services/search.service';
         Add,
         Login,
         Logout,
+        SearchView,
         Logo,
         Search
     ],
@@ -72,7 +74,8 @@ import { SearchService } from '../../services/search.service';
         Edit,
         Add,
         Login,
-        Logout
+        Logout,
+        SearchView
     ],
     providers: [
         AppState,

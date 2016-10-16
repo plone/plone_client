@@ -18,6 +18,7 @@ export class Search {
   sort = '';
   reversed = false;
   results = [];
+  total = 0;
   timeout = undefined;
 
   constructor(private router: Router,
@@ -60,7 +61,9 @@ export class Search {
       this.results = [];
     } else {
       this.searchService.search(this.q, this.sort, this.reversed).subscribe(res => {
-        this.results = res.json()[itemsKey];
+        let data = res.json();
+        this.results = data[itemsKey];
+        this.total = data.items_total;
         this.resultsQ = searchQ;
       });
     }
