@@ -44,12 +44,14 @@ export class Edit {
                 baseurl + '/@types/' + model['@type'])
             .subscribe(res => {
                 let schema = res.json();
-                // for(let property in schema.properties) {
-                //     if(schema.properties[property].widget === 'richtext') {
-                //         schema.properties[property].widget = 'tinymce';
-                //     }
-                // };
-
+                for(let property in schema.properties) {
+                    // if(schema.properties[property].widget === 'richtext') {
+                    //     schema.properties[property].widget = 'tinymce';
+                    // }
+                    if(property === 'effective' || property === 'expires') {
+                        schema.properties[property].widget = 'date';
+                    }
+                };
                 schema.buttons = [
                     {id: 'save', label: 'Save'},
                     {id: 'cancel', label: 'Cancel'}
