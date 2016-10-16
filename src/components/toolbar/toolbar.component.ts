@@ -111,7 +111,9 @@ export class Toolbar {
         this.transitions = [];
         this.objectService.getWorkflow(this.objectPath).subscribe(res => {
           let data = res.json();
-          this.state = data.history[0].review_state;
+          if(data.history.length) {
+            this.state = data.history[0].review_state;
+          }
           data.transitions.forEach(transition => {
             let parts = transition['@id'].split('/');
             transition.name = parts[parts.length - 1];
