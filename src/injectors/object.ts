@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import {Model} from '../models/model';
 import {Location} from '@angular/common';
+import {ConfigurationService} from '../services/configuration.service';
 
 const urlkey = 'url';
 
 @Injectable()
 export class ObjectUtility {
 
-  constructor(private location: Location) {}
+  constructor(
+    private location: Location,
+    private configuration: ConfigurationService
+  ) {}
 
   getCurrentPath() {
     let path = this.location.path() || '/front-page';
@@ -19,8 +23,7 @@ export class ObjectUtility {
   }
 
   getUrl(item: Model) {
-    // hacking the url to work again...
-    // these are urls from resources on the backend
+    let baseurl = this.configuration.get('url');
     let url = item['@id'];
 
     if (!url) {
@@ -29,13 +32,10 @@ export class ObjectUtility {
     if (!url) {
       return '';
     }
-    let split = url.split('/');
-    split.splice(0, 3);
-    url = '/' + split.join('/');
-    if (url.indexOf('/Plone/') !== -1) {
-      url = '/' + url.split('/Plone/')[1];
+    if(url.startsWith(baseurl)) {
+      url = url.slice(baseurl.length);
     }
-    if (['/Plone', '', '/'].indexOf(url) !== -1) {
+    if (['/', ''].indexOf(url) !== -1) {
       url = '/front-page';
     }
     return url;
