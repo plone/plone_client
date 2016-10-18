@@ -112,7 +112,7 @@ export class Toolbar {
         this.objectService.getWorkflow(this.objectPath).subscribe(res => {
           let data = res.json();
           if(data.history.length) {
-            this.state = data.history[0].review_state;
+            this.state = data.history[data.history.length - 1].review_state;
           }
           data.transitions.forEach(transition => {
             let parts = transition['@id'].split('/');

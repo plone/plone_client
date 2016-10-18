@@ -74,7 +74,7 @@ export class ObjectService extends APIService {
   }
 
   doTransition(path: string, transition: string) {
-    let url = this.configuration.get('url') + path + '/workflow/' + transition;
+    let url = this.configuration.get('url') + path + '/@workflow/' + transition;
     let headers = this.getHeaders();
     headers.append('Content-Type', 'application/json');
     let body = JSON.stringify({});
