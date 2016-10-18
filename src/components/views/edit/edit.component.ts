@@ -44,10 +44,17 @@ export class Edit {
                 baseurl + '/@types/' + model['@type'])
             .subscribe(res => {
                 let schema = res.json();
+                // FIX THE SCHEMA (but we should rather fix the API)
                 for(let property in schema.properties) {
-                    // if(schema.properties[property].widget === 'richtext') {
-                    //     schema.properties[property].widget = 'tinymce';
-                    // }
+                    if(schema.properties[property].widget === 'richtext') {
+                        schema.properties[property].widget = 'tinymce';
+                        if(model[property] && model[property].data) {
+                            model[property] = model[property].data
+                        }
+                    }
+                    if(property === 'allow_discussion') {
+                        schema.properties[property].type = 'boolean';
+                    }
                     if(property === 'effective' || property === 'expires') {
                         schema.properties[property].widget = 'date';
                     }
@@ -67,7 +74,15 @@ export class Edit {
     }
 
     onSave(schemaForm) {
-        this.objectService.put(this.path, schemaForm.value).subscribe(res => {
+        let value = schemaForm.value;
+        // SHOULD BE FIXED IN ANGULAR SCHEMA FORM
+        if(value.effective==='') {
+            delete value.effective;
+        }
+        if(value.expires==='') {
+            delete value.expires;
+        }
+        this.objectService.put(this.path, value).subscribe(res => {
             this.router.navigate([this.utility.getUrl(this.model)]);
         });
     }
